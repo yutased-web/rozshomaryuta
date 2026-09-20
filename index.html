@@ -1,442 +1,783 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>تولد یوتا</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تولد یوتا</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
-    body {
-      margin: 0;
-      overflow: hidden;
-      font-family: Tahoma, Arial, sans-serif;
-      background: #777;
-      color: white;
-      text-align: center;
-    }
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#050505;
+  color:white;
+}
 
-    /* صفحه شروع */
-    #intro {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 2s ease;
-    }
+button{
+  font-family:inherit;
+}
 
-    #intro h1 {
-      font-size: 28px;
-      font-weight: normal;
-      animation: pulse 2s infinite;
-    }
+/* ================= INTRO ================= */
 
-    @keyframes pulse {
-      0%, 100% {
-        opacity: .5;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transition:opacity 1.5s ease;
+}
 
-    /* صفحه اصلی */
-    #main {
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 30%, #929292 0%, #707070 45%, #555 100%);
-    }
+#introTitle{
+  font-size:27px;
+  text-align:center;
+  animation:pulse 2s infinite;
+  padding:20px;
+}
 
-    .content {
-      position: relative;
-      z-index: 20;
-      padding-top: 55px;
-      pointer-events: none;
-    }
+#startButton{
+  margin-top:35px;
+  padding:15px 35px;
+  border:1px solid white;
+  border-radius:40px;
+  background:white;
+  color:#111;
+  font-size:17px;
+  font-weight:bold;
+  box-shadow:0 0 30px rgba(255,255,255,.35);
+}
 
-    .title {
-      font-size: 22px;
-      margin: 0 20px 25px;
-      text-shadow: 0 2px 5px rgba(0,0,0,.5);
-    }
+@keyframes pulse{
+  0%,100%{opacity:.45;transform:scale(.98)}
+  50%{opacity:1;transform:scale(1.03)}
+}
 
-    #countdown {
-      font-size: 28px;
-      font-weight: bold;
-      line-height: 2;
-      text-shadow: 0 3px 8px rgba(0,0,0,.6);
-    }
+/* ================= MAIN ================= */
 
-    .count-box {
-      display: inline-block;
-      min-width: 70px;
-      margin: 5px;
-      padding: 8px;
-      border-radius: 15px;
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.3);
-      backdrop-filter: blur(8px);
-    }
+#main{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 20%,#a7a7a7 0%,#707070 35%,#292929 100%);
+}
 
-    .count-number {
-      display: block;
-      font-size: 25px;
-    }
+#main.chaos{
+  animation:shake .12s infinite;
+  background:
+    radial-gradient(circle at 50% 50%,#aaa,#333 70%,#000);
+}
 
-    .count-label {
-      display: block;
-      font-size: 11px;
-      opacity: .75;
-    }
+@keyframes shake{
+  0%{transform:translate(0)}
+  25%{transform:translate(2px,-1px)}
+  50%{transform:translate(-2px,1px)}
+  75%{transform:translate(1px,2px)}
+  100%{transform:translate(0)}
+}
 
-    /* اشیای قابل جابه‌جایی */
-    .draggable {
-      position: absolute;
-      z-index: 10;
-      user-select: none;
-      touch-action: none;
-      cursor: grab;
-    }
+/* ================= HEADER ================= */
 
-    .cake {
-      left: 12%;
-      bottom: 28%;
-      font-size: 75px;
-      filter: drop-shadow(0 10px 8px rgba(0,0,0,.4));
-    }
+.header{
+  position:relative;
+  z-index:20;
+  text-align:center;
+  padding:28px 15px 0;
+  pointer-events:none;
+}
 
-    .money {
-      font-size: 35px;
-      transform: rotate(-15deg);
-      filter: drop-shadow(0 5px 5px rgba(0,0,0,.35));
-    }
+.header h1{
+  margin:0;
+  font-size:22px;
+  text-shadow:0 3px 10px #000;
+}
 
-    .money.m1 {
-      left: 8%;
-      top: 38%;
-    }
+#bigCountdown{
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  direction:rtl;
+}
 
-    .money.m2 {
-      right: 10%;
-      top: 45%;
-      transform: rotate(18deg);
-    }
+.timeBox{
+  min-width:65px;
+  padding:9px 5px;
+  border-radius:15px;
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
 
-    .money.m3 {
-      left: 25%;
-      bottom: 15%;
-      transform: rotate(8deg);
-    }
+.number{
+  display:block;
+  font-size:22px;
+  font-weight:bold;
+}
 
-    .money.m4 {
-      right: 25%;
-      bottom: 23%;
-      transform: rotate(-20deg);
-    }
+.label{
+  display:block;
+  margin-top:3px;
+  font-size:10px;
+  opacity:.7;
+}
 
-    .money.m5 {
-      right: 5%;
-      bottom: 12%;
-      transform: rotate(12deg);
-    }
+/* ================= SCORE ================= */
 
-    /* کادوها */
-    .gift {
-      font-size: 55px;
-      filter: drop-shadow(0 8px 7px rgba(0,0,0,.45));
-    }
+#score{
+  position:absolute;
+  top:18px;
+  right:15px;
+  z-index:100;
+  background:rgba(0,0,0,.35);
+  padding:8px 13px;
+  border-radius:20px;
+  font-size:13px;
+}
 
-    .gift.g1 {
-      right: 12%;
-      bottom: 25%;
-    }
+/* ================= OBJECTS ================= */
 
-    .gift.g2 {
-      left: 40%;
-      bottom: 12%;
-      font-size: 48px;
-    }
+.draggable{
+  position:absolute;
+  z-index:30;
+  user-select:none;
+  touch-action:none;
+  cursor:grab;
+}
 
-    .gift.g3 {
-      right: 35%;
-      top: 34%;
-      font-size: 45px;
-    }
+.draggable:active{
+  cursor:grabbing;
+}
 
-    /* پیام کادو */
-    #giftMessage {
-      position: fixed;
-      inset: 0;
-      z-index: 500;
-      background: rgba(0,0,0,.65);
-      display: none;
-      justify-content: center;
-      align-items: center;
-    }
+.cake{
+  left:8%;
+  bottom:26%;
+  font-size:72px;
+  filter:drop-shadow(0 12px 8px rgba(0,0,0,.5));
+}
 
-    .message-box {
-      width: 80%;
-      max-width: 350px;
-      padding: 35px 20px;
-      background: white;
-      color: #333;
-      border-radius: 25px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.6);
-      animation: pop .3s ease;
-    }
+.money{
+  font-size:36px;
+  filter:drop-shadow(0 7px 5px rgba(0,0,0,.45));
+}
 
-    .message-box h2 {
-      margin: 0 0 15px;
-      font-size: 25px;
-    }
+.m1{left:5%;top:38%;transform:rotate(-18deg)}
+.m2{right:8%;top:38%;transform:rotate(15deg)}
+.m3{left:22%;bottom:17%;transform:rotate(8deg)}
+.m4{right:25%;bottom:20%;transform:rotate(-15deg)}
+.m5{right:3%;bottom:10%;transform:rotate(20deg)}
+.m6{left:45%;top:43%;transform:rotate(-7deg)}
+.m7{left:13%;top:17%;transform:rotate(13deg)}
+.m8{right:20%;top:20%;transform:rotate(-12deg)}
 
-    .message-box button {
-      border: none;
-      padding: 10px 25px;
-      border-radius: 20px;
-      background: #555;
-      color: white;
-      font-size: 15px;
-    }
+.gift{
+  font-size:55px;
+  filter:drop-shadow(0 10px 7px rgba(0,0,0,.5));
+}
 
-    @keyframes pop {
-      from {
-        transform: scale(.5);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
+.g1{right:12%;bottom:27%}
+.g2{left:42%;bottom:11%;font-size:50px}
+.g3{right:36%;top:37%;font-size:47px}
+.g4{left:18%;top:50%;font-size:45px}
 
-    /* دکمه پایین */
-    #rememberButton {
-      position: absolute;
-      z-index: 100;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      border: none;
-      background: white;
-      color: #333;
-      padding: 15px 28px;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 8px 25px rgba(0,0,0,.35);
-    }
+/* ================= BUTTONS ================= */
 
-    #rememberButton:active {
-      transform: translateX(-50%) scale(.95);
-    }
+#eventButton{
+  position:absolute;
+  left:50%;
+  bottom:82px;
+  transform:translateX(-50%);
+  z-index:200;
+  border:0;
+  border-radius:35px;
+  padding:14px 23px;
+  background:white;
+  color:#222;
+  font-size:15px;
+  font-weight:bold;
+  box-shadow:0 8px 30px rgba(0,0,0,.45);
+}
 
-    /* دکمه موسیقی */
-    #musicButton {
-      position: absolute;
-      z-index: 100;
-      top: 18px;
-      left: 18px;
-      width: 45px;
-      height: 45px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(255,255,255,.9);
-      color: #333;
-      font-size: 20px;
-    }
-  </style>
+#eventButton:active{
+  transform:translateX(-50%) scale(.92);
+}
+
+#rememberButton{
+  position:absolute;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  z-index:200;
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:30px;
+  padding:11px 22px;
+  background:rgba(255,255,255,.15);
+  color:white;
+  font-size:13px;
+  backdrop-filter:blur(8px);
+}
+
+/* ================= MODAL ================= */
+
+#modal{
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.75);
+}
+
+.modalBox{
+  width:82%;
+  max-width:360px;
+  padding:35px 20px;
+  border-radius:25px;
+  background:white;
+  color:#222;
+  text-align:center;
+  box-shadow:0 20px 70px #000;
+  animation:pop .3s ease;
+}
+
+.modalBox h2{
+  margin:0 0 12px;
+  font-size:24px;
+}
+
+.modalBox p{
+  line-height:1.8;
+}
+
+.modalBox button{
+  border:0;
+  border-radius:25px;
+  padding:11px 25px;
+  background:#333;
+  color:white;
+}
+
+@keyframes pop{
+  from{transform:scale(.4);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+/* ================= CANDLES ================= */
+
+.candle{
+  position:absolute;
+  z-index:70;
+  font-size:35px;
+  cursor:pointer;
+  animation:candleAppear .25s ease, float 1s infinite alternate;
+  filter:drop-shadow(0 0 12px white);
+}
+
+@keyframes candleAppear{
+  from{transform:scale(0)}
+  to{transform:scale(1)}
+}
+
+@keyframes float{
+  from{margin-top:-3px}
+  to{margin-top:3px}
+}
+
+/* ================= PARTICLES ================= */
+
+.particle{
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:white;
+  pointer-events:none;
+  z-index:1000;
+  animation:particleFly 1s ease-out forwards;
+}
+
+@keyframes particleFly{
+  from{
+    transform:translate(0,0) scale(1);
+    opacity:1;
+  }
+  to{
+    transform:translate(var(--x),var(--y)) scale(0);
+    opacity:0;
+  }
+}
+
+/* ================= FALLING OBJECT ================= */
+
+.falling{
+  position:absolute;
+  z-index:900;
+  pointer-events:none;
+  font-size:30px;
+  animation:fall 2.5s linear forwards;
+}
+
+@keyframes fall{
+  from{
+    transform:translateY(-80px) rotate(0deg);
+    opacity:1;
+  }
+  to{
+    transform:translateY(110vh) rotate(720deg);
+    opacity:0;
+  }
+}
+
+/* ================= SECRET ================= */
+
+#secret{
+  position:fixed;
+  inset:0;
+  z-index:9000;
+  background:#000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:30px;
+}
+
+#secret h1{
+  font-size:28px;
+  line-height:1.8;
+  animation:pulse 1.5s infinite;
+}
+</style>
 </head>
 
 <body>
 
-  <!-- صفحه شروع -->
-  <div id="intro">
-    <h1>یک اتفاق مهم در راه است..!!!</h1>
-  </div>
+<!-- INTRO -->
+<div id="intro">
+  <div id="introTitle">یک اتفاق مهم در راه است..!!!</div>
+  <button id="startButton">شروع اتفاق</button>
+</div>
 
-  <!-- صفحه اصلی -->
-  <main id="main">
+<!-- MAIN -->
+<main id="main">
 
-    <div class="content">
-      <h1 class="title">
-        تا لحظه‌ای که تولد یوتا فرا برسه!!!!
-      </h1>
+  <div id="score">امتیاز: <b id="scoreNumber">0</b></div>
 
-      <div id="countdown">
+  <div class="header">
+    <h1>تا لحظه‌ای که تولد یوتا فرا برسه!!!!</h1>
 
-        <span class="count-box">
-          <span id="days" class="count-number">0</span>
-          <span class="count-label">روز</span>
-        </span>
+    <div id="bigCountdown">
 
-        <span class="count-box">
-          <span id="hours" class="count-number">0</span>
-          <span class="count-label">ساعت</span>
-        </span>
-
-        <span class="count-box">
-          <span id="minutes" class="count-number">0</span>
-          <span class="count-label">دقیقه</span>
-        </span>
-
-        <span class="count-box">
-          <span id="seconds" class="count-number">0</span>
-          <span class="count-label">ثانیه</span>
-        </span>
-
+      <div class="timeBox">
+        <span class="number" id="days">0</span>
+        <span class="label">روز</span>
       </div>
-    </div>
 
-    <!-- کیک -->
-    <div class="draggable cake">🎂</div>
+      <div class="timeBox">
+        <span class="number" id="hours">0</span>
+        <span class="label">ساعت</span>
+      </div>
 
-    <!-- پول‌ها -->
-    <div class="draggable money m1">💵</div>
-    <div class="draggable money m2">💵</div>
-    <div class="draggable money m3">💵</div>
-    <div class="draggable money m4">💵</div>
-    <div class="draggable money m5">💵</div>
+      <div class="timeBox">
+        <span class="number" id="minutes">0</span>
+        <span class="label">دقیقه</span>
+      </div>
 
-    <!-- کادوها -->
-    <div class="draggable gift g1">🎁</div>
-    <div class="draggable gift g2">🎁</div>
-    <div class="draggable gift g3">🎁</div>
+      <div class="timeBox">
+        <span class="number" id="seconds">0</span>
+        <span class="label">ثانیه</span>
+      </div>
 
-    <button id="musicButton">♫</button>
-
-    <button id="rememberButton">
-      تولدم رو یادت نره!!!!!
-    </button>
-
-  </main>
-
-  <!-- پیام کادو -->
-  <div id="giftMessage">
-    <div class="message-box">
-      <h2>تولدم یادت نره!!!</h2>
-      <button onclick="closeGift()">باشه!</button>
     </div>
   </div>
 
-  <script>
+  <!-- کیک -->
+  <div class="draggable cake">🎂</div>
 
-    /* ورود به سایت */
-    setTimeout(function() {
-      document.getElementById("intro").style.opacity = "0";
+  <!-- پول -->
+  <div class="draggable money m1">💵</div>
+  <div class="draggable money m2">💵</div>
+  <div class="draggable money m3">💵</div>
+  <div class="draggable money m4">💵</div>
+  <div class="draggable money m5">💵</div>
+  <div class="draggable money m6">💵</div>
+  <div class="draggable money m7">💵</div>
+  <div class="draggable money m8">💵</div>
 
-      setTimeout(function() {
-        document.getElementById("intro").style.display = "none";
-      }, 2000);
+  <!-- کادو -->
+  <div class="draggable gift g1">🎁</div>
+  <div class="draggable gift g2">🎁</div>
+  <div class="draggable gift g3">🎁</div>
+  <div class="draggable gift g4">🎁</div>
 
-    }, 3000);
+  <button id="eventButton">یه اتفاق بنداز!</button>
+
+  <button id="rememberButton">تولدم رو یادت نره!!!!!</button>
+
+</main>
+
+<!-- MODAL -->
+<div id="modal">
+  <div class="modalBox">
+    <h2 id="modalTitle">تولدت یادت نره!!!</h2>
+    <p id="modalText">این کادو فقط برای اینه که فراموشت نشه!</p>
+    <button onclick="closeModal()">باشه!</button>
+  </div>
+</div>
+
+<!-- SECRET -->
+<div id="secret">
+  <h1>
+    بالاخره پیداش کردی...<br><br>
+    تولدم رو یادت نره!!!
+  </h1>
+</div>
+
+<script>
+
+/* ================= START ================= */
+
+const intro = document.getElementById("intro");
+const main = document.getElementById("main");
+
+document.getElementById("startButton").addEventListener("click",function(){
+
+  intro.style.opacity="0";
+
+  setTimeout(function(){
+    intro.style.display="none";
+  },1500);
+
+  createExplosion(window.innerWidth/2,window.innerHeight/2);
+
+});
 
 
-    /* شمارش معکوس */
-    function updateCountdown() {
+/* ================= COUNTDOWN ================= */
 
-      const target = new Date(2027, 0, 15, 0, 0, 0);
-      const now = new Date();
+function updateCountdown(){
 
-      const difference = target.getTime() - now.getTime();
+  const target = new Date(2027,0,15,0,0,0);
+  const now = new Date();
 
-      if (difference <= 0) {
-        document.getElementById("days").textContent = "0";
-        document.getElementById("hours").textContent = "0";
-        document.getElementById("minutes").textContent = "0";
-        document.getElementById("seconds").textContent = "0";
-        return;
-      }
+  let diff = target-now;
 
-      const days = Math.floor(difference / 86400000);
-      const hours = Math.floor((difference % 86400000) / 3600000);
-      const minutes = Math.floor((difference % 3600000) / 60000);
-      const seconds = Math.floor((difference % 60000) / 1000);
+  if(diff<0) diff=0;
 
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
+  const days=Math.floor(diff/86400000);
+  const hours=Math.floor((diff%86400000)/3600000);
+  const minutes=Math.floor((diff%3600000)/60000);
+  const seconds=Math.floor((diff%60000)/1000);
+
+  document.getElementById("days").textContent=days;
+  document.getElementById("hours").textContent=hours;
+  document.getElementById("minutes").textContent=minutes;
+  document.getElementById("seconds").textContent=seconds;
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+
+/* ================= DRAG ================= */
+
+document.querySelectorAll(".draggable").forEach(function(object){
+
+  let moving=false;
+  let offsetX=0;
+  let offsetY=0;
+
+  object.addEventListener("pointerdown",function(e){
+
+    moving=true;
+
+    const rect=object.getBoundingClientRect();
+
+    offsetX=e.clientX-rect.left;
+    offsetY=e.clientY-rect.top;
+
+    object.setPointerCapture(e.pointerId);
+
+  });
+
+  object.addEventListener("pointermove",function(e){
+
+    if(!moving)return;
+
+    object.style.left=(e.clientX-offsetX)+"px";
+    object.style.top=(e.clientY-offsetY)+"px";
+    object.style.right="auto";
+    object.style.bottom="auto";
+
+  });
+
+  object.addEventListener("pointerup",function(){
+
+    moving=false;
+
+  });
+
+});
+
+
+/* ================= GIFTS ================= */
+
+document.querySelectorAll(".gift").forEach(function(gift){
+
+  gift.addEventListener("click",function(){
+
+    document.getElementById("modalTitle").textContent="🎁 کادو باز شد!";
+    document.getElementById("modalText").textContent=
+      "تولدت یادت نره!!! یه امتیاز هم گرفتی.";
+
+    addScore(10);
+    document.getElementById("modal").style.display="flex";
+
+  });
+
+});
+
+
+/* ================= MODAL ================= */
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+document.getElementById("rememberButton").onclick=function(){
+
+  document.getElementById("modalTitle").textContent="تولد یوتا";
+  document.getElementById("modalText").textContent=
+    "این تاریخ رو به خاطر بسپار: ۲۵ دی";
+
+  document.getElementById("modal").style.display="flex";
+
+};
+
+
+/* ================= SCORE ================= */
+
+let score=0;
+
+function addScore(amount){
+
+  score+=amount;
+
+  document.getElementById("scoreNumber").textContent=score;
+
+  if(score>=50 && !main.classList.contains("chaos")){
+    activateChaos();
+  }
+
+}
+
+
+/* ================= RANDOM EVENT ================= */
+
+document.getElementById("eventButton").onclick=function(){
+
+  const events=[
+    "بارون پول شروع شد!",
+    "کادوها دیوونه شدن!",
+    "یه اتفاق عجیب افتاد!",
+    "شمع‌ها رو پیدا کن!",
+    "CHAOS نزدیکه..."
+  ];
+
+  const text=events[Math.floor(Math.random()*events.length)];
+
+  document.getElementById("modalTitle").textContent=text;
+  document.getElementById("modalText").textContent=
+    "حالا ببین روی صفحه چی ظاهر میشه!";
+
+  document.getElementById("modal").style.display="flex";
+
+  createExplosion(
+    Math.random()*window.innerWidth,
+    Math.random()*window.innerHeight
+  );
+
+  setTimeout(function(){
+    closeModal();
+  },1200);
+
+  spawnRandomObjects();
+  spawnCandle();
+
+};
+
+
+/* ================= EXPLOSION ================= */
+
+function createExplosion(x,y){
+
+  for(let i=0;i<35;i++){
+
+    const p=document.createElement("div");
+
+    p.className="particle";
+
+    p.style.left=x+"px";
+    p.style.top=y+"px";
+
+    p.style.setProperty(
+      "--x",
+      (Math.random()*300-150)+"px"
+    );
+
+    p.style.setProperty(
+      "--y",
+      (Math.random()*300-150)+"px"
+    );
+
+    document.body.appendChild(p);
+
+    setTimeout(function(){
+      p.remove();
+    },1000);
+
+  }
+
+}
+
+
+/* ================= FALLING ================= */
+
+function spawnRandomObjects(){
+
+  for(let i=0;i<18;i++){
+
+    const obj=document.createElement("div");
+
+    obj.className="falling";
+
+    obj.textContent=Math.random()>.5 ? "💵" : "🎁";
+
+    obj.style.left=Math.random()*100+"vw";
+
+    obj.style.animationDuration=
+      (1.5+Math.random()*2)+"s";
+
+    document.body.appendChild(obj);
+
+    setTimeout(function(){
+      obj.remove();
+    },4000);
+
+  }
+
+}
+
+
+/* ================= CANDLE GAME ================= */
+
+function spawnCandle(){
+
+  const candle=document.createElement("div");
+
+  candle.className="candle";
+  candle.textContent="🕯️";
+
+  candle.style.left=
+    (10+Math.random()*80)+"vw";
+
+  candle.style.top=
+    (20+Math.random()*60)+"vh";
+
+  main.appendChild(candle);
+
+  candle.onclick=function(){
+
+    addScore(5);
+
+    createExplosion(
+      candle.getBoundingClientRect().left,
+      candle.getBoundingClientRect().top
+    );
+
+    candle.remove();
+
+  };
+
+  setTimeout(function(){
+
+    if(candle.parentNode){
+      candle.remove();
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+  },4000);
+
+}
 
 
-    /* باز شدن کادو */
-    const gifts = document.querySelectorAll(".gift");
+/* ================= CHAOS ================= */
 
-    gifts.forEach(function(gift) {
-      gift.addEventListener("click", function() {
-        document.getElementById("giftMessage").style.display = "flex";
-      });
-    });
+function activateChaos(){
 
-    function closeGift() {
-      document.getElementById("giftMessage").style.display = "none";
-    }
+  main.classList.add("chaos");
+
+  document.getElementById("modalTitle").textContent=
+    "CHAOS MODE";
+
+  document.getElementById("modalText").textContent=
+    "امتیازت به ۵۰ رسید. حالا دیگه اوضاع از کنترل خارج شد!";
+
+  document.getElementById("modal").style.display="flex";
+
+  spawnRandomObjects();
+
+  for(let i=0;i<5;i++){
+    setTimeout(spawnCandle,i*500);
+  }
+
+  setTimeout(function(){
+    main.classList.remove("chaos");
+  },5000);
+
+}
 
 
-    /* دکمه پایین */
-    document.getElementById("rememberButton").addEventListener("click", function() {
-      document.getElementById("giftMessage").style.display = "flex";
-    });
+/* ================= SECRET ================= */
 
+let taps=0;
 
-    /* جابه‌جایی با انگشت */
-    const objects = document.querySelectorAll(".draggable");
+document.getElementById("eventButton").addEventListener("click",function(){
 
-    objects.forEach(function(object) {
+  taps++;
 
-      let moving = false;
-      let offsetX = 0;
-      let offsetY = 0;
+  if(taps>=7){
 
-      object.addEventListener("pointerdown", function(e) {
+    document.getElementById("secret").style.display="flex";
 
-        moving = true;
+    createExplosion(
+      window.innerWidth/2,
+      window.innerHeight/2
+    );
 
-        const rect = object.getBoundingClientRect();
+    setTimeout(function(){
+      document.getElementById("secret").style.display="none";
+      taps=0;
+    },5000);
 
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
+  }
 
-        object.setPointerCapture(e.pointerId);
-        object.style.cursor = "grabbing";
-      });
+});
 
-      object.addEventListener("pointermove", function(e) {
-
-        if (!moving) return;
-
-        object.style.left =
-          (e.clientX - offsetX) + "px";
-
-        object.style.top =
-          (e.clientY - offsetY) + "px";
-
-        object.style.right = "auto";
-        object.style.bottom = "auto";
-      });
-
-      object.addEventListener("pointerup", function() {
-        moving = false;
-        object.style.cursor = "grab";
-      });
-
-    });
-
-  </script>
+</script>
 
 </body>
   </html>
