@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -6,468 +5,1194 @@
 <title>تولد یوتا</title>
 
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Tahoma,Arial,sans-serif}
-button{font-family:inherit}
-body{background:#000;color:#fff}
-
-/* =========================
-   INTRO
-========================= */
-
-#intro{
- position:fixed;inset:0;background:#000;z-index:99999;
- display:flex;align-items:center;justify-content:center;
- flex-direction:column;text-align:center;
- transition:1.4s;
-}
-#intro h1{
- font-size:27px;font-weight:normal;
- animation:glow 2s infinite;
-}
-#enter{
- margin-top:30px;padding:15px 35px;border:1px solid #fff;
- border-radius:40px;background:#fff;color:#000;font-size:17px;
- font-weight:bold;
-}
-@keyframes glow{
- 0%,100%{opacity:.45}
- 50%{opacity:1;text-shadow:0 0 25px #fff}
+*{
+ box-sizing:border-box;
+ -webkit-tap-highlight-color:transparent;
 }
 
-/* =========================
-   MAIN
-========================= */
+html,body{
+ margin:0;
+ width:100%;
+ height:100%;
+ overflow:hidden;
+ font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+ background:#111;
+ color:white;
+}
+
+button{
+ font-family:inherit;
+ cursor:pointer;
+}
 
 .screen{
- position:absolute;inset:0;display:none;
+ position:absolute;
+ inset:0;
+ display:none;
  overflow:hidden;
 }
-#home{
- background:
- radial-gradient(circle at 50% 20%,#bcbcbc,#777 42%,#171717 100%);
-}
-#home.active,#creator.active,#city.active,#shop.active,#gifts.active{
+
+.screen.active{
  display:block;
 }
 
-.top{
- position:absolute;top:20px;left:0;width:100%;
- text-align:center;z-index:30;
+/* ================= INTRO ================= */
+
+#intro{
+ position:fixed;
+ inset:0;
+ background:#050505;
+ z-index:99999;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ text-align:center;
+ transition:1s;
 }
-.top h1{
- margin:0;font-size:22px;text-shadow:0 3px 10px #000;
+
+.introTitle{
+ font-size:27px;
+ animation:pulse 2s infinite;
 }
+
+.introSub{
+ margin-top:10px;
+ color:#aaa;
+ font-size:13px;
+}
+
+#enter{
+ margin-top:35px;
+ padding:15px 35px;
+ border:0;
+ border-radius:40px;
+ background:white;
+ color:#111;
+ font-weight:bold;
+ font-size:16px;
+}
+
+@keyframes pulse{
+ 0%,100%{opacity:.5}
+ 50%{opacity:1;text-shadow:0 0 25px white}
+}
+
+/* ================= HOME ================= */
+
+#home{
+ background:
+ radial-gradient(circle at 50% 10%,#d9e4ef 0,#8fa8bd 28%,#596978 60%,#222 100%);
+}
+
+.homeCloud{
+ position:absolute;
+ background:rgba(255,255,255,.55);
+ border-radius:50px;
+ filter:blur(2px);
+}
+
+.cloud1{
+ width:150px;height:35px;
+ top:17%;left:-20px;
+}
+
+.cloud2{
+ width:120px;height:30px;
+ top:30%;right:-15px;
+}
+
+.homeTop{
+ position:absolute;
+ top:14px;
+ width:100%;
+ text-align:center;
+ z-index:20;
+}
+
+.homeTop h1{
+ font-size:20px;
+ margin:0;
+ text-shadow:0 3px 8px #222;
+}
+
+.messageCircle{
+ width:76px;
+ height:76px;
+ margin:8px auto 12px;
+ border-radius:50%;
+ background:linear-gradient(145deg,#fff,#cfcfcf);
+ border:3px solid #222;
+ box-shadow:0 8px 25px #0008;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ color:#111;
+ font-size:11px;
+ font-weight:bold;
+ text-align:center;
+ padding:8px;
+}
+
+.messageCircle:active{
+ transform:scale(.92);
+}
+
 .count{
- margin-top:13px;display:flex;justify-content:center;gap:6px;
+ display:flex;
+ justify-content:center;
+ gap:6px;
  direction:rtl;
 }
+
 .time{
- min-width:62px;padding:8px 4px;
+ min-width:58px;
+ padding:7px 3px;
  border-radius:13px;
- background:rgba(255,255,255,.14);
- border:1px solid rgba(255,255,255,.35);
- backdrop-filter:blur(7px);
+ background:#111b;
+ border:1px solid #fff6;
+ backdrop-filter:blur(8px);
 }
-.time b{display:block;font-size:21px}
-.time small{opacity:.7;font-size:10px}
+
+.time b{
+ display:block;
+ font-size:19px;
+}
+
+.time small{
+ font-size:9px;
+ color:#ddd;
+}
+
+/* ================= CAKE ================= */
 
 .bigCake{
  position:absolute;
- left:50%;top:46%;
+ width:250px;
+ height:190px;
+ left:50%;
+ top:50%;
  transform:translate(-50%,-50%);
- width:210px;height:150px;
- z-index:15;
+ z-index:10;
 }
 
-/* کیک */
-.cakeLayer{
- position:absolute;left:50%;transform:translateX(-50%);
- border-radius:18px;
- background:linear-gradient(#fff,#d8d8d8);
- box-shadow:inset 0 -8px 0 #aaa,0 15px 25px #0008;
-}
-.layer1{width:190px;height:58px;bottom:0}
-.layer2{width:155px;height:52px;bottom:48px}
-.layer3{width:120px;height:45px;bottom:92px}
-.cream{
- position:absolute;left:50%;transform:translateX(-50%);
- width:190px;height:18px;bottom:42px;
+.cakePlate{
+ position:absolute;
+ width:250px;
+ height:24px;
+ bottom:0;
+ left:0;
  border-radius:50%;
- background:#fff;z-index:4;
+ background:#222;
+ box-shadow:0 10px 25px #0009;
 }
-.cream2{
- position:absolute;left:50%;transform:translateX(-50%);
- width:155px;height:15px;bottom:84px;
- border-radius:50%;background:#fff;z-index:5;
-}
-.plate{
- position:absolute;bottom:-8px;left:50%;
+
+.cakeLayer{
+ position:absolute;
+ left:50%;
  transform:translateX(-50%);
- width:215px;height:18px;border-radius:50%;
- background:#111;box-shadow:0 5px 20px #000;
+ border-radius:18px;
+ border:3px solid #333;
+ box-shadow:inset 0 -10px 0 #aaa,0 10px 15px #0006;
 }
+
+.cakeBottom{
+ width:215px;
+ height:65px;
+ bottom:14px;
+ background:linear-gradient(#fff,#cfcfcf);
+}
+
+.cakeMiddle{
+ width:175px;
+ height:55px;
+ bottom:62px;
+ background:linear-gradient(#ddd,#999);
+}
+
+.cakeTop{
+ width:135px;
+ height:48px;
+ bottom:105px;
+ background:linear-gradient(#fff,#d5d5d5);
+}
+
+.cakeCream{
+ position:absolute;
+ height:16px;
+ border-radius:50%;
+ background:white;
+ left:50%;
+ transform:translateX(-50%);
+ z-index:5;
+}
+
+.creamA{
+ width:215px;
+ bottom:65px;
+}
+
+.creamB{
+ width:175px;
+ bottom:112px;
+}
+
 .candle{
- position:absolute;width:7px;height:35px;background:#fff;
- bottom:136px;border-radius:5px;z-index:10;
+ position:absolute;
+ width:8px;
+ height:34px;
+ bottom:147px;
+ background:white;
+ border:2px solid #222;
+ border-radius:5px;
+ z-index:8;
 }
+
 .candle:after{
- content:"";position:absolute;width:10px;height:13px;
- background:#fff;border-radius:50% 50% 50% 50%;
- left:-1px;top:-11px;box-shadow:0 0 12px #fff;
+ content:"";
+ position:absolute;
+ width:12px;
+ height:15px;
+ border-radius:50%;
+ background:#ddd;
+ top:-14px;
+ left:-4px;
+ box-shadow:0 0 15px white;
 }
-.c1{left:72px}.c2{left:101px}.c3{left:130px}
+
+.candle1{left:105px}
+.candle2{left:125px}
+.candle3{left:145px}
+
+/* ================= GIFTS ================= */
 
 .gift{
  position:absolute;
- width:72px;height:64px;
+ width:68px;
+ height:58px;
  border:4px solid;
- border-radius:6px;
- z-index:20;
- box-shadow:0 12px 18px #0008;
- cursor:pointer;
+ border-radius:8px;
+ box-shadow:0 10px 15px #0008;
+ z-index:30;
 }
-.gift:before{
- content:"";position:absolute;left:50%;
- transform:translateX(-50%);
- width:13px;height:100%;background:currentColor;
-}
-.gift:after{
- content:"";position:absolute;left:50%;top:-12px;
- transform:translateX(-50%);
- width:48px;height:20px;border:5px solid;
- border-radius:50%;
-}
-.whiteGift{background:#fff;color:#111;border-color:#111}
-.blackGift{background:#111;color:#fff;border-color:#fff}
-.grayGift{background:#888;color:#fff;border-color:#fff}
 
-.g1{left:8%;bottom:18%}
-.g2{right:8%;bottom:19%}
-.g3{left:13%;top:35%}
-.g4{right:14%;top:37%}
-.g5{left:42%;bottom:8%}
-.g6{right:39%;bottom:12%}
+.gift:before{
+ content:"";
+ position:absolute;
+ left:50%;
+ transform:translateX(-50%);
+ height:100%;
+ width:11px;
+ background:currentColor;
+}
+
+.gift:after{
+ content:"";
+ position:absolute;
+ width:45px;
+ height:18px;
+ border:4px solid currentColor;
+ border-radius:50%;
+ left:50%;
+ top:-13px;
+ transform:translateX(-50%);
+}
+
+.gift1{
+ background:white;
+ color:#111;
+ border-color:#111;
+ left:7%;
+ bottom:22%;
+}
+
+.gift2{
+ background:#222;
+ color:white;
+ border-color:white;
+ right:7%;
+ bottom:25%;
+}
+
+.gift3{
+ background:#aaa;
+ color:white;
+ border-color:#222;
+ left:10%;
+ top:42%;
+}
+
+.gift4{
+ background:#555;
+ color:white;
+ border-color:white;
+ right:11%;
+ top:43%;
+}
+
+/* ================= HOME BUTTONS ================= */
 
 .homeButtons{
- position:absolute;bottom:20px;width:100%;
- display:flex;justify-content:center;gap:8px;z-index:100;
-}
-.homeButtons button{
- border:0;padding:12px 15px;border-radius:25px;
- background:#fff;color:#111;font-weight:bold;
+ position:absolute;
+ bottom:12px;
+ width:100%;
+ display:flex;
+ justify-content:center;
+ gap:6px;
+ z-index:100;
+ flex-wrap:wrap;
 }
 
-/* =========================
-   MODAL
-========================= */
+.homeButtons button{
+ border:0;
+ padding:11px 14px;
+ border-radius:25px;
+ background:#fff;
+ color:#111;
+ font-weight:bold;
+}
+
+/* ================= MODAL ================= */
 
 #modal{
- position:fixed;inset:0;background:#000b;z-index:5000;
- display:none;align-items:center;justify-content:center;padding:20px;
-}
-.modalBox{
- width:min(90%,380px);background:#fff;color:#111;
- border-radius:25px;padding:28px;text-align:center;
- box-shadow:0 20px 70px #000;
-}
-.modalBox h2{margin-top:0}
-.modalBox button{
- border:0;background:#111;color:#fff;
- border-radius:25px;padding:11px 25px;
+ position:fixed;
+ inset:0;
+ background:#000b;
+ z-index:9999;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
 }
 
-/* =========================
-   CREATOR
-========================= */
+.modalBox{
+ width:min(90%,390px);
+ background:white;
+ color:#111;
+ border-radius:25px;
+ padding:28px;
+ text-align:center;
+ box-shadow:0 20px 60px #000;
+}
+
+.modalBox button{
+ border:0;
+ background:#111;
+ color:white;
+ border-radius:25px;
+ padding:11px 25px;
+}
+
+/* ================= CREATOR ================= */
 
 #creator{
- background:#151515;
- padding:20px;
+ background:linear-gradient(#385b79,#172536);
  overflow:auto;
-}
-.creatorBox{
- max-width:430px;margin:auto;
- padding-bottom:120px;
-}
-.creatorBox h1{text-align:center;font-size:23px}
-.preview{
- height:240px;background:#555;border-radius:25px;
- display:flex;align-items:center;justify-content:center;
- position:relative;overflow:hidden;
-}
-.avatar{
- position:relative;width:90px;height:150px;
-}
-.head{
- position:absolute;top:5px;left:20px;
- width:50px;height:58px;border-radius:50%;
- background:#f0c5a0;z-index:3;
-}
-.hair{
- position:absolute;top:0;left:15px;width:60px;height:45px;
- background:#111;border-radius:50% 50% 30% 30%;z-index:4;
-}
-.body{
- position:absolute;top:60px;left:15px;
- width:60px;height:75px;border-radius:15px 15px 8px 8px;
- background:#fff;
-}
-.legs{
- position:absolute;top:125px;left:25px;width:40px;height:25px;
- border-left:8px solid #111;border-right:8px solid #111;
-}
-.choiceTitle{margin-top:18px;font-weight:bold}
-.choices{
- display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;
-}
-.choice{
- border:1px solid #777;background:#222;color:#fff;
- padding:9px 12px;border-radius:18px;
-}
-.choice.selected{background:#fff;color:#111}
-#createCharacter{
- width:100%;margin-top:25px;padding:15px;border:0;
- border-radius:30px;background:#fff;color:#111;font-weight:bold;
+ padding:18px;
 }
 
-/* =========================
-   CITY
-========================= */
+.creatorBox{
+ max-width:430px;
+ margin:auto;
+ padding-bottom:50px;
+}
+
+.creatorBox h1{
+ text-align:center;
+}
+
+.avatarPreview{
+ height:260px;
+ background:linear-gradient(#71a9d0,#83c26b);
+ border:3px solid white;
+ border-radius:25px;
+ position:relative;
+ overflow:hidden;
+}
+
+.avatar{
+ position:absolute;
+ width:120px;
+ height:190px;
+ left:50%;
+ top:35px;
+ transform:translateX(-50%);
+}
+
+.avatarHead{
+ position:absolute;
+ width:70px;
+ height:75px;
+ top:5px;
+ left:25px;
+ background:#efbd91;
+ border:3px solid #222;
+ border-radius:45%;
+ z-index:4;
+}
+
+.eye{
+ position:absolute;
+ width:9px;
+ height:12px;
+ background:#111;
+ border-radius:50%;
+ top:32px;
+ z-index:8;
+}
+
+.eye1{left:43px}
+.eye2{left:68px}
+
+.mouth{
+ position:absolute;
+ width:22px;
+ height:10px;
+ border-bottom:3px solid #222;
+ border-radius:50%;
+ left:48px;
+ top:53px;
+ z-index:8;
+}
+
+.hairShape{
+ position:absolute;
+ width:85px;
+ height:80px;
+ left:18px;
+ top:-4px;
+ background:#222;
+ border-radius:50% 50% 35% 35%;
+ z-index:6;
+}
+
+.hairLong{
+ height:125px;
+ border-radius:45% 45% 25px 25px;
+}
+
+.hairShort{
+ height:62px;
+}
+
+.hairStraight{
+ height:85px;
+ border-radius:45% 45% 10px 10px;
+}
+
+.bodyShape{
+ position:absolute;
+ width:75px;
+ height:80px;
+ left:22px;
+ top:78px;
+ border-radius:20px 20px 10px 10px;
+ background:#e8e8e8;
+ border:3px solid #222;
+}
+
+.arm{
+ position:absolute;
+ width:17px;
+ height:55px;
+ top:88px;
+ background:#efbd91;
+ border:3px solid #222;
+ border-radius:15px;
+ z-index:1;
+}
+
+.arm1{left:7px;transform:rotate(15deg)}
+.arm2{right:7px;transform:rotate(-15deg)}
+
+.legShape{
+ position:absolute;
+ width:20px;
+ height:45px;
+ background:#222;
+ top:151px;
+ border-radius:8px;
+}
+
+.leg1{left:38px}
+.leg2{left:64px}
+
+.choiceTitle{
+ margin-top:16px;
+ font-weight:bold;
+}
+
+.choices{
+ display:flex;
+ flex-wrap:wrap;
+ gap:7px;
+ margin-top:8px;
+}
+
+.choice{
+ background:#222;
+ color:white;
+ border:1px solid #777;
+ padding:9px 13px;
+ border-radius:20px;
+}
+
+.choice.selected{
+ background:white;
+ color:#111;
+}
+
+#createCharacter{
+ width:100%;
+ margin-top:25px;
+ padding:15px;
+ border:0;
+ border-radius:30px;
+ font-weight:bold;
+}
+
+/* ================= CITY ================= */
 
 #city{
- background:#777;
+ background:#7ecb67;
 }
-.citySky{
- position:absolute;inset:0;
- background:linear-gradient(#707070 0 55%,#383838 55%);
+
+.sky{
+ position:absolute;
+ inset:0;
+ height:58%;
+ background:linear-gradient(#4ba8e5,#aee5ff);
 }
+
 .sun{
- position:absolute;width:70px;height:70px;border-radius:50%;
- background:#ddd;right:30px;top:30px;
- box-shadow:0 0 35px #fff;
+ position:absolute;
+ width:75px;
+ height:75px;
+ background:#fff3a1;
+ border-radius:50%;
+ top:30px;
+ right:25px;
+ box-shadow:0 0 40px #fff;
 }
+
+.grass{
+ position:absolute;
+ top:48%;
+ bottom:0;
+ width:100%;
+ background:
+ radial-gradient(circle at 20% 30%,#6dbd50 0 2px,transparent 3px),
+ radial-gradient(circle at 70% 50%,#4eaa48 0 2px,transparent 3px),
+ #69b957;
+}
+
 .road{
- position:absolute;left:0;right:0;bottom:0;height:45%;
- background:#252525;
-}
-.roadLine{
- position:absolute;left:0;right:0;top:50%;
- border-top:5px dashed #aaa;
-}
-.house{
- position:absolute;width:120px;height:115px;
- background:#ddd;border:5px solid #111;
- cursor:pointer;
-}
-.house:before{
- content:"";position:absolute;top:-55px;left:-8px;
- border-left:65px solid transparent;
- border-right:65px solid transparent;
- border-bottom:55px solid #111;
-}
-.door{
- position:absolute;width:28px;height:48px;
- bottom:0;left:45px;background:#111;
-}
-.window{
- position:absolute;width:25px;height:25px;background:#fff;
- border:3px solid #111;top:25px;
-}
-.w1{left:10px}.w2{right:10px}
-.houseLabel{
- position:absolute;top:118px;width:100%;
- text-align:center;font-weight:bold;
+ position:absolute;
+ bottom:0;
+ height:37%;
+ width:100%;
+ background:#4d4d4d;
+ border-top:8px solid #ddd;
 }
 
-.kitchen{left:7%;top:20%}
-.garden{right:7%;top:20%}
-.shopHouse{left:40%;top:17%}
+.roadCenter{
+ position:absolute;
+ top:48%;
+ width:100%;
+ border-top:7px dashed #e8e8e8;
+}
 
-.player{
- position:absolute;z-index:100;
- width:35px;height:60px;
- left:45%;bottom:18%;
- transition:transform .08s linear;
+.sidewalk{
+ position:absolute;
+ bottom:37%;
+ height:10%;
+ width:100%;
+ background:#c8c8c8;
 }
-.pHead{
- width:24px;height:24px;background:#f0c5a0;
- border-radius:50%;margin:auto;
+
+/* trees */
+
+.tree{
+ position:absolute;
+ z-index:3;
 }
-.pBody{
- width:30px;height:30px;background:#fff;
- border-radius:8px;margin:auto;
-}
-.pLegs{
- width:26px;height:12px;
- border-left:7px solid #111;border-right:7px solid #111;
+
+.trunk{
+ width:18px;
+ height:55px;
+ background:#75482b;
  margin:auto;
 }
 
-/* HUD */
+.leaves{
+ width:75px;
+ height:75px;
+ background:#267d35;
+ border-radius:50%;
+ box-shadow:25px 10px 0 #32953c,-25px 12px 0 #2d8d38;
+}
+
+.tree1{left:3%;top:34%}
+.tree2{right:4%;top:35%}
+.tree3{left:24%;top:43%;transform:scale(.75)}
+.tree4{right:25%;top:42%;transform:scale(.75)}
+
+/* houses */
+
+.house{
+ position:absolute;
+ width:125px;
+ height:110px;
+ z-index:8;
+ border:4px solid #222;
+ border-radius:5px;
+ cursor:pointer;
+}
+
+.house:before{
+ content:"";
+ position:absolute;
+ top:-52px;
+ left:-7px;
+ border-left:66px solid transparent;
+ border-right:66px solid transparent;
+ border-bottom:55px solid #a83232;
+}
+
+.houseDoor{
+ position:absolute;
+ width:29px;
+ height:55px;
+ bottom:0;
+ left:45px;
+ background:#673d25;
+ border:3px solid #222;
+}
+
+.houseWindow{
+ position:absolute;
+ width:28px;
+ height:28px;
+ background:#bdeeff;
+ border:3px solid #222;
+ top:22px;
+}
+
+.hw1{left:8px}
+.hw2{right:8px}
+
+.houseSign{
+ position:absolute;
+ top:112px;
+ width:100%;
+ text-align:center;
+ font-weight:bold;
+ color:#111;
+}
+
+.houseKitchen{
+ left:5%;
+ top:22%;
+ background:#f2bd68;
+}
+
+.houseGarden{
+ right:5%;
+ top:23%;
+ background:#ef8d9b;
+}
+
+.houseShop{
+ left:38%;
+ top:19%;
+ background:#8c9bea;
+}
+
 .cityHud{
- position:absolute;top:12px;left:12px;right:12px;
- display:flex;justify-content:space-between;z-index:200;
+ position:absolute;
+ top:10px;
+ left:10px;
+ right:10px;
+ z-index:100;
+ display:flex;
+ justify-content:space-between;
 }
-.moneyBox,.back{
- background:#111d;padding:10px 15px;border-radius:20px;
+
+.hudBox{
+ background:#111d;
+ padding:9px 13px;
+ border-radius:20px;
 }
-.back{border:0;color:#fff}
+
+.backBtn{
+ border:0;
+ color:white;
+ background:#111d;
+ border-radius:20px;
+ padding:9px 14px;
+}
+
+/* player */
+
+.player{
+ position:absolute;
+ width:55px;
+ height:90px;
+ z-index:50;
+ left:47%;
+ bottom:13%;
+ transition:.1s;
+}
+
+.playerHead{
+ position:absolute;
+ width:38px;
+ height:40px;
+ left:8px;
+ background:#efbd91;
+ border:2px solid #222;
+ border-radius:45%;
+ z-index:4;
+}
+
+.playerEye{
+ position:absolute;
+ width:5px;
+ height:7px;
+ background:#111;
+ border-radius:50%;
+ top:17px;
+ z-index:9;
+}
+
+.pe1{left:19px}
+.pe2{left:31px}
+
+.playerMouth{
+ position:absolute;
+ width:13px;
+ height:6px;
+ border-bottom:2px solid #111;
+ border-radius:50%;
+ top:27px;
+ left:19px;
+ z-index:9;
+}
+
+.playerHair{
+ position:absolute;
+ width:46px;
+ height:38px;
+ left:4px;
+ top:0;
+ background:#222;
+ border-radius:50% 50% 25% 25%;
+ z-index:7;
+}
+
+.playerBody{
+ position:absolute;
+ width:42px;
+ height:45px;
+ left:7px;
+ top:38px;
+ background:white;
+ border:2px solid #222;
+ border-radius:12px;
+}
+
+.playerLeg{
+ position:absolute;
+ width:12px;
+ height:25px;
+ background:#222;
+ top:72px;
+ border-radius:5px;
+}
+
+.pl1{left:15px}
+.pl2{left:31px}
 
 /* controls */
-.controls{
- position:absolute;bottom:12px;left:12px;
- width:155px;height:155px;z-index:300;
-}
-.ctrl{
- position:absolute;width:48px;height:48px;border:0;
- border-radius:14px;background:#ffffffdd;color:#111;
- font-size:20px;font-weight:bold;
-}
-.up{top:0;left:53px}
-.down{bottom:0;left:53px}
-.left{top:53px;left:0}
-.right{top:53px;right:0}
-.jump{top:53px;left:53px;background:#111;color:#fff}
 
-/* =========================
-   WORK
-========================= */
+.controls{
+ position:absolute;
+ left:10px;
+ bottom:10px;
+ width:160px;
+ height:160px;
+ z-index:200;
+}
+
+.ctrl{
+ position:absolute;
+ width:48px;
+ height:48px;
+ border:0;
+ border-radius:14px;
+ background:#ffffffdd;
+ color:#111;
+ font-size:20px;
+ font-weight:bold;
+}
+
+.up{left:56px;top:0}
+.down{left:56px;bottom:0}
+.left{left:0;top:56px}
+.right{right:0;top:56px}
+.jump{
+ left:56px;
+ top:56px;
+ background:#222;
+ color:white;
+}
+
+/* ================= WORK ================= */
 
 #work{
- position:fixed;inset:0;z-index:4000;
- background:#111;
- display:none;align-items:center;justify-content:center;
- padding:20px;
-}
-.workBox{
- width:min(92%,400px);background:#fff;color:#111;
- border-radius:25px;padding:25px;text-align:center;
-}
-.workArea{
- height:230px;background:#aaa;border-radius:20px;
- position:relative;overflow:hidden;
-}
-.workItem{
- position:absolute;font-size:42px;cursor:pointer;
-}
-.workButton{
- margin-top:15px;padding:12px 25px;
- border:0;border-radius:25px;background:#111;color:#fff;
+ position:fixed;
+ inset:0;
+ z-index:5000;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ background:#000c;
+ padding:15px;
 }
 
-/* =========================
-   SHOP
-========================= */
+.workBox{
+ width:min(95%,430px);
+ background:white;
+ color:#111;
+ border-radius:25px;
+ padding:20px;
+ text-align:center;
+ max-height:92vh;
+ overflow:auto;
+}
+
+.workBox h2{
+ margin-top:0;
+}
+
+.orderBox{
+ background:#eee;
+ border-radius:15px;
+ padding:10px;
+ margin-bottom:12px;
+}
+
+.recipeSteps{
+ display:flex;
+ gap:5px;
+ justify-content:center;
+ flex-wrap:wrap;
+ margin-bottom:12px;
+}
+
+.step{
+ padding:6px 9px;
+ border-radius:15px;
+ background:#ddd;
+ font-size:11px;
+}
+
+.step.active{
+ background:#222;
+ color:white;
+}
+
+.kitchenTable{
+ height:300px;
+ border-radius:20px;
+ background:
+ linear-gradient(#e6d1a5 0 65%,#9b643d 65%);
+ position:relative;
+ overflow:hidden;
+ border:4px solid #333;
+}
+
+.kitchenItem{
+ position:absolute;
+ border:2px solid #222;
+ background:white;
+ border-radius:15px;
+ padding:13px;
+ min-width:65px;
+ cursor:pointer;
+ box-shadow:0 4px 8px #0004;
+}
+
+.flour{left:8%;top:15%}
+.milk{left:35%;top:15%}
+.egg{right:8%;top:15%}
+.bowl{left:35%;top:55%;background:#aaa}
+.oven{right:7%;bottom:10%;background:#333;color:white}
+.mix{left:8%;bottom:10%}
+
+.cakeResult{
+ position:absolute;
+ left:50%;
+ top:50%;
+ transform:translate(-50%,-50%) scale(0);
+ transition:.5s;
+}
+
+.realCake{
+ width:120px;
+ height:80px;
+ background:#c78b54;
+ border:4px solid #552f1b;
+ border-radius:10px;
+ position:relative;
+}
+
+.realCake:before{
+ content:"";
+ position:absolute;
+ left:0;
+ right:0;
+ top:-15px;
+ height:22px;
+ background:#fff;
+ border:3px solid #552f1b;
+ border-radius:50%;
+}
+
+.realCake:after{
+ content:"";
+ position:absolute;
+ width:8px;
+ height:25px;
+ background:#222;
+ left:55px;
+ top:-38px;
+}
+
+.workBtn{
+ margin-top:12px;
+ padding:12px 22px;
+ border:0;
+ border-radius:25px;
+ background:#222;
+ color:white;
+}
+
+.workBtn:disabled{
+ opacity:.35;
+}
+
+/* ================= SHOP ================= */
 
 #shop{
- background:#181818;padding:18px;overflow:auto;
+ background:linear-gradient(#252d3b,#111);
+ overflow:auto;
+ padding:18px;
 }
-.shopTop{
- max-width:450px;margin:auto;
- display:flex;justify-content:space-between;
+
+.shopHeader{
+ max-width:470px;
+ margin:auto;
+ display:flex;
+ justify-content:space-between;
  align-items:center;
 }
+
 .shopGrid{
- max-width:450px;margin:20px auto 100px;
- display:grid;grid-template-columns:1fr 1fr;gap:12px;
-}
-.item{
- background:#fff;color:#111;border-radius:20px;
- padding:18px;text-align:center;
-}
-.itemIcon{font-size:45px}
-.item button{
- border:0;border-radius:20px;
- padding:9px 18px;background:#111;color:#fff;
+ max-width:470px;
+ margin:20px auto 100px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
 }
 
-/* =========================
-   GIFTS LIST
-========================= */
+.shopItem{
+ background:white;
+ color:#111;
+ border-radius:20px;
+ padding:15px;
+ text-align:center;
+ border:3px solid #555;
+}
+
+.shopIcon{
+ width:75px;
+ height:65px;
+ margin:auto;
+ border-radius:15px;
+ background:#ddd;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:11px;
+ font-weight:bold;
+}
+
+.shopPrice{
+ color:#555;
+ font-size:13px;
+}
+
+.shopItem button{
+ border:0;
+ background:#222;
+ color:white;
+ border-radius:20px;
+ padding:9px 18px;
+}
+
+/* ================= GIFTS ================= */
 
 #gifts{
- background:#161616;padding:20px;overflow:auto;
+ background:linear-gradient(#273442,#111);
+ padding:20px;
+ overflow:auto;
 }
-.giftList{
- max-width:500px;margin:auto;
+
+.giftsBox{
+ max-width:480px;
+ margin:auto;
 }
+
 .userGift{
- background:#fff;color:#111;
- border-radius:22px;padding:15px;margin:12px 0;
- display:flex;align-items:center;gap:15px;
+ background:white;
+ color:#111;
+ border-radius:20px;
+ padding:15px;
+ margin:12px 0;
+ display:flex;
+ gap:15px;
+ align-items:center;
 }
-.miniAvatar{
- width:65px;height:75px;border-radius:15px;
- background:#777;display:flex;
- align-items:center;justify-content:center;
- font-size:35px;
+
+.giftAvatar{
+ width:65px;
+ height:75px;
+ border-radius:15px;
+ background:#aaa;
+ position:relative;
+ flex-shrink:0;
 }
+
+.giftAvatar:before{
+ content:"";
+ position:absolute;
+ width:32px;
+ height:32px;
+ border-radius:50%;
+ background:#efbd91;
+ top:10px;
+ left:16px;
+ border:2px solid #222;
+}
+
+.giftAvatar:after{
+ content:"";
+ position:absolute;
+ width:42px;
+ height:25px;
+ background:#222;
+ bottom:8px;
+ left:11px;
+ border-radius:12px 12px 5px 5px;
+}
+
 .empty{
- text-align:center;opacity:.7;margin-top:80px;
+ text-align:center;
+ margin-top:80px;
+ color:#bbb;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= INTRO ================= -->
+<!-- INTRO -->
 
 <div id="intro">
- <h1>یک اتفاق مهم در راه است..!!!</h1>
+ <div class="introTitle">یک اتفاق مهم در راه است..!!!</div>
+ <div class="introSub">آماده‌ای وارد ماجرا بشی؟</div>
  <button id="enter">ورود به ماجرا</button>
 </div>
 
-<!-- ================= HOME ================= -->
+
+<!-- HOME -->
 
 <section id="home" class="screen">
 
- <div class="top">
-  <h1>تا لحظه‌ای که تولد یوتا فرا برسه!!!!</h1>
+ <div class="cloud1 homeCloud"></div>
+ <div class="cloud2 homeCloud"></div>
+
+ <div class="homeTop">
+
+  <div class="messageCircle" onclick="specialMessage()">
+   برای بیبی گرلم، ایهان💗
+  </div>
+
+  <h1>تا تولد یوتا...</h1>
 
   <div class="count">
-   <div class="time"><b id="days">0</b><small>روز</small></div>
-   <div class="time"><b id="hours">0</b><small>ساعت</small></div>
-   <div class="time"><b id="minutes">0</b><small>دقیقه</small></div>
-   <div class="time"><b id="seconds">0</b><small>ثانیه</small></div>
+   <div class="time">
+    <b id="days">0</b>
+    <small>روز</small>
+   </div>
+
+   <div class="time">
+    <b id="hours">0</b>
+    <small>ساعت</small>
+   </div>
+
+   <div class="time">
+    <b id="minutes">0</b>
+    <small>دقیقه</small>
+   </div>
+
+   <div class="time">
+    <b id="seconds">0</b>
+    <small>ثانیه</small>
+   </div>
   </div>
+
  </div>
 
- <!-- کیک -->
+
  <div class="bigCake">
 
-  <div class="plate"></div>
+  <div class="cakePlate"></div>
 
-  <div class="cakeLayer layer1"></div>
-  <div class="cakeLayer layer2"></div>
-  <div class="cakeLayer layer3"></div>
+  <div class="cakeLayer cakeBottom"></div>
+  <div class="cakeLayer cakeMiddle"></div>
+  <div class="cakeLayer cakeTop"></div>
 
-  <div class="cream"></div>
-  <div class="cream2"></div>
+  <div class="cakeCream creamA"></div>
+  <div class="cakeCream creamB"></div>
 
-  <div class="candle c1"></div>
-  <div class="candle c2"></div>
-  <div class="candle c3"></div>
+  <div class="candle candle1"></div>
+  <div class="candle candle2"></div>
+  <div class="candle candle3"></div>
 
  </div>
 
- <!-- کادوها -->
- <div class="gift whiteGift g1" data-msg="تولدم رو یادت نره!!!"></div>
- <div class="gift blackGift g2" data-msg="🦎🦖 اینم یه کادوی کاملاً بی‌ربط ولی باحال!"></div>
- <div class="gift grayGift g3" data-msg="یک اتفاق مهم در راهه..."></div>
- <div class="gift whiteGift g4" data-msg="۲۵ دی رو فراموش نکنی."></div>
- <div class="gift blackGift g5" data-msg="تولد یوتا نزدیکه!"></div>
- <div class="gift grayGift g6" data-msg="🎂 حالا برو بازی رو شروع کن."></div>
+
+ <div class="gift gift1" onclick="showModal('کادو','تولدم رو یادت نره!!!')"></div>
+ <div class="gift gift2" onclick="showModal('کادو','یک چیز کاملاً غیرمنتظره اینجاست.')"></div>
+ <div class="gift gift3" onclick="showModal('کادو','۲۵ دی رو فراموش نکنی.')"></div>
+ <div class="gift gift4" onclick="showModal('کادو','برو بازی رو شروع کن.')"></div>
+
 
  <div class="homeButtons">
   <button onclick="openCreator()">ساخت شخصیت</button>
-  <button onclick="openGifts()">هدیه‌های تولد</button>
-  <button onclick="openCity()">شروع بازی</button>
+  <button onclick="openGifts()">هدیه‌ها</button>
+  <button onclick="openCity()">ورود به شهر</button>
  </div>
 
 </section>
 
-<!-- ================= CHARACTER CREATOR ================= -->
+
+<!-- CREATOR -->
 
 <section id="creator" class="screen">
 
@@ -475,153 +1200,422 @@ body{background:#000;color:#fff}
 
   <h1>شخصیت خودت رو بساز</h1>
 
-  <div class="preview">
+  <div class="avatarPreview">
+
    <div class="avatar">
-    <div class="head" id="previewHead"></div>
-    <div class="hair" id="previewHair"></div>
-    <div class="body" id="previewBody"></div>
-    <div class="legs"></div>
+
+    <div class="hairShape" id="previewHair"></div>
+
+    <div class="avatarHead">
+     <div class="eye eye1"></div>
+     <div class="eye eye2"></div>
+     <div class="mouth"></div>
+    </div>
+
+    <div class="arm arm1"></div>
+    <div class="arm arm2"></div>
+
+    <div class="bodyShape" id="previewBody"></div>
+
+    <div class="legShape leg1"></div>
+    <div class="legShape leg2"></div>
+
    </div>
+
   </div>
 
-  <div class="choiceTitle">جنسیت</div>
+
+  <div class="choiceTitle">مدل مو</div>
+
   <div class="choices">
-   <button class="choice selected" onclick="setGender('دختر',this)">دختر</button>
-   <button class="choice" onclick="setGender('پسر',this)">پسر</button>
+
+   <button class="choice selected"
+    onclick="chooseHair('short',this)">
+    کوتاه
+   </button>
+
+   <button class="choice"
+    onclick="chooseHair('long',this)">
+    بلند
+   </button>
+
+   <button class="choice"
+    onclick="chooseHair('straight',this)">
+    صاف
+   </button>
+
   </div>
 
-  <div class="choiceTitle">مو</div>
+
+  <div class="choiceTitle">رنگ مو</div>
+
   <div class="choices">
-   <button class="choice selected" onclick="setHair('#111',this)">مشکی</button>
-   <button class="choice" onclick="setHair('#777',this)">خاکستری</button>
-   <button class="choice" onclick="setHair('#fff',this)">سفید</button>
+
+   <button class="choice selected"
+    onclick="chooseHairColor('#222',this)">
+    مشکی
+   </button>
+
+   <button class="choice"
+    onclick="chooseHairColor('#6b4329',this)">
+    قهوه‌ای
+   </button>
+
+   <button class="choice"
+    onclick="chooseHairColor('#777',this)">
+    خاکستری
+   </button>
+
+   <button class="choice"
+    onclick="chooseHairColor('#eee',this)">
+    سفید
+   </button>
+
   </div>
+
 
   <div class="choiceTitle">لباس</div>
+
   <div class="choices">
-   <button class="choice selected" onclick="setClothes('#fff',this)">سفید</button>
-   <button class="choice" onclick="setClothes('#111',this)">مشکی</button>
-   <button class="choice" onclick="setClothes('#888',this)">خاکستری</button>
+
+   <button class="choice selected"
+    onclick="chooseClothes('#fff',this)">
+    سفید
+   </button>
+
+   <button class="choice"
+    onclick="chooseClothes('#222',this)">
+    مشکی
+   </button>
+
+   <button class="choice"
+    onclick="chooseClothes('#587da8',this)">
+    آبی
+   </button>
+
+   <button class="choice"
+    onclick="chooseClothes('#bd6276',this)">
+    صورتی
+   </button>
+
+   <button class="choice"
+    onclick="chooseClothes('#65935b',this)">
+    سبز
+   </button>
+
   </div>
 
+
   <button id="createCharacter" onclick="saveCharacter()">
-   ساخت شخصیت و ورود به شهر
+   ساخت شخصیت
   </button>
 
-  <button class="workButton" onclick="showHome()" style="width:100%;margin-top:10px">
+  <button class="workBtn"
+   style="width:100%"
+   onclick="showHome()">
    برگشت
   </button>
 
  </div>
+
 </section>
 
-<!-- ================= CITY ================= -->
+
+<!-- CITY -->
 
 <section id="city" class="screen">
 
- <div class="citySky"></div>
+ <div class="sky"></div>
  <div class="sun"></div>
+ <div class="grass"></div>
+
+ <div class="sidewalk"></div>
 
  <div class="road">
-  <div class="roadLine"></div>
+  <div class="roadCenter"></div>
  </div>
+
+
+ <!-- trees -->
+
+ <div class="tree tree1">
+  <div class="leaves"></div>
+  <div class="trunk"></div>
+ </div>
+
+ <div class="tree tree2">
+  <div class="leaves"></div>
+  <div class="trunk"></div>
+ </div>
+
+ <div class="tree tree3">
+  <div class="leaves"></div>
+  <div class="trunk"></div>
+ </div>
+
+ <div class="tree tree4">
+  <div class="leaves"></div>
+  <div class="trunk"></div>
+ </div>
+
 
  <div class="cityHud">
-  <div class="moneyBox">سکه: <b id="coins">500</b></div>
-  <button class="back" onclick="showHome()">خانه</button>
+
+  <div class="hudBox">
+   سکه:
+   <b id="coins">500</b>
+  </div>
+
+  <button class="backBtn" onclick="showHome()">
+   خانه
+  </button>
+
  </div>
 
- <div class="house kitchen" onclick="startWork('kitchen')">
-  <div class="door"></div>
-  <div class="window w1"></div>
-  <div class="window w2"></div>
-  <div class="houseLabel">آشپزخانه</div>
+
+ <!-- kitchen -->
+
+ <div class="house houseKitchen"
+      onclick="startKitchen()">
+
+  <div class="houseDoor"></div>
+
+  <div class="houseWindow hw1"></div>
+  <div class="houseWindow hw2"></div>
+
+  <div class="houseSign">
+   آشپزخانه
+  </div>
+
  </div>
 
- <div class="house garden" onclick="startWork('garden')">
-  <div class="door"></div>
-  <div class="window w1"></div>
-  <div class="window w2"></div>
-  <div class="houseLabel">باغ</div>
+
+ <!-- garden -->
+
+ <div class="house houseGarden"
+      onclick="startGarden()">
+
+  <div class="houseDoor"></div>
+
+  <div class="houseWindow hw1"></div>
+  <div class="houseWindow hw2"></div>
+
+  <div class="houseSign">
+   باغ
+  </div>
+
  </div>
 
- <div class="house shopHouse" onclick="openShop()">
-  <div class="door"></div>
-  <div class="window w1"></div>
-  <div class="window w2"></div>
-  <div class="houseLabel">فروشگاه</div>
+
+ <!-- shop -->
+
+ <div class="house houseShop"
+      onclick="openShop()">
+
+  <div class="houseDoor"></div>
+
+  <div class="houseWindow hw1"></div>
+  <div class="houseWindow hw2"></div>
+
+  <div class="houseSign">
+   فروشگاه
+  </div>
+
  </div>
+
+
+ <!-- player -->
 
  <div class="player" id="player">
-  <div class="pHead"></div>
-  <div class="pBody"></div>
-  <div class="pLegs"></div>
+
+  <div class="playerHair" id="playerHair"></div>
+
+  <div class="playerHead">
+
+   <div class="playerEye pe1"></div>
+   <div class="playerEye pe2"></div>
+
+   <div class="playerMouth"></div>
+
+  </div>
+
+  <div class="playerBody" id="playerBody"></div>
+
+  <div class="playerLeg pl1"></div>
+  <div class="playerLeg pl2"></div>
+
  </div>
 
+
+ <!-- controls -->
+
  <div class="controls">
-  <button class="ctrl up" ontouchstart="move(0,-1)" onclick="move(0,-1)">▲</button>
-  <button class="ctrl down" ontouchstart="move(0,1)" onclick="move(0,1)">▼</button>
-  <button class="ctrl left" ontouchstart="move(-1,0)" onclick="move(-1,0)">◀</button>
-  <button class="ctrl right" ontouchstart="move(1,0)" onclick="move(1,0)">▶</button>
-  <button class="ctrl jump" ontouchstart="jump()" onclick="jump()">●</button>
+
+  <button class="ctrl up"
+   onclick="movePlayer(0,1)">
+   ▲
+  </button>
+
+  <button class="ctrl down"
+   onclick="movePlayer(0,-1)">
+   ▼
+  </button>
+
+  <button class="ctrl left"
+   onclick="movePlayer(-1,0)">
+   ◀
+  </button>
+
+  <button class="ctrl right"
+   onclick="movePlayer(1,0)">
+   ▶
+  </button>
+
+  <button class="ctrl jump"
+   onclick="jumpPlayer()">
+   ●
+  </button>
+
  </div>
 
 </section>
 
-<!-- ================= WORK ================= -->
+
+<!-- WORK -->
 
 <div id="work">
 
  <div class="workBox">
 
-  <h2 id="workTitle">کار</h2>
+  <h2 id="workTitle">آشپزخانه</h2>
 
-  <p id="workInfo">
-   کارها رو انجام بده و پول بگیر!
-  </p>
+  <div class="orderBox">
+   سفارش امروز:
+   <b id="orderText">
+    کیک تولد
+   </b>
+  </div>
 
-  <div class="workArea" id="workArea"></div>
 
-  <button class="workButton" onclick="finishWork()">
-   تمام کردم
-  </button>
+  <div class="recipeSteps">
 
-  <button class="workButton" onclick="closeWork()">
-   برگشت
+   <div class="step active" id="step1">
+    مواد
+   </div>
+
+   <div class="step" id="step2">
+    مخلوط
+   </div>
+
+   <div class="step" id="step3">
+    پخت
+   </div>
+
+   <div class="step" id="step4">
+    تزئین
+   </div>
+
+   <div class="step" id="step5">
+    فروش
+   </div>
+
+  </div>
+
+
+  <div class="kitchenTable" id="kitchenTable">
+
+   <button class="kitchenItem flour"
+    onclick="kitchenAction('flour')">
+    آرد
+   </button>
+
+   <button class="kitchenItem milk"
+    onclick="kitchenAction('milk')">
+    شیر
+   </button>
+
+   <button class="kitchenItem egg"
+    onclick="kitchenAction('egg')">
+    تخم‌مرغ
+   </button>
+
+   <button class="kitchenItem bowl"
+    onclick="kitchenAction('bowl')">
+    کاسه
+   </button>
+
+   <button class="kitchenItem mix"
+    onclick="kitchenAction('mix')">
+    هم‌زدن
+   </button>
+
+   <button class="kitchenItem oven"
+    onclick="kitchenAction('oven')">
+    فر
+   </button>
+
+   <div class="cakeResult" id="cakeResult">
+    <div class="realCake"></div>
+   </div>
+
+  </div>
+
+
+  <button class="workBtn"
+   onclick="closeWork()">
+   خروج
   </button>
 
  </div>
 
 </div>
 
-<!-- ================= SHOP ================= -->
+
+<!-- SHOP -->
 
 <section id="shop" class="screen">
 
- <div class="shopTop">
-  <h2>فروشگاه هدیه تولد</h2>
-  <div>سکه: <b id="shopCoins">500</b></div>
+ <div class="shopHeader">
+
+  <h2>
+   فروشگاه هدیه
+  </h2>
+
+  <div>
+   سکه:
+   <b id="shopCoins">500</b>
+  </div>
+
  </div>
+
 
  <div class="shopGrid" id="shopGrid"></div>
 
- <button class="workButton" onclick="openCity()" style="display:block;margin:20px auto">
+
+ <button class="workBtn"
+  style="display:block;margin:20px auto"
+  onclick="openCity()">
   برگشت به شهر
  </button>
 
 </section>
 
-<!-- ================= GIFTS ================= -->
+
+<!-- GIFTS -->
 
 <section id="gifts" class="screen">
 
- <div class="giftList">
+ <div class="giftsBox">
 
-  <h2 style="text-align:center">هدیه‌های تولد یوتا</h2>
+  <h2 style="text-align:center">
+   هدیه‌های تولد یوتا
+  </h2>
 
-  <div id="giftListContent"></div>
+  <div id="giftList"></div>
 
-  <button class="workButton" onclick="showHome()" style="width:100%">
+  <button class="workBtn"
+   style="width:100%"
+   onclick="showHome()">
    برگشت
   </button>
 
@@ -629,29 +1623,43 @@ body{background:#000;color:#fff}
 
 </section>
 
-<!-- ================= MODAL ================= -->
+
+<!-- MODAL -->
 
 <div id="modal">
+
  <div class="modalBox">
+
   <h2 id="modalTitle"></h2>
+
   <p id="modalText"></p>
-  <button onclick="closeModal()">باشه</button>
+
+  <button onclick="closeModal()">
+   باشه
+  </button>
+
  </div>
+
 </div>
+
 
 <script>
 
-/* ================= VARIABLES ================= */
+/* ================= DATA ================= */
 
 let coins=500;
-let gender="دختر";
-let hair="#111";
+
+let hairStyle="short";
+let hairColor="#222";
 let clothes="#fff";
 
-let playerX=45;
-let playerY=18;
+let playerX=47;
+let playerY=13;
 
 let boughtGifts=[];
+
+let kitchenStep=0;
+
 
 /* ================= INTRO ================= */
 
@@ -659,323 +1667,645 @@ document.getElementById("enter").onclick=function(){
 
  document.getElementById("intro").style.opacity="0";
 
- setTimeout(()=>{
+ setTimeout(function(){
+
   document.getElementById("intro").style.display="none";
+
   showHome();
- },1400);
+
+ },800);
 
 };
+
 
 /* ================= SCREENS ================= */
 
 function hideScreens(){
 
- document.querySelectorAll(".screen").forEach(x=>{
-  x.classList.remove("active");
+ document.querySelectorAll(".screen")
+ .forEach(function(s){
+  s.classList.remove("active");
  });
 
 }
 
 function showHome(){
+
+ closeModal();
+ closeWork();
+
  hideScreens();
- document.getElementById("home").classList.add("active");
+
+ document.getElementById("home")
+ .classList.add("active");
+
 }
 
 function openCreator(){
+
  hideScreens();
- document.getElementById("creator").classList.add("active");
+
+ document.getElementById("creator")
+ .classList.add("active");
+
 }
 
 function openCity(){
+
+ closeModal();
+
  hideScreens();
- document.getElementById("city").classList.add("active");
+
+ document.getElementById("city")
+ .classList.add("active");
+
  updateCoins();
+
 }
 
 function openShop(){
+
  hideScreens();
- document.getElementById("shop").classList.add("active");
+
+ document.getElementById("shop")
+ .classList.add("active");
+
  renderShop();
+
  updateCoins();
+
 }
 
 function openGifts(){
+
  hideScreens();
- document.getElementById("gifts").classList.add("active");
+
+ document.getElementById("gifts")
+ .classList.add("active");
+
  renderGifts();
+
 }
+
+
+/* ================= SPECIAL MESSAGE ================= */
+
+function specialMessage(){
+
+ showModal(
+  "یک پیام مخصوص",
+  "برای بیبی گرلم، ایهان💗"
+ );
+
+}
+
 
 /* ================= COUNTDOWN ================= */
 
-function countdown(){
+function updateCountdown(){
 
- const target=new Date(2027,0,15,0,0,0);
- const now=new Date();
- let d=target-now;
+ let target=
+ new Date(2027,0,15,0,0,0);
 
- if(d<0)d=0;
+ let now=new Date();
 
- document.getElementById("days").textContent=
- Math.floor(d/86400000);
+ let diff=target-now;
 
- document.getElementById("hours").textContent=
- Math.floor((d%86400000)/3600000);
+ if(diff<0) diff=0;
 
- document.getElementById("minutes").textContent=
- Math.floor((d%3600000)/60000);
+ let days=
+ Math.floor(diff/86400000);
 
- document.getElementById("seconds").textContent=
- Math.floor((d%60000)/1000);
+ let hours=
+ Math.floor((diff%86400000)/3600000);
+
+ let minutes=
+ Math.floor((diff%3600000)/60000);
+
+ let seconds=
+ Math.floor((diff%60000)/1000);
+
+ document.getElementById("days")
+ .textContent=days;
+
+ document.getElementById("hours")
+ .textContent=hours;
+
+ document.getElementById("minutes")
+ .textContent=minutes;
+
+ document.getElementById("seconds")
+ .textContent=seconds;
+
 }
 
-countdown();
-setInterval(countdown,1000);
+updateCountdown();
 
-/* ================= GIFTS ================= */
+setInterval(updateCountdown,1000);
 
-document.querySelectorAll(".gift").forEach(g=>{
-
- g.onclick=function(){
-
-  showModal(
-   "کادو باز شد!",
-   g.dataset.msg
-  );
-
- };
-
-});
 
 /* ================= MODAL ================= */
 
 function showModal(title,text){
 
- document.getElementById("modalTitle").textContent=title;
- document.getElementById("modalText").textContent=text;
- document.getElementById("modal").style.display="flex";
+ document.getElementById("modalTitle")
+ .textContent=title;
+
+ document.getElementById("modalText")
+ .textContent=text;
+
+ document.getElementById("modal")
+ .style.display="flex";
 
 }
 
 function closeModal(){
- document.getElementById("modal").style.display="none";
+
+ document.getElementById("modal")
+ .style.display="none";
+
 }
+
 
 /* ================= CHARACTER ================= */
 
-function setGender(x,b){
+function chooseHair(style,button){
 
- gender=x;
+ hairStyle=style;
 
- document.querySelectorAll(".choice").forEach(c=>{
-  if(c.parentElement.previousElementSibling &&
-     c.parentElement.previousElementSibling.textContent=="جنسیت"){
-   c.classList.remove("selected");
-  }
+ let hair=
+ document.getElementById("previewHair");
+
+ hair.className="hairShape";
+
+ if(style==="long")
+  hair.classList.add("hairLong");
+
+ if(style==="straight")
+  hair.classList.add("hairStraight");
+
+ hair.style.background=hairColor;
+
+ selectButton(button);
+
+}
+
+function chooseHairColor(color,button){
+
+ hairColor=color;
+
+ let hair=
+ document.getElementById("previewHair");
+
+ hair.style.background=color;
+
+ selectButton(button);
+
+}
+
+function chooseClothes(color,button){
+
+ clothes=color;
+
+ document.getElementById("previewBody")
+ .style.background=color;
+
+ selectButton(button);
+
+}
+
+function selectButton(button){
+
+ button.parentElement
+ .querySelectorAll(".choice")
+ .forEach(function(x){
+  x.classList.remove("selected");
  });
 
- b.classList.add("selected");
+ button.classList.add("selected");
+
 }
 
-function setHair(x,b){
-
- hair=x;
- document.getElementById("previewHair").style.background=x;
-
- b.parentElement.querySelectorAll(".choice")
-  .forEach(c=>c.classList.remove("selected"));
-
- b.classList.add("selected");
-}
-
-function setClothes(x,b){
-
- clothes=x;
- document.getElementById("previewBody").style.background=x;
-
- b.parentElement.querySelectorAll(".choice")
-  .forEach(c=>c.classList.remove("selected"));
-
- b.classList.add("selected");
-}
 
 function saveCharacter(){
 
- document.querySelector("#player .pBody").style.background=clothes;
- document.querySelector("#player .pHead").style.background="#f0c5a0";
+ document.getElementById("playerBody")
+ .style.background=clothes;
+
+ document.getElementById("playerHair")
+ .style.background=hairColor;
+
+ if(hairStyle==="long"){
+
+  document.getElementById("playerHair")
+  .style.height="65px";
+
+ }else if(hairStyle==="straight"){
+
+  document.getElementById("playerHair")
+  .style.height="48px";
+
+ }else{
+
+  document.getElementById("playerHair")
+  .style.height="38px";
+
+ }
 
  showModal(
-  "شخصیت ساخته شد!",
-  "حالا برو داخل شهر، کار کن، پول جمع کن و برای یوتا هدیه بخر."
+  "شخصیت آماده شد!",
+  "حالا وارد شهر شو و برای تولد پول جمع کن."
  );
 
- setTimeout(openCity,1200);
+ setTimeout(function(){
+
+  closeModal();
+  openCity();
+
+ },1000);
+
 }
+
 
 /* ================= PLAYER ================= */
 
-function move(dx,dy){
+function movePlayer(dx,dy){
 
- playerX+=dx*4;
- playerY+=dy*4;
+ playerX+=dx*3;
+ playerY+=dy*3;
 
- playerX=Math.max(2,Math.min(92,playerX));
- playerY=Math.max(8,Math.min(75,playerY));
+ playerX=
+ Math.max(2,Math.min(92,playerX));
 
- const p=document.getElementById("player");
+ playerY=
+ Math.max(10,Math.min(65,playerY));
 
- p.style.left=playerX+"%";
- p.style.bottom=playerY+"%";
+ let player=
+ document.getElementById("player");
+
+ player.style.left=playerX+"%";
+ player.style.bottom=playerY+"%";
 
 }
 
-function jump(){
+function jumpPlayer(){
 
- const p=document.getElementById("player");
+ let player=
+ document.getElementById("player");
 
- p.style.transform="translateY(-45px)";
+ player.style.transform=
+ "translateY(-45px)";
 
- setTimeout(()=>{
-  p.style.transform="translateY(0)";
+ setTimeout(function(){
+
+  player.style.transform=
+  "translateY(0)";
+
  },350);
 
 }
 
-/* ================= WORK ================= */
 
-let currentWork="";
+/* ================= KITCHEN ================= */
 
-function startWork(type){
+function startKitchen(){
 
- currentWork=type;
+ kitchenStep=0;
 
- const area=document.getElementById("workArea");
+ resetKitchen();
 
- area.innerHTML="";
+ document.getElementById("work")
+ .style.display="flex";
 
- document.getElementById("work").style.display="flex";
+ document.getElementById("workTitle")
+ .textContent="آشپزخانه کیک‌پزی";
 
- if(type==="kitchen"){
-
-  document.getElementById("workTitle").textContent="آشپزی";
-
-  document.getElementById("workInfo").textContent=
-   "مواد غذایی رو لمس کن تا کیک آماده بشه.";
-
-  ["🥚","🥛","🍫","🍓","🎂"].forEach((x,i)=>{
-
-   const item=document.createElement("div");
-
-   item.className="workItem";
-   item.textContent=x;
-   item.style.left=(10+i*18)+"%";
-   item.style.top=(35+(i%2)*25)+"%";
-
-   item.onclick=function(){
-    item.style.opacity=".25";
-    item.dataset.done="1";
-   };
-
-   area.appendChild(item);
-
-  });
-
- }
-
- if(type==="garden"){
-
-  document.getElementById("workTitle").textContent="باغبانی";
-
-  document.getElementById("workInfo").textContent=
-   "برگ‌های روی زمین رو جمع کن.";
-
-  for(let i=0;i<12;i++){
-
-   const leaf=document.createElement("div");
-
-   leaf.className="workItem";
-   leaf.textContent="🍂";
-
-   leaf.style.left=(5+Math.random()*85)+"%";
-   leaf.style.top=(10+Math.random()*75)+"%";
-
-   leaf.onclick=function(){
-    leaf.remove();
-   };
-
-   area.appendChild(leaf);
-
-  }
-
- }
+ document.getElementById("orderText")
+ .textContent="کیک تولد ویژه";
 
 }
 
-function finishWork(){
+function resetKitchen(){
 
- let amount=currentWork==="kitchen"?200:150;
+ document.querySelectorAll(".kitchenItem")
+ .forEach(function(x){
+  x.style.opacity="1";
+ });
 
- coins+=amount;
+ document.getElementById("cakeResult")
+ .style.transform=
+ "translate(-50%,-50%) scale(0)";
 
- updateCoins();
-
- showModal(
-  "کار انجام شد!",
-  "+"+amount+" سکه گرفتی."
- );
-
- closeWork();
+ updateKitchenSteps();
 
 }
+
+
+function kitchenAction(type){
+
+ if(type==="flour" && kitchenStep===0){
+
+  kitchenStep=1;
+
+  showTinyMessage("آرد اضافه شد");
+
+ }
+
+ else if(type==="milk" && kitchenStep===1){
+
+  kitchenStep=2;
+
+  showTinyMessage("شیر اضافه شد");
+
+ }
+
+ else if(type==="egg" && kitchenStep===2){
+
+  kitchenStep=3;
+
+  showTinyMessage("تخم‌مرغ اضافه شد");
+
+ }
+
+ else if(type==="bowl" && kitchenStep===3){
+
+  kitchenStep=4;
+
+  showTinyMessage("مواد داخل کاسه ریخته شد");
+
+ }
+
+ else if(type==="mix" && kitchenStep===4){
+
+  kitchenStep=5;
+
+  showTinyMessage("مواد خوب مخلوط شدند");
+
+ }
+
+ else if(type==="oven" && kitchenStep===5){
+
+  kitchenStep=6;
+
+  showTinyMessage("کیک داخل فر رفت...");
+
+  setTimeout(function(){
+
+   document.getElementById("cakeResult")
+   .style.transform=
+   "translate(-50%,-50%) scale(1)";
+
+   kitchenStep=7;
+
+   updateKitchenSteps();
+
+  },1200);
+
+ }
+
+ else if(kitchenStep===7){
+
+  kitchenStep=8;
+
+  showModal(
+   "کیک آماده شد!",
+   "کیک رو به مشتری فروختی و 650 سکه گرفتی."
+  );
+
+  coins+=650;
+
+  updateCoins();
+
+ }
+
+ else{
+
+  showTinyMessage(
+   "این مرحله هنوز نرسیده."
+  );
+
+ }
+
+ updateKitchenSteps();
+
+}
+
+
+function updateKitchenSteps(){
+
+ let steps=[
+  "step1",
+  "step2",
+  "step3",
+  "step4",
+  "step5"
+ ];
+
+ steps.forEach(function(id){
+  document.getElementById(id)
+  .classList.remove("active");
+ });
+
+ if(kitchenStep<=1)
+  document.getElementById("step1").classList.add("active");
+
+ else if(kitchenStep<=4)
+  document.getElementById("step2").classList.add("active");
+
+ else if(kitchenStep<=6)
+  document.getElementById("step3").classList.add("active");
+
+ else if(kitchenStep===7)
+  document.getElementById("step4").classList.add("active");
+
+ else
+  document.getElementById("step5").classList.add("active");
+
+}
+
+
+function showTinyMessage(text){
+
+ document.getElementById("orderText")
+ .textContent=text;
+
+}
+
+
+/* ================= GARDEN ================= */
+
+function startGarden(){
+
+ document.getElementById("workTitle")
+ .textContent="باغبانی";
+
+ document.getElementById("orderText")
+ .textContent="برگ‌های باغ را جمع کن";
+
+ document.getElementById("kitchenTable")
+ .innerHTML="";
+
+ let area=
+ document.getElementById("kitchenTable");
+
+ area.style.background=
+ "linear-gradient(#75bd59,#519b43)";
+
+ for(let i=0;i<14;i++){
+
+  let leaf=
+  document.createElement("button");
+
+  leaf.textContent="برگ";
+
+  leaf.style.position="absolute";
+  leaf.style.left=(5+Math.random()*85)+"%";
+  leaf.style.top=(5+Math.random()*85)+"%";
+  leaf.style.padding="10px";
+  leaf.style.border="2px solid #222";
+  leaf.style.borderRadius="50%";
+  leaf.style.background="#d59b3d";
+
+  leaf.onclick=function(){
+
+   leaf.remove();
+
+  };
+
+  area.appendChild(leaf);
+
+ }
+
+ let work=
+ document.getElementById("work");
+
+ work.style.display="flex";
+
+}
+
+
+/* ================= WORK CLOSE ================= */
 
 function closeWork(){
- document.getElementById("work").style.display="none";
+
+ document.getElementById("work")
+ .style.display="none";
+
 }
+
+
+/* ================= COINS ================= */
 
 function updateCoins(){
 
- document.getElementById("coins").textContent=coins;
+ document.getElementById("coins")
+ .textContent=coins;
 
- if(document.getElementById("shopCoins"))
- document.getElementById("shopCoins").textContent=coins;
+ document.getElementById("shopCoins")
+ .textContent=coins;
 
 }
+
 
 /* ================= SHOP ================= */
 
 const shopItems=[
 
- {name:"لباس",icon:"👕",price:300},
- {name:"لوازم تحریر",icon:"📚",price:150},
- {name:"عروسک",icon:"🧸",price:500},
- {name:"گل",icon:"🌹",price:100},
- {name:"قاب گوشی",icon:"📱",price:400},
- {name:"شکلات",icon:"🍫",price:120},
- {name:"کفش",icon:"👟",price:450},
- {name:"کیف",icon:"👜",price:550},
- {name:"هدیه ویژه",icon:"🎁",price:800},
- {name:"دایناسور",icon:"🦖",price:650},
- {name:"مارمولک",icon:"🦎",price:350},
- {name:"کیک تولد",icon:"🎂",price:700}
+ {
+  name:"لباس ویژه",
+  price:2200
+ },
+
+ {
+  name:"کفش ویژه",
+  price:1800
+ },
+
+ {
+  name:"کیف",
+  price:2500
+ },
+
+ {
+  name:"قاب گوشی",
+  price:2000
+ },
+
+ {
+  name:"گل بزرگ",
+  price:1400
+ },
+
+ {
+  name:"عروسک",
+  price:3000
+ },
+
+ {
+  name:"جعبه شکلات",
+  price:1700
+ },
+
+ {
+  name:"هدیه خاص",
+  price:4200
+ },
+
+ {
+  name:"دایناسور",
+  price:3500
+ },
+
+ {
+  name:"مارمولک",
+  price:2700
+ },
+
+ {
+  name:"کیک مخصوص",
+  price:5000
+ },
+
+ {
+  name:"هدیه افسانه‌ای",
+  price:8000
+ }
 
 ];
 
+
 function renderShop(){
 
- const grid=document.getElementById("shopGrid");
+ let grid=
+ document.getElementById("shopGrid");
 
  grid.innerHTML="";
 
- shopItems.forEach((item,index)=>{
+ shopItems.forEach(function(item,index){
 
-  const div=document.createElement("div");
+  let div=
+  document.createElement("div");
 
-  div.className="item";
+  div.className="shopItem";
 
   div.innerHTML=`
-   <div class="itemIcon">${item.icon}</div>
-   <b>${item.name}</b>
-   <p>${item.price} سکه</p>
-   <button onclick="buyGift(${index})">خرید</button>
+
+   <div class="shopIcon">
+    ${item.name}
+   </div>
+
+   <h3>${item.name}</h3>
+
+   <div class="shopPrice">
+    ${item.price} سکه
+   </div>
+
+   <br>
+
+   <button onclick="buyGift(${index})">
+    خرید
+   </button>
+
   `;
 
   grid.appendChild(div);
@@ -984,78 +2314,104 @@ function renderShop(){
 
 }
 
+
 function buyGift(index){
 
- const item=shopItems[index];
+ let item=
+ shopItems[index];
 
  if(coins<item.price){
 
   showModal(
-   "پولت کمه!",
-   "برو داخل خانه‌ها کار کن تا سکه بیشتری جمع کنی."
+   "سکه کافی نیست",
+   "باید چند بار کار کنی و پول بیشتری جمع کنی."
   );
 
   return;
+
  }
 
  coins-=item.price;
 
  boughtGifts.push({
+
   number:boughtGifts.length+1,
+
   name:item.name,
-  icon:item.icon,
-  gender:gender,
-  hair:hair,
+
+  hair:hairStyle,
+
+  hairColor:hairColor,
+
   clothes:clothes
+
  });
 
  updateCoins();
 
  showModal(
-  "هدیه خریداری شد!",
-  "کاربر "+boughtGifts.length+" برای یوتا "+item.name+" خرید."
+  "هدیه خریداری شد",
+  "کاربر "+boughtGifts.length+
+  " برای یوتا «"+item.name+"» خرید."
  );
 
 }
 
-/* ================= GIFT LIST ================= */
+
+/* ================= GIFTS ================= */
 
 function renderGifts(){
 
- const box=document.getElementById("giftListContent");
+ let box=
+ document.getElementById("giftList");
 
  box.innerHTML="";
 
  if(boughtGifts.length===0){
 
-  box.innerHTML=
-   `<div class="empty">
+  box.innerHTML=`
+   <div class="empty">
     هنوز کسی برای یوتا هدیه نخریده.
     <br><br>
-    برو شهر و پول جمع کن!
-   </div>`;
+    برو کار کن و برایش هدیه بخر.
+   </div>
+  `;
 
   return;
+
  }
 
- boughtGifts.forEach(g=>{
 
-  const div=document.createElement("div");
+ boughtGifts.forEach(function(g){
+
+  let div=
+  document.createElement("div");
 
   div.className="userGift";
 
   div.innerHTML=`
 
-   <div class="miniAvatar">
-    👤
-   </div>
+   <div class="giftAvatar"></div>
 
    <div>
-    <b>کاربر ${g.number}</b>
+
+    <b>
+     کاربر ${g.number}
+    </b>
+
     <br>
-    برای یوتا: ${g.icon} <b>${g.name}</b>
+
+    برای یوتا:
+    <b>
+     ${g.name}
+    </b>
+
     <br>
-    <small>شخصیت ساخته‌شده توسط کاربر ${g.number}</small>
+
+    <small>
+     شخصیت ساخته‌شده توسط کاربر ${g.number}
+    </small>
+
    </div>
 
   `;
@@ -1069,4 +2425,5 @@ function renderGifts(){
 </script>
 
 </body>
-  </html>
+</html>
+
