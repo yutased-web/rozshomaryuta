@@ -3,111 +3,440 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>روزشمار من</title>
+  <title>تولد یوتا</title>
 
   <style>
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      overflow: hidden;
       font-family: Tahoma, Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      background: #777;
       color: white;
       text-align: center;
     }
 
-    .box {
-      width: 90%;
-      max-width: 500px;
-      padding: 35px 20px;
-      border-radius: 25px;
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    /* صفحه شروع */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 2s ease;
     }
 
-    h1 {
-      font-size: 30px;
-      margin-bottom: 10px;
+    #intro h1 {
+      font-size: 28px;
+      font-weight: normal;
+      animation: pulse 2s infinite;
     }
 
-    .subtitle {
-      font-size: 16px;
-      opacity: 0.85;
-      margin-bottom: 30px;
+    @keyframes pulse {
+      0%, 100% {
+        opacity: .5;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* صفحه اصلی */
+    #main {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 30%, #929292 0%, #707070 45%, #555 100%);
+    }
+
+    .content {
+      position: relative;
+      z-index: 20;
+      padding-top: 55px;
+      pointer-events: none;
+    }
+
+    .title {
+      font-size: 22px;
+      margin: 0 20px 25px;
+      text-shadow: 0 2px 5px rgba(0,0,0,.5);
     }
 
     #countdown {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: bold;
-      line-height: 1.8;
+      line-height: 2;
+      text-shadow: 0 3px 8px rgba(0,0,0,.6);
     }
 
-    .date {
-      margin-top: 25px;
-      font-size: 14px;
-      opacity: 0.7;
+    .count-box {
+      display: inline-block;
+      min-width: 70px;
+      margin: 5px;
+      padding: 8px;
+      border-radius: 15px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .count-number {
+      display: block;
+      font-size: 25px;
+    }
+
+    .count-label {
+      display: block;
+      font-size: 11px;
+      opacity: .75;
+    }
+
+    /* اشیای قابل جابه‌جایی */
+    .draggable {
+      position: absolute;
+      z-index: 10;
+      user-select: none;
+      touch-action: none;
+      cursor: grab;
+    }
+
+    .cake {
+      left: 12%;
+      bottom: 28%;
+      font-size: 75px;
+      filter: drop-shadow(0 10px 8px rgba(0,0,0,.4));
+    }
+
+    .money {
+      font-size: 35px;
+      transform: rotate(-15deg);
+      filter: drop-shadow(0 5px 5px rgba(0,0,0,.35));
+    }
+
+    .money.m1 {
+      left: 8%;
+      top: 38%;
+    }
+
+    .money.m2 {
+      right: 10%;
+      top: 45%;
+      transform: rotate(18deg);
+    }
+
+    .money.m3 {
+      left: 25%;
+      bottom: 15%;
+      transform: rotate(8deg);
+    }
+
+    .money.m4 {
+      right: 25%;
+      bottom: 23%;
+      transform: rotate(-20deg);
+    }
+
+    .money.m5 {
+      right: 5%;
+      bottom: 12%;
+      transform: rotate(12deg);
+    }
+
+    /* کادوها */
+    .gift {
+      font-size: 55px;
+      filter: drop-shadow(0 8px 7px rgba(0,0,0,.45));
+    }
+
+    .gift.g1 {
+      right: 12%;
+      bottom: 25%;
+    }
+
+    .gift.g2 {
+      left: 40%;
+      bottom: 12%;
+      font-size: 48px;
+    }
+
+    .gift.g3 {
+      right: 35%;
+      top: 34%;
+      font-size: 45px;
+    }
+
+    /* پیام کادو */
+    #giftMessage {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(0,0,0,.65);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .message-box {
+      width: 80%;
+      max-width: 350px;
+      padding: 35px 20px;
+      background: white;
+      color: #333;
+      border-radius: 25px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.6);
+      animation: pop .3s ease;
+    }
+
+    .message-box h2 {
+      margin: 0 0 15px;
+      font-size: 25px;
+    }
+
+    .message-box button {
+      border: none;
+      padding: 10px 25px;
+      border-radius: 20px;
+      background: #555;
+      color: white;
+      font-size: 15px;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* دکمه پایین */
+    #rememberButton {
+      position: absolute;
+      z-index: 100;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: none;
+      background: white;
+      color: #333;
+      padding: 15px 28px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 8px 25px rgba(0,0,0,.35);
+    }
+
+    #rememberButton:active {
+      transform: translateX(-50%) scale(.95);
+    }
+
+    /* دکمه موسیقی */
+    #musicButton {
+      position: absolute;
+      z-index: 100;
+      top: 18px;
+      left: 18px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      color: #333;
+      font-size: 20px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="box">
-    <h1>روزشمار من</h1>
+  <!-- صفحه شروع -->
+  <div id="intro">
+    <h1>یک اتفاق مهم در راه است..!!!</h1>
+  </div>
 
-    <div class="subtitle">
-      تا ۲۵ دی ۱۴۰۵
+  <!-- صفحه اصلی -->
+  <main id="main">
+
+    <div class="content">
+      <h1 class="title">
+        تا لحظه‌ای که تولد یوتا فرا برسه!!!!
+      </h1>
+
+      <div id="countdown">
+
+        <span class="count-box">
+          <span id="days" class="count-number">0</span>
+          <span class="count-label">روز</span>
+        </span>
+
+        <span class="count-box">
+          <span id="hours" class="count-number">0</span>
+          <span class="count-label">ساعت</span>
+        </span>
+
+        <span class="count-box">
+          <span id="minutes" class="count-number">0</span>
+          <span class="count-label">دقیقه</span>
+        </span>
+
+        <span class="count-box">
+          <span id="seconds" class="count-number">0</span>
+          <span class="count-label">ثانیه</span>
+        </span>
+
+      </div>
     </div>
 
-    <div id="countdown">
-      در حال محاسبه...
-    </div>
+    <!-- کیک -->
+    <div class="draggable cake">🎂</div>
 
-    <div class="date">
-      ۲۵ دی ۱۴۰۵
+    <!-- پول‌ها -->
+    <div class="draggable money m1">💵</div>
+    <div class="draggable money m2">💵</div>
+    <div class="draggable money m3">💵</div>
+    <div class="draggable money m4">💵</div>
+    <div class="draggable money m5">💵</div>
+
+    <!-- کادوها -->
+    <div class="draggable gift g1">🎁</div>
+    <div class="draggable gift g2">🎁</div>
+    <div class="draggable gift g3">🎁</div>
+
+    <button id="musicButton">♫</button>
+
+    <button id="rememberButton">
+      تولدم رو یادت نره!!!!!
+    </button>
+
+  </main>
+
+  <!-- پیام کادو -->
+  <div id="giftMessage">
+    <div class="message-box">
+      <h2>تولدم یادت نره!!!</h2>
+      <button onclick="closeGift()">باشه!</button>
     </div>
   </div>
 
   <script>
+
+    /* ورود به سایت */
+    setTimeout(function() {
+      document.getElementById("intro").style.opacity = "0";
+
+      setTimeout(function() {
+        document.getElementById("intro").style.display = "none";
+      }, 2000);
+
+    }, 3000);
+
+
+    /* شمارش معکوس */
     function updateCountdown() {
 
-      // 25 Dey 1405 = January 15, 2027
-      const target = new Date("2027-01-15T00:00:00");
-
+      const target = new Date(2027, 0, 15, 0, 0, 0);
       const now = new Date();
-      const difference = target - now;
+
+      const difference = target.getTime() - now.getTime();
 
       if (difference <= 0) {
-        document.getElementById("countdown").innerHTML =
-          "روز موعود رسید!";
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "0";
+        document.getElementById("minutes").textContent = "0";
+        document.getElementById("seconds").textContent = "0";
         return;
       }
 
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (difference / (1000 * 60 * 60)) % 24
-      );
-      const minutes = Math.floor(
-        (difference / (1000 * 60)) % 60
-      );
-      const seconds = Math.floor(
-        (difference / 1000) % 60
-      );
+      const days = Math.floor(difference / 86400000);
+      const hours = Math.floor((difference % 86400000) / 3600000);
+      const minutes = Math.floor((difference % 3600000) / 60000);
+      const seconds = Math.floor((difference % 60000) / 1000);
 
-      document.getElementById("countdown").innerHTML =
-  `${days} روز<br>${hours} ساعت و ${minutes} دقیقه و ${seconds} ثانیه`;
-  }
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-</script>
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+
+    /* باز شدن کادو */
+    const gifts = document.querySelectorAll(".gift");
+
+    gifts.forEach(function(gift) {
+      gift.addEventListener("click", function() {
+        document.getElementById("giftMessage").style.display = "flex";
+      });
+    });
+
+    function closeGift() {
+      document.getElementById("giftMessage").style.display = "none";
+    }
+
+
+    /* دکمه پایین */
+    document.getElementById("rememberButton").addEventListener("click", function() {
+      document.getElementById("giftMessage").style.display = "flex";
+    });
+
+
+    /* جابه‌جایی با انگشت */
+    const objects = document.querySelectorAll(".draggable");
+
+    objects.forEach(function(object) {
+
+      let moving = false;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      object.addEventListener("pointerdown", function(e) {
+
+        moving = true;
+
+        const rect = object.getBoundingClientRect();
+
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+
+        object.setPointerCapture(e.pointerId);
+        object.style.cursor = "grabbing";
+      });
+
+      object.addEventListener("pointermove", function(e) {
+
+        if (!moving) return;
+
+        object.style.left =
+          (e.clientX - offsetX) + "px";
+
+        object.style.top =
+          (e.clientY - offsetY) + "px";
+
+        object.style.right = "auto";
+        object.style.bottom = "auto";
+      });
+
+      object.addEventListener("pointerup", function() {
+        moving = false;
+        object.style.cursor = "grab";
+      });
+
+    });
+
+  </script>
 
 </body>
-</html>
+  </html>
