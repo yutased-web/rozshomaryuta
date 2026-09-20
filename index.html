@@ -2,780 +2,1069 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 <title>تولد یوتا</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Tahoma,Arial,sans-serif}
+button{font-family:inherit}
+body{background:#000;color:#fff}
 
-html,body{
-  margin:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  font-family:Tahoma,Arial,sans-serif;
-  background:#050505;
-  color:white;
-}
-
-button{
-  font-family:inherit;
-}
-
-/* ================= INTRO ================= */
+/* =========================
+   INTRO
+========================= */
 
 #intro{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  background:#000;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  transition:opacity 1.5s ease;
+ position:fixed;inset:0;background:#000;z-index:99999;
+ display:flex;align-items:center;justify-content:center;
+ flex-direction:column;text-align:center;
+ transition:1.4s;
+}
+#intro h1{
+ font-size:27px;font-weight:normal;
+ animation:glow 2s infinite;
+}
+#enter{
+ margin-top:30px;padding:15px 35px;border:1px solid #fff;
+ border-radius:40px;background:#fff;color:#000;font-size:17px;
+ font-weight:bold;
+}
+@keyframes glow{
+ 0%,100%{opacity:.45}
+ 50%{opacity:1;text-shadow:0 0 25px #fff}
 }
 
-#introTitle{
-  font-size:27px;
-  text-align:center;
-  animation:pulse 2s infinite;
-  padding:20px;
+/* =========================
+   MAIN
+========================= */
+
+.screen{
+ position:absolute;inset:0;display:none;
+ overflow:hidden;
+}
+#home{
+ background:
+ radial-gradient(circle at 50% 20%,#bcbcbc,#777 42%,#171717 100%);
+}
+#home.active,#creator.active,#city.active,#shop.active,#gifts.active{
+ display:block;
 }
 
-#startButton{
-  margin-top:35px;
-  padding:15px 35px;
-  border:1px solid white;
-  border-radius:40px;
-  background:white;
-  color:#111;
-  font-size:17px;
-  font-weight:bold;
-  box-shadow:0 0 30px rgba(255,255,255,.35);
+.top{
+ position:absolute;top:20px;left:0;width:100%;
+ text-align:center;z-index:30;
+}
+.top h1{
+ margin:0;font-size:22px;text-shadow:0 3px 10px #000;
+}
+.count{
+ margin-top:13px;display:flex;justify-content:center;gap:6px;
+ direction:rtl;
+}
+.time{
+ min-width:62px;padding:8px 4px;
+ border-radius:13px;
+ background:rgba(255,255,255,.14);
+ border:1px solid rgba(255,255,255,.35);
+ backdrop-filter:blur(7px);
+}
+.time b{display:block;font-size:21px}
+.time small{opacity:.7;font-size:10px}
+
+.bigCake{
+ position:absolute;
+ left:50%;top:46%;
+ transform:translate(-50%,-50%);
+ width:210px;height:150px;
+ z-index:15;
 }
 
-@keyframes pulse{
-  0%,100%{opacity:.45;transform:scale(.98)}
-  50%{opacity:1;transform:scale(1.03)}
+/* کیک */
+.cakeLayer{
+ position:absolute;left:50%;transform:translateX(-50%);
+ border-radius:18px;
+ background:linear-gradient(#fff,#d8d8d8);
+ box-shadow:inset 0 -8px 0 #aaa,0 15px 25px #0008;
 }
-
-/* ================= MAIN ================= */
-
-#main{
-  position:relative;
-  width:100vw;
-  height:100vh;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 50% 20%,#a7a7a7 0%,#707070 35%,#292929 100%);
+.layer1{width:190px;height:58px;bottom:0}
+.layer2{width:155px;height:52px;bottom:48px}
+.layer3{width:120px;height:45px;bottom:92px}
+.cream{
+ position:absolute;left:50%;transform:translateX(-50%);
+ width:190px;height:18px;bottom:42px;
+ border-radius:50%;
+ background:#fff;z-index:4;
 }
-
-#main.chaos{
-  animation:shake .12s infinite;
-  background:
-    radial-gradient(circle at 50% 50%,#aaa,#333 70%,#000);
+.cream2{
+ position:absolute;left:50%;transform:translateX(-50%);
+ width:155px;height:15px;bottom:84px;
+ border-radius:50%;background:#fff;z-index:5;
 }
-
-@keyframes shake{
-  0%{transform:translate(0)}
-  25%{transform:translate(2px,-1px)}
-  50%{transform:translate(-2px,1px)}
-  75%{transform:translate(1px,2px)}
-  100%{transform:translate(0)}
+.plate{
+ position:absolute;bottom:-8px;left:50%;
+ transform:translateX(-50%);
+ width:215px;height:18px;border-radius:50%;
+ background:#111;box-shadow:0 5px 20px #000;
 }
-
-/* ================= HEADER ================= */
-
-.header{
-  position:relative;
-  z-index:20;
-  text-align:center;
-  padding:28px 15px 0;
-  pointer-events:none;
+.candle{
+ position:absolute;width:7px;height:35px;background:#fff;
+ bottom:136px;border-radius:5px;z-index:10;
 }
-
-.header h1{
-  margin:0;
-  font-size:22px;
-  text-shadow:0 3px 10px #000;
+.candle:after{
+ content:"";position:absolute;width:10px;height:13px;
+ background:#fff;border-radius:50% 50% 50% 50%;
+ left:-1px;top:-11px;box-shadow:0 0 12px #fff;
 }
-
-#bigCountdown{
-  margin-top:18px;
-  display:flex;
-  justify-content:center;
-  gap:7px;
-  direction:rtl;
-}
-
-.timeBox{
-  min-width:65px;
-  padding:9px 5px;
-  border-radius:15px;
-  background:rgba(255,255,255,.13);
-  border:1px solid rgba(255,255,255,.3);
-  backdrop-filter:blur(8px);
-  box-shadow:0 8px 25px rgba(0,0,0,.2);
-}
-
-.number{
-  display:block;
-  font-size:22px;
-  font-weight:bold;
-}
-
-.label{
-  display:block;
-  margin-top:3px;
-  font-size:10px;
-  opacity:.7;
-}
-
-/* ================= SCORE ================= */
-
-#score{
-  position:absolute;
-  top:18px;
-  right:15px;
-  z-index:100;
-  background:rgba(0,0,0,.35);
-  padding:8px 13px;
-  border-radius:20px;
-  font-size:13px;
-}
-
-/* ================= OBJECTS ================= */
-
-.draggable{
-  position:absolute;
-  z-index:30;
-  user-select:none;
-  touch-action:none;
-  cursor:grab;
-}
-
-.draggable:active{
-  cursor:grabbing;
-}
-
-.cake{
-  left:8%;
-  bottom:26%;
-  font-size:72px;
-  filter:drop-shadow(0 12px 8px rgba(0,0,0,.5));
-}
-
-.money{
-  font-size:36px;
-  filter:drop-shadow(0 7px 5px rgba(0,0,0,.45));
-}
-
-.m1{left:5%;top:38%;transform:rotate(-18deg)}
-.m2{right:8%;top:38%;transform:rotate(15deg)}
-.m3{left:22%;bottom:17%;transform:rotate(8deg)}
-.m4{right:25%;bottom:20%;transform:rotate(-15deg)}
-.m5{right:3%;bottom:10%;transform:rotate(20deg)}
-.m6{left:45%;top:43%;transform:rotate(-7deg)}
-.m7{left:13%;top:17%;transform:rotate(13deg)}
-.m8{right:20%;top:20%;transform:rotate(-12deg)}
+.c1{left:72px}.c2{left:101px}.c3{left:130px}
 
 .gift{
-  font-size:55px;
-  filter:drop-shadow(0 10px 7px rgba(0,0,0,.5));
+ position:absolute;
+ width:72px;height:64px;
+ border:4px solid;
+ border-radius:6px;
+ z-index:20;
+ box-shadow:0 12px 18px #0008;
+ cursor:pointer;
+}
+.gift:before{
+ content:"";position:absolute;left:50%;
+ transform:translateX(-50%);
+ width:13px;height:100%;background:currentColor;
+}
+.gift:after{
+ content:"";position:absolute;left:50%;top:-12px;
+ transform:translateX(-50%);
+ width:48px;height:20px;border:5px solid;
+ border-radius:50%;
+}
+.whiteGift{background:#fff;color:#111;border-color:#111}
+.blackGift{background:#111;color:#fff;border-color:#fff}
+.grayGift{background:#888;color:#fff;border-color:#fff}
+
+.g1{left:8%;bottom:18%}
+.g2{right:8%;bottom:19%}
+.g3{left:13%;top:35%}
+.g4{right:14%;top:37%}
+.g5{left:42%;bottom:8%}
+.g6{right:39%;bottom:12%}
+
+.homeButtons{
+ position:absolute;bottom:20px;width:100%;
+ display:flex;justify-content:center;gap:8px;z-index:100;
+}
+.homeButtons button{
+ border:0;padding:12px 15px;border-radius:25px;
+ background:#fff;color:#111;font-weight:bold;
 }
 
-.g1{right:12%;bottom:27%}
-.g2{left:42%;bottom:11%;font-size:50px}
-.g3{right:36%;top:37%;font-size:47px}
-.g4{left:18%;top:50%;font-size:45px}
-
-/* ================= BUTTONS ================= */
-
-#eventButton{
-  position:absolute;
-  left:50%;
-  bottom:82px;
-  transform:translateX(-50%);
-  z-index:200;
-  border:0;
-  border-radius:35px;
-  padding:14px 23px;
-  background:white;
-  color:#222;
-  font-size:15px;
-  font-weight:bold;
-  box-shadow:0 8px 30px rgba(0,0,0,.45);
-}
-
-#eventButton:active{
-  transform:translateX(-50%) scale(.92);
-}
-
-#rememberButton{
-  position:absolute;
-  left:50%;
-  bottom:22px;
-  transform:translateX(-50%);
-  z-index:200;
-  border:1px solid rgba(255,255,255,.5);
-  border-radius:30px;
-  padding:11px 22px;
-  background:rgba(255,255,255,.15);
-  color:white;
-  font-size:13px;
-  backdrop-filter:blur(8px);
-}
-
-/* ================= MODAL ================= */
+/* =========================
+   MODAL
+========================= */
 
 #modal{
-  position:fixed;
-  inset:0;
-  z-index:5000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:rgba(0,0,0,.75);
+ position:fixed;inset:0;background:#000b;z-index:5000;
+ display:none;align-items:center;justify-content:center;padding:20px;
 }
-
 .modalBox{
-  width:82%;
-  max-width:360px;
-  padding:35px 20px;
-  border-radius:25px;
-  background:white;
-  color:#222;
-  text-align:center;
-  box-shadow:0 20px 70px #000;
-  animation:pop .3s ease;
+ width:min(90%,380px);background:#fff;color:#111;
+ border-radius:25px;padding:28px;text-align:center;
+ box-shadow:0 20px 70px #000;
 }
-
-.modalBox h2{
-  margin:0 0 12px;
-  font-size:24px;
-}
-
-.modalBox p{
-  line-height:1.8;
-}
-
+.modalBox h2{margin-top:0}
 .modalBox button{
-  border:0;
-  border-radius:25px;
-  padding:11px 25px;
-  background:#333;
-  color:white;
+ border:0;background:#111;color:#fff;
+ border-radius:25px;padding:11px 25px;
 }
 
-@keyframes pop{
-  from{transform:scale(.4);opacity:0}
-  to{transform:scale(1);opacity:1}
+/* =========================
+   CREATOR
+========================= */
+
+#creator{
+ background:#151515;
+ padding:20px;
+ overflow:auto;
+}
+.creatorBox{
+ max-width:430px;margin:auto;
+ padding-bottom:120px;
+}
+.creatorBox h1{text-align:center;font-size:23px}
+.preview{
+ height:240px;background:#555;border-radius:25px;
+ display:flex;align-items:center;justify-content:center;
+ position:relative;overflow:hidden;
+}
+.avatar{
+ position:relative;width:90px;height:150px;
+}
+.head{
+ position:absolute;top:5px;left:20px;
+ width:50px;height:58px;border-radius:50%;
+ background:#f0c5a0;z-index:3;
+}
+.hair{
+ position:absolute;top:0;left:15px;width:60px;height:45px;
+ background:#111;border-radius:50% 50% 30% 30%;z-index:4;
+}
+.body{
+ position:absolute;top:60px;left:15px;
+ width:60px;height:75px;border-radius:15px 15px 8px 8px;
+ background:#fff;
+}
+.legs{
+ position:absolute;top:125px;left:25px;width:40px;height:25px;
+ border-left:8px solid #111;border-right:8px solid #111;
+}
+.choiceTitle{margin-top:18px;font-weight:bold}
+.choices{
+ display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;
+}
+.choice{
+ border:1px solid #777;background:#222;color:#fff;
+ padding:9px 12px;border-radius:18px;
+}
+.choice.selected{background:#fff;color:#111}
+#createCharacter{
+ width:100%;margin-top:25px;padding:15px;border:0;
+ border-radius:30px;background:#fff;color:#111;font-weight:bold;
 }
 
-/* ================= CANDLES ================= */
+/* =========================
+   CITY
+========================= */
 
-.candle{
-  position:absolute;
-  z-index:70;
-  font-size:35px;
-  cursor:pointer;
-  animation:candleAppear .25s ease, float 1s infinite alternate;
-  filter:drop-shadow(0 0 12px white);
+#city{
+ background:#777;
+}
+.citySky{
+ position:absolute;inset:0;
+ background:linear-gradient(#707070 0 55%,#383838 55%);
+}
+.sun{
+ position:absolute;width:70px;height:70px;border-radius:50%;
+ background:#ddd;right:30px;top:30px;
+ box-shadow:0 0 35px #fff;
+}
+.road{
+ position:absolute;left:0;right:0;bottom:0;height:45%;
+ background:#252525;
+}
+.roadLine{
+ position:absolute;left:0;right:0;top:50%;
+ border-top:5px dashed #aaa;
+}
+.house{
+ position:absolute;width:120px;height:115px;
+ background:#ddd;border:5px solid #111;
+ cursor:pointer;
+}
+.house:before{
+ content:"";position:absolute;top:-55px;left:-8px;
+ border-left:65px solid transparent;
+ border-right:65px solid transparent;
+ border-bottom:55px solid #111;
+}
+.door{
+ position:absolute;width:28px;height:48px;
+ bottom:0;left:45px;background:#111;
+}
+.window{
+ position:absolute;width:25px;height:25px;background:#fff;
+ border:3px solid #111;top:25px;
+}
+.w1{left:10px}.w2{right:10px}
+.houseLabel{
+ position:absolute;top:118px;width:100%;
+ text-align:center;font-weight:bold;
 }
 
-@keyframes candleAppear{
-  from{transform:scale(0)}
-  to{transform:scale(1)}
+.kitchen{left:7%;top:20%}
+.garden{right:7%;top:20%}
+.shopHouse{left:40%;top:17%}
+
+.player{
+ position:absolute;z-index:100;
+ width:35px;height:60px;
+ left:45%;bottom:18%;
+ transition:transform .08s linear;
+}
+.pHead{
+ width:24px;height:24px;background:#f0c5a0;
+ border-radius:50%;margin:auto;
+}
+.pBody{
+ width:30px;height:30px;background:#fff;
+ border-radius:8px;margin:auto;
+}
+.pLegs{
+ width:26px;height:12px;
+ border-left:7px solid #111;border-right:7px solid #111;
+ margin:auto;
 }
 
-@keyframes float{
-  from{margin-top:-3px}
-  to{margin-top:3px}
+/* HUD */
+.cityHud{
+ position:absolute;top:12px;left:12px;right:12px;
+ display:flex;justify-content:space-between;z-index:200;
+}
+.moneyBox,.back{
+ background:#111d;padding:10px 15px;border-radius:20px;
+}
+.back{border:0;color:#fff}
+
+/* controls */
+.controls{
+ position:absolute;bottom:12px;left:12px;
+ width:155px;height:155px;z-index:300;
+}
+.ctrl{
+ position:absolute;width:48px;height:48px;border:0;
+ border-radius:14px;background:#ffffffdd;color:#111;
+ font-size:20px;font-weight:bold;
+}
+.up{top:0;left:53px}
+.down{bottom:0;left:53px}
+.left{top:53px;left:0}
+.right{top:53px;right:0}
+.jump{top:53px;left:53px;background:#111;color:#fff}
+
+/* =========================
+   WORK
+========================= */
+
+#work{
+ position:fixed;inset:0;z-index:4000;
+ background:#111;
+ display:none;align-items:center;justify-content:center;
+ padding:20px;
+}
+.workBox{
+ width:min(92%,400px);background:#fff;color:#111;
+ border-radius:25px;padding:25px;text-align:center;
+}
+.workArea{
+ height:230px;background:#aaa;border-radius:20px;
+ position:relative;overflow:hidden;
+}
+.workItem{
+ position:absolute;font-size:42px;cursor:pointer;
+}
+.workButton{
+ margin-top:15px;padding:12px 25px;
+ border:0;border-radius:25px;background:#111;color:#fff;
 }
 
-/* ================= PARTICLES ================= */
+/* =========================
+   SHOP
+========================= */
 
-.particle{
-  position:absolute;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:white;
-  pointer-events:none;
-  z-index:1000;
-  animation:particleFly 1s ease-out forwards;
+#shop{
+ background:#181818;padding:18px;overflow:auto;
+}
+.shopTop{
+ max-width:450px;margin:auto;
+ display:flex;justify-content:space-between;
+ align-items:center;
+}
+.shopGrid{
+ max-width:450px;margin:20px auto 100px;
+ display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.item{
+ background:#fff;color:#111;border-radius:20px;
+ padding:18px;text-align:center;
+}
+.itemIcon{font-size:45px}
+.item button{
+ border:0;border-radius:20px;
+ padding:9px 18px;background:#111;color:#fff;
 }
 
-@keyframes particleFly{
-  from{
-    transform:translate(0,0) scale(1);
-    opacity:1;
-  }
-  to{
-    transform:translate(var(--x),var(--y)) scale(0);
-    opacity:0;
-  }
+/* =========================
+   GIFTS LIST
+========================= */
+
+#gifts{
+ background:#161616;padding:20px;overflow:auto;
 }
-
-/* ================= FALLING OBJECT ================= */
-
-.falling{
-  position:absolute;
-  z-index:900;
-  pointer-events:none;
-  font-size:30px;
-  animation:fall 2.5s linear forwards;
+.giftList{
+ max-width:500px;margin:auto;
 }
-
-@keyframes fall{
-  from{
-    transform:translateY(-80px) rotate(0deg);
-    opacity:1;
-  }
-  to{
-    transform:translateY(110vh) rotate(720deg);
-    opacity:0;
-  }
+.userGift{
+ background:#fff;color:#111;
+ border-radius:22px;padding:15px;margin:12px 0;
+ display:flex;align-items:center;gap:15px;
 }
-
-/* ================= SECRET ================= */
-
-#secret{
-  position:fixed;
-  inset:0;
-  z-index:9000;
-  background:#000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:30px;
+.miniAvatar{
+ width:65px;height:75px;border-radius:15px;
+ background:#777;display:flex;
+ align-items:center;justify-content:center;
+ font-size:35px;
 }
-
-#secret h1{
-  font-size:28px;
-  line-height:1.8;
-  animation:pulse 1.5s infinite;
+.empty{
+ text-align:center;opacity:.7;margin-top:80px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
+<!-- ================= INTRO ================= -->
+
 <div id="intro">
-  <div id="introTitle">یک اتفاق مهم در راه است..!!!</div>
-  <button id="startButton">شروع اتفاق</button>
+ <h1>یک اتفاق مهم در راه است..!!!</h1>
+ <button id="enter">ورود به ماجرا</button>
 </div>
 
-<!-- MAIN -->
-<main id="main">
+<!-- ================= HOME ================= -->
 
-  <div id="score">امتیاز: <b id="scoreNumber">0</b></div>
+<section id="home" class="screen">
 
-  <div class="header">
-    <h1>تا لحظه‌ای که تولد یوتا فرا برسه!!!!</h1>
+ <div class="top">
+  <h1>تا لحظه‌ای که تولد یوتا فرا برسه!!!!</h1>
 
-    <div id="bigCountdown">
+  <div class="count">
+   <div class="time"><b id="days">0</b><small>روز</small></div>
+   <div class="time"><b id="hours">0</b><small>ساعت</small></div>
+   <div class="time"><b id="minutes">0</b><small>دقیقه</small></div>
+   <div class="time"><b id="seconds">0</b><small>ثانیه</small></div>
+  </div>
+ </div>
 
-      <div class="timeBox">
-        <span class="number" id="days">0</span>
-        <span class="label">روز</span>
-      </div>
+ <!-- کیک -->
+ <div class="bigCake">
 
-      <div class="timeBox">
-        <span class="number" id="hours">0</span>
-        <span class="label">ساعت</span>
-      </div>
+  <div class="plate"></div>
 
-      <div class="timeBox">
-        <span class="number" id="minutes">0</span>
-        <span class="label">دقیقه</span>
-      </div>
+  <div class="cakeLayer layer1"></div>
+  <div class="cakeLayer layer2"></div>
+  <div class="cakeLayer layer3"></div>
 
-      <div class="timeBox">
-        <span class="number" id="seconds">0</span>
-        <span class="label">ثانیه</span>
-      </div>
+  <div class="cream"></div>
+  <div class="cream2"></div>
 
-    </div>
+  <div class="candle c1"></div>
+  <div class="candle c2"></div>
+  <div class="candle c3"></div>
+
+ </div>
+
+ <!-- کادوها -->
+ <div class="gift whiteGift g1" data-msg="تولدم رو یادت نره!!!"></div>
+ <div class="gift blackGift g2" data-msg="🦎🦖 اینم یه کادوی کاملاً بی‌ربط ولی باحال!"></div>
+ <div class="gift grayGift g3" data-msg="یک اتفاق مهم در راهه..."></div>
+ <div class="gift whiteGift g4" data-msg="۲۵ دی رو فراموش نکنی."></div>
+ <div class="gift blackGift g5" data-msg="تولد یوتا نزدیکه!"></div>
+ <div class="gift grayGift g6" data-msg="🎂 حالا برو بازی رو شروع کن."></div>
+
+ <div class="homeButtons">
+  <button onclick="openCreator()">ساخت شخصیت</button>
+  <button onclick="openGifts()">هدیه‌های تولد</button>
+  <button onclick="openCity()">شروع بازی</button>
+ </div>
+
+</section>
+
+<!-- ================= CHARACTER CREATOR ================= -->
+
+<section id="creator" class="screen">
+
+ <div class="creatorBox">
+
+  <h1>شخصیت خودت رو بساز</h1>
+
+  <div class="preview">
+   <div class="avatar">
+    <div class="head" id="previewHead"></div>
+    <div class="hair" id="previewHair"></div>
+    <div class="body" id="previewBody"></div>
+    <div class="legs"></div>
+   </div>
   </div>
 
-  <!-- کیک -->
-  <div class="draggable cake">🎂</div>
+  <div class="choiceTitle">جنسیت</div>
+  <div class="choices">
+   <button class="choice selected" onclick="setGender('دختر',this)">دختر</button>
+   <button class="choice" onclick="setGender('پسر',this)">پسر</button>
+  </div>
 
-  <!-- پول -->
-  <div class="draggable money m1">💵</div>
-  <div class="draggable money m2">💵</div>
-  <div class="draggable money m3">💵</div>
-  <div class="draggable money m4">💵</div>
-  <div class="draggable money m5">💵</div>
-  <div class="draggable money m6">💵</div>
-  <div class="draggable money m7">💵</div>
-  <div class="draggable money m8">💵</div>
+  <div class="choiceTitle">مو</div>
+  <div class="choices">
+   <button class="choice selected" onclick="setHair('#111',this)">مشکی</button>
+   <button class="choice" onclick="setHair('#777',this)">خاکستری</button>
+   <button class="choice" onclick="setHair('#fff',this)">سفید</button>
+  </div>
 
-  <!-- کادو -->
-  <div class="draggable gift g1">🎁</div>
-  <div class="draggable gift g2">🎁</div>
-  <div class="draggable gift g3">🎁</div>
-  <div class="draggable gift g4">🎁</div>
+  <div class="choiceTitle">لباس</div>
+  <div class="choices">
+   <button class="choice selected" onclick="setClothes('#fff',this)">سفید</button>
+   <button class="choice" onclick="setClothes('#111',this)">مشکی</button>
+   <button class="choice" onclick="setClothes('#888',this)">خاکستری</button>
+  </div>
 
-  <button id="eventButton">یه اتفاق بنداز!</button>
+  <button id="createCharacter" onclick="saveCharacter()">
+   ساخت شخصیت و ورود به شهر
+  </button>
 
-  <button id="rememberButton">تولدم رو یادت نره!!!!!</button>
+  <button class="workButton" onclick="showHome()" style="width:100%;margin-top:10px">
+   برگشت
+  </button>
 
-</main>
+ </div>
+</section>
 
-<!-- MODAL -->
+<!-- ================= CITY ================= -->
+
+<section id="city" class="screen">
+
+ <div class="citySky"></div>
+ <div class="sun"></div>
+
+ <div class="road">
+  <div class="roadLine"></div>
+ </div>
+
+ <div class="cityHud">
+  <div class="moneyBox">سکه: <b id="coins">500</b></div>
+  <button class="back" onclick="showHome()">خانه</button>
+ </div>
+
+ <div class="house kitchen" onclick="startWork('kitchen')">
+  <div class="door"></div>
+  <div class="window w1"></div>
+  <div class="window w2"></div>
+  <div class="houseLabel">آشپزخانه</div>
+ </div>
+
+ <div class="house garden" onclick="startWork('garden')">
+  <div class="door"></div>
+  <div class="window w1"></div>
+  <div class="window w2"></div>
+  <div class="houseLabel">باغ</div>
+ </div>
+
+ <div class="house shopHouse" onclick="openShop()">
+  <div class="door"></div>
+  <div class="window w1"></div>
+  <div class="window w2"></div>
+  <div class="houseLabel">فروشگاه</div>
+ </div>
+
+ <div class="player" id="player">
+  <div class="pHead"></div>
+  <div class="pBody"></div>
+  <div class="pLegs"></div>
+ </div>
+
+ <div class="controls">
+  <button class="ctrl up" ontouchstart="move(0,-1)" onclick="move(0,-1)">▲</button>
+  <button class="ctrl down" ontouchstart="move(0,1)" onclick="move(0,1)">▼</button>
+  <button class="ctrl left" ontouchstart="move(-1,0)" onclick="move(-1,0)">◀</button>
+  <button class="ctrl right" ontouchstart="move(1,0)" onclick="move(1,0)">▶</button>
+  <button class="ctrl jump" ontouchstart="jump()" onclick="jump()">●</button>
+ </div>
+
+</section>
+
+<!-- ================= WORK ================= -->
+
+<div id="work">
+
+ <div class="workBox">
+
+  <h2 id="workTitle">کار</h2>
+
+  <p id="workInfo">
+   کارها رو انجام بده و پول بگیر!
+  </p>
+
+  <div class="workArea" id="workArea"></div>
+
+  <button class="workButton" onclick="finishWork()">
+   تمام کردم
+  </button>
+
+  <button class="workButton" onclick="closeWork()">
+   برگشت
+  </button>
+
+ </div>
+
+</div>
+
+<!-- ================= SHOP ================= -->
+
+<section id="shop" class="screen">
+
+ <div class="shopTop">
+  <h2>فروشگاه هدیه تولد</h2>
+  <div>سکه: <b id="shopCoins">500</b></div>
+ </div>
+
+ <div class="shopGrid" id="shopGrid"></div>
+
+ <button class="workButton" onclick="openCity()" style="display:block;margin:20px auto">
+  برگشت به شهر
+ </button>
+
+</section>
+
+<!-- ================= GIFTS ================= -->
+
+<section id="gifts" class="screen">
+
+ <div class="giftList">
+
+  <h2 style="text-align:center">هدیه‌های تولد یوتا</h2>
+
+  <div id="giftListContent"></div>
+
+  <button class="workButton" onclick="showHome()" style="width:100%">
+   برگشت
+  </button>
+
+ </div>
+
+</section>
+
+<!-- ================= MODAL ================= -->
+
 <div id="modal">
-  <div class="modalBox">
-    <h2 id="modalTitle">تولدت یادت نره!!!</h2>
-    <p id="modalText">این کادو فقط برای اینه که فراموشت نشه!</p>
-    <button onclick="closeModal()">باشه!</button>
-  </div>
-</div>
-
-<!-- SECRET -->
-<div id="secret">
-  <h1>
-    بالاخره پیداش کردی...<br><br>
-    تولدم رو یادت نره!!!
-  </h1>
+ <div class="modalBox">
+  <h2 id="modalTitle"></h2>
+  <p id="modalText"></p>
+  <button onclick="closeModal()">باشه</button>
+ </div>
 </div>
 
 <script>
 
-/* ================= START ================= */
+/* ================= VARIABLES ================= */
 
-const intro = document.getElementById("intro");
-const main = document.getElementById("main");
+let coins=500;
+let gender="دختر";
+let hair="#111";
+let clothes="#fff";
 
-document.getElementById("startButton").addEventListener("click",function(){
+let playerX=45;
+let playerY=18;
 
-  intro.style.opacity="0";
+let boughtGifts=[];
 
-  setTimeout(function(){
-    intro.style.display="none";
-  },1500);
+/* ================= INTRO ================= */
 
-  createExplosion(window.innerWidth/2,window.innerHeight/2);
+document.getElementById("enter").onclick=function(){
 
-});
+ document.getElementById("intro").style.opacity="0";
 
+ setTimeout(()=>{
+  document.getElementById("intro").style.display="none";
+  showHome();
+ },1400);
+
+};
+
+/* ================= SCREENS ================= */
+
+function hideScreens(){
+
+ document.querySelectorAll(".screen").forEach(x=>{
+  x.classList.remove("active");
+ });
+
+}
+
+function showHome(){
+ hideScreens();
+ document.getElementById("home").classList.add("active");
+}
+
+function openCreator(){
+ hideScreens();
+ document.getElementById("creator").classList.add("active");
+}
+
+function openCity(){
+ hideScreens();
+ document.getElementById("city").classList.add("active");
+ updateCoins();
+}
+
+function openShop(){
+ hideScreens();
+ document.getElementById("shop").classList.add("active");
+ renderShop();
+ updateCoins();
+}
+
+function openGifts(){
+ hideScreens();
+ document.getElementById("gifts").classList.add("active");
+ renderGifts();
+}
 
 /* ================= COUNTDOWN ================= */
 
-function updateCountdown(){
+function countdown(){
 
-  const target = new Date(2027,0,15,0,0,0);
-  const now = new Date();
+ const target=new Date(2027,0,15,0,0,0);
+ const now=new Date();
+ let d=target-now;
 
-  let diff = target-now;
+ if(d<0)d=0;
 
-  if(diff<0) diff=0;
+ document.getElementById("days").textContent=
+ Math.floor(d/86400000);
 
-  const days=Math.floor(diff/86400000);
-  const hours=Math.floor((diff%86400000)/3600000);
-  const minutes=Math.floor((diff%3600000)/60000);
-  const seconds=Math.floor((diff%60000)/1000);
+ document.getElementById("hours").textContent=
+ Math.floor((d%86400000)/3600000);
 
-  document.getElementById("days").textContent=days;
-  document.getElementById("hours").textContent=hours;
-  document.getElementById("minutes").textContent=minutes;
-  document.getElementById("seconds").textContent=seconds;
+ document.getElementById("minutes").textContent=
+ Math.floor((d%3600000)/60000);
+
+ document.getElementById("seconds").textContent=
+ Math.floor((d%60000)/1000);
 }
 
-updateCountdown();
-setInterval(updateCountdown,1000);
-
-
-/* ================= DRAG ================= */
-
-document.querySelectorAll(".draggable").forEach(function(object){
-
-  let moving=false;
-  let offsetX=0;
-  let offsetY=0;
-
-  object.addEventListener("pointerdown",function(e){
-
-    moving=true;
-
-    const rect=object.getBoundingClientRect();
-
-    offsetX=e.clientX-rect.left;
-    offsetY=e.clientY-rect.top;
-
-    object.setPointerCapture(e.pointerId);
-
-  });
-
-  object.addEventListener("pointermove",function(e){
-
-    if(!moving)return;
-
-    object.style.left=(e.clientX-offsetX)+"px";
-    object.style.top=(e.clientY-offsetY)+"px";
-    object.style.right="auto";
-    object.style.bottom="auto";
-
-  });
-
-  object.addEventListener("pointerup",function(){
-
-    moving=false;
-
-  });
-
-});
-
+countdown();
+setInterval(countdown,1000);
 
 /* ================= GIFTS ================= */
 
-document.querySelectorAll(".gift").forEach(function(gift){
+document.querySelectorAll(".gift").forEach(g=>{
 
-  gift.addEventListener("click",function(){
+ g.onclick=function(){
 
-    document.getElementById("modalTitle").textContent="🎁 کادو باز شد!";
-    document.getElementById("modalText").textContent=
-      "تولدت یادت نره!!! یه امتیاز هم گرفتی.";
+  showModal(
+   "کادو باز شد!",
+   g.dataset.msg
+  );
 
-    addScore(10);
-    document.getElementById("modal").style.display="flex";
-
-  });
+ };
 
 });
-
 
 /* ================= MODAL ================= */
 
-function closeModal(){
-  document.getElementById("modal").style.display="none";
+function showModal(title,text){
+
+ document.getElementById("modalTitle").textContent=title;
+ document.getElementById("modalText").textContent=text;
+ document.getElementById("modal").style.display="flex";
+
 }
 
-document.getElementById("rememberButton").onclick=function(){
+function closeModal(){
+ document.getElementById("modal").style.display="none";
+}
 
-  document.getElementById("modalTitle").textContent="تولد یوتا";
-  document.getElementById("modalText").textContent=
-    "این تاریخ رو به خاطر بسپار: ۲۵ دی";
+/* ================= CHARACTER ================= */
 
-  document.getElementById("modal").style.display="flex";
+function setGender(x,b){
 
-};
+ gender=x;
 
+ document.querySelectorAll(".choice").forEach(c=>{
+  if(c.parentElement.previousElementSibling &&
+     c.parentElement.previousElementSibling.textContent=="جنسیت"){
+   c.classList.remove("selected");
+  }
+ });
 
-/* ================= SCORE ================= */
+ b.classList.add("selected");
+}
 
-let score=0;
+function setHair(x,b){
 
-function addScore(amount){
+ hair=x;
+ document.getElementById("previewHair").style.background=x;
 
-  score+=amount;
+ b.parentElement.querySelectorAll(".choice")
+  .forEach(c=>c.classList.remove("selected"));
 
-  document.getElementById("scoreNumber").textContent=score;
+ b.classList.add("selected");
+}
 
-  if(score>=50 && !main.classList.contains("chaos")){
-    activateChaos();
+function setClothes(x,b){
+
+ clothes=x;
+ document.getElementById("previewBody").style.background=x;
+
+ b.parentElement.querySelectorAll(".choice")
+  .forEach(c=>c.classList.remove("selected"));
+
+ b.classList.add("selected");
+}
+
+function saveCharacter(){
+
+ document.querySelector("#player .pBody").style.background=clothes;
+ document.querySelector("#player .pHead").style.background="#f0c5a0";
+
+ showModal(
+  "شخصیت ساخته شد!",
+  "حالا برو داخل شهر، کار کن، پول جمع کن و برای یوتا هدیه بخر."
+ );
+
+ setTimeout(openCity,1200);
+}
+
+/* ================= PLAYER ================= */
+
+function move(dx,dy){
+
+ playerX+=dx*4;
+ playerY+=dy*4;
+
+ playerX=Math.max(2,Math.min(92,playerX));
+ playerY=Math.max(8,Math.min(75,playerY));
+
+ const p=document.getElementById("player");
+
+ p.style.left=playerX+"%";
+ p.style.bottom=playerY+"%";
+
+}
+
+function jump(){
+
+ const p=document.getElementById("player");
+
+ p.style.transform="translateY(-45px)";
+
+ setTimeout(()=>{
+  p.style.transform="translateY(0)";
+ },350);
+
+}
+
+/* ================= WORK ================= */
+
+let currentWork="";
+
+function startWork(type){
+
+ currentWork=type;
+
+ const area=document.getElementById("workArea");
+
+ area.innerHTML="";
+
+ document.getElementById("work").style.display="flex";
+
+ if(type==="kitchen"){
+
+  document.getElementById("workTitle").textContent="آشپزی";
+
+  document.getElementById("workInfo").textContent=
+   "مواد غذایی رو لمس کن تا کیک آماده بشه.";
+
+  ["🥚","🥛","🍫","🍓","🎂"].forEach((x,i)=>{
+
+   const item=document.createElement("div");
+
+   item.className="workItem";
+   item.textContent=x;
+   item.style.left=(10+i*18)+"%";
+   item.style.top=(35+(i%2)*25)+"%";
+
+   item.onclick=function(){
+    item.style.opacity=".25";
+    item.dataset.done="1";
+   };
+
+   area.appendChild(item);
+
+  });
+
+ }
+
+ if(type==="garden"){
+
+  document.getElementById("workTitle").textContent="باغبانی";
+
+  document.getElementById("workInfo").textContent=
+   "برگ‌های روی زمین رو جمع کن.";
+
+  for(let i=0;i<12;i++){
+
+   const leaf=document.createElement("div");
+
+   leaf.className="workItem";
+   leaf.textContent="🍂";
+
+   leaf.style.left=(5+Math.random()*85)+"%";
+   leaf.style.top=(10+Math.random()*75)+"%";
+
+   leaf.onclick=function(){
+    leaf.remove();
+   };
+
+   area.appendChild(leaf);
+
   }
 
+ }
+
 }
 
+function finishWork(){
 
-/* ================= RANDOM EVENT ================= */
+ let amount=currentWork==="kitchen"?200:150;
 
-document.getElementById("eventButton").onclick=function(){
+ coins+=amount;
 
-  const events=[
-    "بارون پول شروع شد!",
-    "کادوها دیوونه شدن!",
-    "یه اتفاق عجیب افتاد!",
-    "شمع‌ها رو پیدا کن!",
-    "CHAOS نزدیکه..."
-  ];
+ updateCoins();
 
-  const text=events[Math.floor(Math.random()*events.length)];
+ showModal(
+  "کار انجام شد!",
+  "+"+amount+" سکه گرفتی."
+ );
 
-  document.getElementById("modalTitle").textContent=text;
-  document.getElementById("modalText").textContent=
-    "حالا ببین روی صفحه چی ظاهر میشه!";
+ closeWork();
 
-  document.getElementById("modal").style.display="flex";
+}
 
-  createExplosion(
-    Math.random()*window.innerWidth,
-    Math.random()*window.innerHeight
+function closeWork(){
+ document.getElementById("work").style.display="none";
+}
+
+function updateCoins(){
+
+ document.getElementById("coins").textContent=coins;
+
+ if(document.getElementById("shopCoins"))
+ document.getElementById("shopCoins").textContent=coins;
+
+}
+
+/* ================= SHOP ================= */
+
+const shopItems=[
+
+ {name:"لباس",icon:"👕",price:300},
+ {name:"لوازم تحریر",icon:"📚",price:150},
+ {name:"عروسک",icon:"🧸",price:500},
+ {name:"گل",icon:"🌹",price:100},
+ {name:"قاب گوشی",icon:"📱",price:400},
+ {name:"شکلات",icon:"🍫",price:120},
+ {name:"کفش",icon:"👟",price:450},
+ {name:"کیف",icon:"👜",price:550},
+ {name:"هدیه ویژه",icon:"🎁",price:800},
+ {name:"دایناسور",icon:"🦖",price:650},
+ {name:"مارمولک",icon:"🦎",price:350},
+ {name:"کیک تولد",icon:"🎂",price:700}
+
+];
+
+function renderShop(){
+
+ const grid=document.getElementById("shopGrid");
+
+ grid.innerHTML="";
+
+ shopItems.forEach((item,index)=>{
+
+  const div=document.createElement("div");
+
+  div.className="item";
+
+  div.innerHTML=`
+   <div class="itemIcon">${item.icon}</div>
+   <b>${item.name}</b>
+   <p>${item.price} سکه</p>
+   <button onclick="buyGift(${index})">خرید</button>
+  `;
+
+  grid.appendChild(div);
+
+ });
+
+}
+
+function buyGift(index){
+
+ const item=shopItems[index];
+
+ if(coins<item.price){
+
+  showModal(
+   "پولت کمه!",
+   "برو داخل خانه‌ها کار کن تا سکه بیشتری جمع کنی."
   );
 
-  setTimeout(function(){
-    closeModal();
-  },1200);
+  return;
+ }
 
-  spawnRandomObjects();
-  spawnCandle();
+ coins-=item.price;
 
-};
+ boughtGifts.push({
+  number:boughtGifts.length+1,
+  name:item.name,
+  icon:item.icon,
+  gender:gender,
+  hair:hair,
+  clothes:clothes
+ });
 
+ updateCoins();
 
-/* ================= EXPLOSION ================= */
-
-function createExplosion(x,y){
-
-  for(let i=0;i<35;i++){
-
-    const p=document.createElement("div");
-
-    p.className="particle";
-
-    p.style.left=x+"px";
-    p.style.top=y+"px";
-
-    p.style.setProperty(
-      "--x",
-      (Math.random()*300-150)+"px"
-    );
-
-    p.style.setProperty(
-      "--y",
-      (Math.random()*300-150)+"px"
-    );
-
-    document.body.appendChild(p);
-
-    setTimeout(function(){
-      p.remove();
-    },1000);
-
-  }
+ showModal(
+  "هدیه خریداری شد!",
+  "کاربر "+boughtGifts.length+" برای یوتا "+item.name+" خرید."
+ );
 
 }
 
+/* ================= GIFT LIST ================= */
 
-/* ================= FALLING ================= */
+function renderGifts(){
 
-function spawnRandomObjects(){
+ const box=document.getElementById("giftListContent");
 
-  for(let i=0;i<18;i++){
+ box.innerHTML="";
 
-    const obj=document.createElement("div");
+ if(boughtGifts.length===0){
 
-    obj.className="falling";
+  box.innerHTML=
+   `<div class="empty">
+    هنوز کسی برای یوتا هدیه نخریده.
+    <br><br>
+    برو شهر و پول جمع کن!
+   </div>`;
 
-    obj.textContent=Math.random()>.5 ? "💵" : "🎁";
+  return;
+ }
 
-    obj.style.left=Math.random()*100+"vw";
+ boughtGifts.forEach(g=>{
 
-    obj.style.animationDuration=
-      (1.5+Math.random()*2)+"s";
+  const div=document.createElement("div");
 
-    document.body.appendChild(obj);
+  div.className="userGift";
 
-    setTimeout(function(){
-      obj.remove();
-    },4000);
+  div.innerHTML=`
 
-  }
+   <div class="miniAvatar">
+    👤
+   </div>
 
-}
+   <div>
+    <b>کاربر ${g.number}</b>
+    <br>
+    برای یوتا: ${g.icon} <b>${g.name}</b>
+    <br>
+    <small>شخصیت ساخته‌شده توسط کاربر ${g.number}</small>
+   </div>
 
+  `;
 
-/* ================= CANDLE GAME ================= */
+  box.appendChild(div);
 
-function spawnCandle(){
-
-  const candle=document.createElement("div");
-
-  candle.className="candle";
-  candle.textContent="🕯️";
-
-  candle.style.left=
-    (10+Math.random()*80)+"vw";
-
-  candle.style.top=
-    (20+Math.random()*60)+"vh";
-
-  main.appendChild(candle);
-
-  candle.onclick=function(){
-
-    addScore(5);
-
-    createExplosion(
-      candle.getBoundingClientRect().left,
-      candle.getBoundingClientRect().top
-    );
-
-    candle.remove();
-
-  };
-
-  setTimeout(function(){
-
-    if(candle.parentNode){
-      candle.remove();
-    }
-
-  },4000);
+ });
 
 }
-
-
-/* ================= CHAOS ================= */
-
-function activateChaos(){
-
-  main.classList.add("chaos");
-
-  document.getElementById("modalTitle").textContent=
-    "CHAOS MODE";
-
-  document.getElementById("modalText").textContent=
-    "امتیازت به ۵۰ رسید. حالا دیگه اوضاع از کنترل خارج شد!";
-
-  document.getElementById("modal").style.display="flex";
-
-  spawnRandomObjects();
-
-  for(let i=0;i<5;i++){
-    setTimeout(spawnCandle,i*500);
-  }
-
-  setTimeout(function(){
-    main.classList.remove("chaos");
-  },5000);
-
-}
-
-
-/* ================= SECRET ================= */
-
-let taps=0;
-
-document.getElementById("eventButton").addEventListener("click",function(){
-
-  taps++;
-
-  if(taps>=7){
-
-    document.getElementById("secret").style.display="flex";
-
-    createExplosion(
-      window.innerWidth/2,
-      window.innerHeight/2
-    );
-
-    setTimeout(function(){
-      document.getElementById("secret").style.display="none";
-      taps=0;
-    },5000);
-
-  }
-
-});
 
 </script>
 
