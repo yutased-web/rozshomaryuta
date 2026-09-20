@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>روزشمار من</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Tahoma, Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+      text-align: center;
+    }
+
+    .box {
+      width: 90%;
+      max-width: 500px;
+      padding: 35px 20px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      opacity: 0.85;
+      margin-bottom: 30px;
+    }
+
+    #countdown {
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+
+    .date {
+      margin-top: 25px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h1>روزشمار من</h1>
+
+    <div class="subtitle">
+      تا ۲۵ دی ۱۴۰۵
+    </div>
+
+    <div id="countdown">
+      در حال محاسبه...
+    </div>
+
+    <div class="date">
+      ۲۵ دی ۱۴۰۵
+    </div>
+  </div>
+
+  <script>
+    function updateCountdown() {
+
+      // 25 Dey 1405 = January 15, 2027
+      const target = new Date("2027-01-15T00:00:00");
+
+      const now = new Date();
+      const difference = target - now;
+
+      if (difference <= 0) {
+        document.getElementById("countdown").innerHTML =
+          "روز موعود رسید!";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+      );
+      const minutes = Math.floor(
+        (difference / (1000 * 60)) % 60
+      );
+      const seconds = Math.floor(
+        (difference / 1000) % 60
+      );
+
+      document.getElementById("countdown
