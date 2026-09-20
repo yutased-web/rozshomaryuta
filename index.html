@@ -101,4 +101,13 @@
         (difference / 1000) % 60
       );
 
-      document.getElementById("countdown
+      document.getElementById("countdown").innerHTML =
+  `${days} روز<br>${hours} ساعت و ${minutes} دقیقه و ${seconds} ثانیه`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
