@@ -1,1130 +1,445 @@
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<title>تولد یوتا</title>
+<title>Birthday Adventure</title>
 
 <style>
-*{
- box-sizing:border-box;
- -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;font-family:Tahoma,Arial,sans-serif}
+body{background:#111;color:#fff}
+button{font-family:inherit}
 
-html,body{
- margin:0;
- width:100%;
- height:100%;
- overflow:hidden;
- font-family:Tahoma,Arial,sans-serif;
-}
+.screen{position:absolute;inset:0;display:none;overflow:hidden}
+.screen.active{display:block}
 
-body{
- background:#111;
- color:white;
-}
-
-button{
- font-family:inherit;
- cursor:pointer;
-}
-
-.screen{
- position:absolute;
- inset:0;
- display:none;
- overflow:hidden;
-}
-
-.screen.active{
- display:block;
-}
-
-/* ================= INTRO ================= */
-
+/* INTRO */
 #intro{
- position:fixed;
- inset:0;
- background:#050505;
- z-index:99999;
- display:flex;
- align-items:center;
- justify-content:center;
- flex-direction:column;
- text-align:center;
- transition:1s;
+ position:fixed;inset:0;background:#050505;z-index:99999;
+ display:flex;align-items:center;justify-content:center;
+ flex-direction:column;text-align:center
 }
-
-.introTitle{
- font-size:27px;
- animation:pulse 2s infinite;
-}
-
-.introSub{
- margin-top:10px;
- color:#aaa;
- font-size:13px;
-}
-
+#intro h1{font-size:27px;font-weight:normal}
 #enter{
- margin-top:35px;
- padding:15px 35px;
- border:0;
- border-radius:40px;
- background:white;
- color:#111;
- font-weight:bold;
- font-size:16px;
+ margin-top:30px;padding:15px 35px;border:0;border-radius:30px;
+ background:#fff;color:#111;font-weight:bold;font-size:16px
 }
 
-@keyframes pulse{
- 0%,100%{opacity:.5}
- 50%{opacity:1;text-shadow:0 0 25px white}
-}
-
-/* ================= HOME ================= */
-
+/* HOME */
 #home{
- background:
- radial-gradient(circle at 50% 10%,#d9e4ef 0,#8fa8bd 28%,#596978 60%,#222 100%);
+ background:linear-gradient(#8bd5ff,#d8f3ff 55%,#6e9a68);
 }
-
-.homeCloud{
- position:absolute;
- background:rgba(255,255,255,.55);
- border-radius:50px;
- filter:blur(2px);
-}
-
-.cloud1{
- width:150px;height:35px;
- top:17%;left:-20px;
-}
-
-.cloud2{
- width:120px;height:30px;
- top:30%;right:-15px;
-}
-
 .homeTop{
- position:absolute;
- top:14px;
- width:100%;
- text-align:center;
- z-index:20;
+ position:absolute;top:12px;width:100%;text-align:center;z-index:20
 }
-
-.homeTop h1{
- font-size:20px;
- margin:0;
- text-shadow:0 3px 8px #222;
-}
-
 .messageCircle{
- width:76px;
- height:76px;
- margin:8px auto 12px;
- border-radius:50%;
- background:linear-gradient(145deg,#fff,#cfcfcf);
- border:3px solid #222;
- box-shadow:0 8px 25px #0008;
- display:flex;
- align-items:center;
- justify-content:center;
- color:#111;
- font-size:11px;
- font-weight:bold;
- text-align:center;
- padding:8px;
+ width:76px;height:76px;margin:auto;border-radius:50%;
+ background:#fff;color:#222;border:3px solid #222;
+ display:flex;align-items:center;justify-content:center;
+ font-size:11px;font-weight:bold;padding:8px;
+ box-shadow:0 8px 20px #0006
 }
-
-.messageCircle:active{
- transform:scale(.92);
-}
-
-.count{
- display:flex;
- justify-content:center;
- gap:6px;
- direction:rtl;
-}
-
+.homeTop h1{font-size:20px;margin:9px 0}
+.count{display:flex;justify-content:center;gap:5px}
 .time{
- min-width:58px;
- padding:7px 3px;
- border-radius:13px;
- background:#111b;
- border:1px solid #fff6;
- backdrop-filter:blur(8px);
+ min-width:57px;padding:7px 3px;border-radius:12px;
+ background:#111b;border:1px solid #fff7
 }
+.time b{display:block;font-size:18px}
+.time small{font-size:9px}
 
-.time b{
- display:block;
- font-size:19px;
-}
-
-.time small{
- font-size:9px;
- color:#ddd;
-}
-
-/* ================= CAKE ================= */
-
-.bigCake{
- position:absolute;
- width:250px;
- height:190px;
- left:50%;
- top:50%;
+.cake{
+ position:absolute;left:50%;top:52%;
  transform:translate(-50%,-50%);
- z-index:10;
+ width:220px;height:170px
 }
-
-.cakePlate{
- position:absolute;
- width:250px;
- height:24px;
- bottom:0;
- left:0;
- border-radius:50%;
- background:#222;
- box-shadow:0 10px 25px #0009;
+.plate{
+ position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+ width:220px;height:20px;border-radius:50%;background:#222
 }
-
-.cakeLayer{
- position:absolute;
- left:50%;
- transform:translateX(-50%);
- border-radius:18px;
- border:3px solid #333;
- box-shadow:inset 0 -10px 0 #aaa,0 10px 15px #0006;
+.cakePart{
+ position:absolute;left:50%;transform:translateX(-50%);
+ border:3px solid #333;border-radius:15px
 }
-
-.cakeBottom{
- width:215px;
- height:65px;
- bottom:14px;
- background:linear-gradient(#fff,#cfcfcf);
+.c1{width:190px;height:55px;bottom:14px;background:#fff}
+.c2{width:150px;height:48px;bottom:58px;background:#d9d9d9}
+.c3{width:115px;height:43px;bottom:97px;background:#fff}
+.cream{
+ position:absolute;left:50%;transform:translateX(-50%);
+ border-radius:50%;background:white
 }
-
-.cakeMiddle{
- width:175px;
- height:55px;
- bottom:62px;
- background:linear-gradient(#ddd,#999);
-}
-
-.cakeTop{
- width:135px;
- height:48px;
- bottom:105px;
- background:linear-gradient(#fff,#d5d5d5);
-}
-
-.cakeCream{
- position:absolute;
- height:16px;
- border-radius:50%;
- background:white;
- left:50%;
- transform:translateX(-50%);
- z-index:5;
-}
-
-.creamA{
- width:215px;
- bottom:65px;
-}
-
-.creamB{
- width:175px;
- bottom:112px;
-}
+.cr1{width:190px;height:15px;bottom:55px}
+.cr2{width:150px;height:13px;bottom:95px}
 
 .candle{
- position:absolute;
- width:8px;
- height:34px;
- bottom:147px;
- background:white;
- border:2px solid #222;
- border-radius:5px;
- z-index:8;
+ position:absolute;width:7px;height:30px;background:#fff;
+ border:2px solid #222;bottom:132px;border-radius:5px
 }
-
-.candle:after{
- content:"";
- position:absolute;
- width:12px;
- height:15px;
- border-radius:50%;
- background:#ddd;
- top:-14px;
- left:-4px;
- box-shadow:0 0 15px white;
+.flame{
+ position:absolute;width:10px;height:13px;background:#eee;
+ border-radius:50%;top:-13px;left:-3px
 }
-
-.candle1{left:105px}
-.candle2{left:125px}
-.candle3{left:145px}
-
-/* ================= GIFTS ================= */
-
-.gift{
- position:absolute;
- width:68px;
- height:58px;
- border:4px solid;
- border-radius:8px;
- box-shadow:0 10px 15px #0008;
- z-index:30;
-}
-
-.gift:before{
- content:"";
- position:absolute;
- left:50%;
- transform:translateX(-50%);
- height:100%;
- width:11px;
- background:currentColor;
-}
-
-.gift:after{
- content:"";
- position:absolute;
- width:45px;
- height:18px;
- border:4px solid currentColor;
- border-radius:50%;
- left:50%;
- top:-13px;
- transform:translateX(-50%);
-}
-
-.gift1{
- background:white;
- color:#111;
- border-color:#111;
- left:7%;
- bottom:22%;
-}
-
-.gift2{
- background:#222;
- color:white;
- border-color:white;
- right:7%;
- bottom:25%;
-}
-
-.gift3{
- background:#aaa;
- color:white;
- border-color:#222;
- left:10%;
- top:42%;
-}
-
-.gift4{
- background:#555;
- color:white;
- border-color:white;
- right:11%;
- top:43%;
-}
-
-/* ================= HOME BUTTONS ================= */
+.ca1{left:91px}.ca2{left:108px}.ca3{left:125px}
 
 .homeButtons{
- position:absolute;
- bottom:12px;
- width:100%;
- display:flex;
- justify-content:center;
- gap:6px;
- z-index:100;
- flex-wrap:wrap;
+ position:absolute;bottom:12px;width:100%;display:flex;
+ justify-content:center;gap:7px;flex-wrap:wrap;z-index:100
 }
-
 .homeButtons button{
- border:0;
- padding:11px 14px;
- border-radius:25px;
- background:#fff;
- color:#111;
- font-weight:bold;
+ border:0;border-radius:25px;padding:11px 14px;
+ background:#fff;color:#111;font-weight:bold
 }
 
-/* ================= MODAL ================= */
-
+/* MODAL */
 #modal{
- position:fixed;
- inset:0;
- background:#000b;
- z-index:9999;
- display:none;
- align-items:center;
- justify-content:center;
- padding:20px;
+ position:fixed;inset:0;background:#000b;z-index:9999;
+ display:none;align-items:center;justify-content:center;padding:20px
 }
-
 .modalBox{
- width:min(90%,390px);
- background:white;
- color:#111;
- border-radius:25px;
- padding:28px;
- text-align:center;
- box-shadow:0 20px 60px #000;
+ width:min(90%,390px);background:#fff;color:#111;
+ border-radius:25px;padding:25px;text-align:center
 }
-
 .modalBox button{
- border:0;
- background:#111;
- color:white;
- border-radius:25px;
- padding:11px 25px;
+ border:0;background:#111;color:#fff;padding:10px 25px;
+ border-radius:20px
 }
 
-/* ================= CREATOR ================= */
-
+/* CREATOR */
 #creator{
- background:linear-gradient(#385b79,#172536);
- overflow:auto;
- padding:18px;
+ background:linear-gradient(#4e8cb8,#172533);
+ overflow:auto;padding:18px
 }
-
-.creatorBox{
- max-width:430px;
- margin:auto;
- padding-bottom:50px;
+.creatorBox{max-width:420px;margin:auto;padding-bottom:40px}
+.creatorBox h1{text-align:center}
+.preview{
+ height:250px;border-radius:25px;
+ background:linear-gradient(#80c9f0,#78bd62);
+ position:relative;overflow:hidden
 }
-
-.creatorBox h1{
- text-align:center;
-}
-
-.avatarPreview{
- height:260px;
- background:linear-gradient(#71a9d0,#83c26b);
- border:3px solid white;
- border-radius:25px;
- position:relative;
- overflow:hidden;
-}
-
 .avatar{
- position:absolute;
- width:120px;
- height:190px;
- left:50%;
- top:35px;
- transform:translateX(-50%);
+ position:absolute;width:120px;height:190px;
+ left:50%;top:35px;transform:translateX(-50%)
 }
-
-.avatarHead{
- position:absolute;
- width:70px;
- height:75px;
- top:5px;
- left:25px;
- background:#efbd91;
- border:3px solid #222;
- border-radius:45%;
- z-index:4;
+.head{
+ position:absolute;width:65px;height:70px;left:27px;top:7px;
+ background:#efbd91;border:3px solid #222;border-radius:45%;z-index:4
 }
-
 .eye{
- position:absolute;
- width:9px;
- height:12px;
- background:#111;
- border-radius:50%;
- top:32px;
- z-index:8;
+ position:absolute;width:8px;height:11px;background:#111;
+ border-radius:50%;top:30px;z-index:10
 }
-
-.eye1{left:43px}
-.eye2{left:68px}
-
+.e1{left:39px}.e2{left:62px}
 .mouth{
- position:absolute;
- width:22px;
- height:10px;
- border-bottom:3px solid #222;
- border-radius:50%;
- left:48px;
- top:53px;
- z-index:8;
+ position:absolute;width:20px;height:9px;
+ border-bottom:3px solid #111;border-radius:50%;
+ left:45px;top:51px;z-index:10
 }
-
-.hairShape{
- position:absolute;
- width:85px;
- height:80px;
- left:18px;
- top:-4px;
- background:#222;
- border-radius:50% 50% 35% 35%;
- z-index:6;
+.hair{
+ position:absolute;width:80px;height:60px;
+ left:20px;top:0;background:#222;
+ border-radius:45% 45% 25% 25%;z-index:7
 }
-
-.hairLong{
- height:125px;
- border-radius:45% 45% 25px 25px;
+.body{
+ position:absolute;width:70px;height:78px;
+ left:25px;top:75px;background:#fff;
+ border:3px solid #222;border-radius:17px
 }
-
-.hairShort{
- height:62px;
+.leg{
+ position:absolute;width:18px;height:42px;
+ background:#222;top:145px;border-radius:7px
 }
+.l1{left:40px}.l2{left:65px}
 
-.hairStraight{
- height:85px;
- border-radius:45% 45% 10px 10px;
-}
-
-.bodyShape{
- position:absolute;
- width:75px;
- height:80px;
- left:22px;
- top:78px;
- border-radius:20px 20px 10px 10px;
- background:#e8e8e8;
- border:3px solid #222;
-}
-
-.arm{
- position:absolute;
- width:17px;
- height:55px;
- top:88px;
- background:#efbd91;
- border:3px solid #222;
- border-radius:15px;
- z-index:1;
-}
-
-.arm1{left:7px;transform:rotate(15deg)}
-.arm2{right:7px;transform:rotate(-15deg)}
-
-.legShape{
- position:absolute;
- width:20px;
- height:45px;
- background:#222;
- top:151px;
- border-radius:8px;
-}
-
-.leg1{left:38px}
-.leg2{left:64px}
-
-.choiceTitle{
- margin-top:16px;
- font-weight:bold;
-}
-
-.choices{
- display:flex;
- flex-wrap:wrap;
- gap:7px;
- margin-top:8px;
-}
-
+.choiceTitle{margin-top:15px;font-weight:bold}
+.choices{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px}
 .choice{
- background:#222;
- color:white;
- border:1px solid #777;
- padding:9px 13px;
- border-radius:20px;
+ border:1px solid #777;background:#222;color:#fff;
+ border-radius:20px;padding:9px 12px
 }
-
-.choice.selected{
- background:white;
- color:#111;
+.choice.selected{background:#fff;color:#111}
+.mainBtn{
+ width:100%;margin-top:20px;padding:14px;
+ border:0;border-radius:25px;background:#fff;color:#111;font-weight:bold
 }
-
-#createCharacter{
- width:100%;
- margin-top:25px;
- padding:15px;
- border:0;
- border-radius:30px;
- font-weight:bold;
-}
-
-/* ================= CITY ================= */
-
-#city{
- background:#7ecb67;
-}
-
-.sky{
- position:absolute;
- inset:0;
- height:58%;
- background:linear-gradient(#4ba8e5,#aee5ff);
-}
-
-.sun{
- position:absolute;
- width:75px;
- height:75px;
- background:#fff3a1;
- border-radius:50%;
- top:30px;
- right:25px;
- box-shadow:0 0 40px #fff;
-}
-
-.grass{
- position:absolute;
- top:48%;
- bottom:0;
- width:100%;
- background:
- radial-gradient(circle at 20% 30%,#6dbd50 0 2px,transparent 3px),
- radial-gradient(circle at 70% 50%,#4eaa48 0 2px,transparent 3px),
- #69b957;
-}
-
-.road{
- position:absolute;
- bottom:0;
- height:37%;
- width:100%;
- background:#4d4d4d;
- border-top:8px solid #ddd;
-}
-
-.roadCenter{
- position:absolute;
- top:48%;
- width:100%;
- border-top:7px dashed #e8e8e8;
-}
-
-.sidewalk{
- position:absolute;
- bottom:37%;
- height:10%;
- width:100%;
- background:#c8c8c8;
-}
-
-/* trees */
-
-.tree{
- position:absolute;
- z-index:3;
-}
-
-.trunk{
- width:18px;
- height:55px;
- background:#75482b;
- margin:auto;
-}
-
-.leaves{
- width:75px;
- height:75px;
- background:#267d35;
- border-radius:50%;
- box-shadow:25px 10px 0 #32953c,-25px 12px 0 #2d8d38;
-}
-
-.tree1{left:3%;top:34%}
-.tree2{right:4%;top:35%}
-.tree3{left:24%;top:43%;transform:scale(.75)}
-.tree4{right:25%;top:42%;transform:scale(.75)}
-
-/* houses */
-
-.house{
- position:absolute;
- width:125px;
- height:110px;
- z-index:8;
- border:4px solid #222;
- border-radius:5px;
- cursor:pointer;
-}
-
-.house:before{
- content:"";
- position:absolute;
- top:-52px;
- left:-7px;
- border-left:66px solid transparent;
- border-right:66px solid transparent;
- border-bottom:55px solid #a83232;
-}
-
-.houseDoor{
- position:absolute;
- width:29px;
- height:55px;
- bottom:0;
- left:45px;
- background:#673d25;
- border:3px solid #222;
-}
-
-.houseWindow{
- position:absolute;
- width:28px;
- height:28px;
- background:#bdeeff;
- border:3px solid #222;
- top:22px;
-}
-
-.hw1{left:8px}
-.hw2{right:8px}
-
-.houseSign{
- position:absolute;
- top:112px;
- width:100%;
- text-align:center;
- font-weight:bold;
- color:#111;
-}
-
-.houseKitchen{
- left:5%;
- top:22%;
- background:#f2bd68;
-}
-
-.houseGarden{
- right:5%;
- top:23%;
- background:#ef8d9b;
-}
-
-.houseShop{
- left:38%;
- top:19%;
- background:#8c9bea;
-}
-
-.cityHud{
- position:absolute;
- top:10px;
- left:10px;
- right:10px;
- z-index:100;
- display:flex;
- justify-content:space-between;
-}
-
-.hudBox{
- background:#111d;
- padding:9px 13px;
- border-radius:20px;
-}
-
 .backBtn{
- border:0;
- color:white;
- background:#111d;
- border-radius:20px;
- padding:9px 14px;
+ width:100%;margin-top:10px;padding:12px;
+ border:0;border-radius:25px;background:#222;color:#fff
 }
 
-/* player */
+/* CITY */
+#city{background:#69b957}
+.sky{
+ position:absolute;top:0;left:0;right:0;height:58%;
+ background:linear-gradient(#4ba8e5,#bcecff)
+}
+.sun{
+ position:absolute;width:70px;height:70px;border-radius:50%;
+ background:#fff2a0;right:25px;top:30px;
+ box-shadow:0 0 35px #fff
+}
+.grass{
+ position:absolute;top:48%;bottom:0;width:100%;
+ background:#66b957
+}
+.road{
+ position:absolute;bottom:0;width:100%;height:34%;
+ background:#4c4c4c;border-top:7px solid #ddd
+}
+.road:after{
+ content:"";position:absolute;left:0;right:0;top:50%;
+ border-top:6px dashed #eee
+}
 
+/* TREE */
+.tree{position:absolute;z-index:3}
+.trunk{width:17px;height:55px;background:#71472b;margin:auto}
+.leaves{
+ width:65px;height:65px;background:#277d36;
+ border-radius:50%;box-shadow:22px 10px #349342,-22px 10px #318a3d
+}
+.t1{left:3%;top:35%}.t2{right:3%;top:35%}
+.t3{left:23%;top:44%;transform:scale(.7)}
+.t4{right:23%;top:44%;transform:scale(.7)}
+
+/* HOUSES */
+.house{
+ position:absolute;width:120px;height:105px;
+ border:4px solid #222;border-radius:6px;z-index:10
+}
+.house:before{
+ content:"";position:absolute;left:-6px;top:-50px;
+ border-left:63px solid transparent;
+ border-right:63px solid transparent;
+ border-bottom:53px solid #b83939
+}
+.door{
+ position:absolute;width:27px;height:50px;
+ left:43px;bottom:0;background:#70482c;border:3px solid #222
+}
+.window{
+ position:absolute;width:26px;height:26px;
+ top:20px;background:#b9edff;border:3px solid #222
+}
+.wl{left:7px}.wr{right:7px}
+.label{
+ position:absolute;top:107px;width:100%;text-align:center;
+ color:#111;font-weight:bold
+}
+.kitchenHouse{left:4%;top:22%;background:#f2bc69}
+.gameHouse{left:39%;top:19%;background:#7f99e7}
+.shopHouse{right:4%;top:22%;background:#e9859c}
+
+/* CITY HUD */
+.cityHud{
+ position:absolute;top:10px;left:10px;right:10px;
+ display:flex;justify-content:space-between;z-index:100
+}
+.hud{
+ background:#111c;padding:9px 13px;border-radius:20px
+}
+.hud button{
+ border:0;background:#111c;color:white;
+ padding:9px 14px;border-radius:20px
+}
+
+/* PLAYER */
 .player{
- position:absolute;
- width:55px;
- height:90px;
- z-index:50;
- left:47%;
- bottom:13%;
- transition:.1s;
+ position:absolute;width:50px;height:82px;
+ left:47%;bottom:13%;z-index:50;transition:.1s
 }
-
-.playerHead{
- position:absolute;
- width:38px;
- height:40px;
- left:8px;
- background:#efbd91;
- border:2px solid #222;
- border-radius:45%;
- z-index:4;
+.pHair{
+ position:absolute;width:43px;height:38px;
+ left:4px;top:0;background:#222;
+ border-radius:50% 50% 25% 25%;z-index:7
 }
-
-.playerEye{
- position:absolute;
- width:5px;
- height:7px;
- background:#111;
- border-radius:50%;
- top:17px;
- z-index:9;
+.pHead{
+ position:absolute;width:36px;height:39px;
+ left:7px;top:4px;background:#efbd91;
+ border:2px solid #222;border-radius:45%;z-index:4
 }
-
-.pe1{left:19px}
-.pe2{left:31px}
-
-.playerMouth{
- position:absolute;
- width:13px;
- height:6px;
- border-bottom:2px solid #111;
- border-radius:50%;
- top:27px;
- left:19px;
- z-index:9;
+.pEye{
+ position:absolute;width:5px;height:7px;
+ background:#111;border-radius:50%;top:16px;z-index:9
 }
-
-.playerHair{
- position:absolute;
- width:46px;
- height:38px;
- left:4px;
- top:0;
- background:#222;
- border-radius:50% 50% 25% 25%;
- z-index:7;
+.pE1{left:17px}.pE2{left:29px}
+.pMouth{
+ position:absolute;width:12px;height:5px;
+ border-bottom:2px solid #111;border-radius:50%;
+ top:27px;left:17px
 }
-
-.playerBody{
- position:absolute;
- width:42px;
- height:45px;
- left:7px;
- top:38px;
- background:white;
- border:2px solid #222;
- border-radius:12px;
+.pBody{
+ position:absolute;width:40px;height:43px;
+ left:5px;top:39px;background:#fff;
+ border:2px solid #222;border-radius:10px
 }
-
-.playerLeg{
- position:absolute;
- width:12px;
- height:25px;
- background:#222;
- top:72px;
- border-radius:5px;
+.pLeg{
+ position:absolute;width:11px;height:25px;
+ top:72px;background:#222;border-radius:5px
 }
-
-.pl1{left:15px}
-.pl2{left:31px}
-
-/* controls */
+.pL1{left:14px}.pL2{left:29px}
 
 .controls{
- position:absolute;
- left:10px;
- bottom:10px;
- width:160px;
- height:160px;
- z-index:200;
+ position:absolute;left:10px;bottom:10px;
+ width:155px;height:155px;z-index:200
 }
-
 .ctrl{
- position:absolute;
- width:48px;
- height:48px;
- border:0;
- border-radius:14px;
- background:#ffffffdd;
- color:#111;
- font-size:20px;
- font-weight:bold;
+ position:absolute;width:47px;height:47px;
+ border:0;border-radius:13px;background:#fff;color:#111;
+ font-size:20px;font-weight:bold
+}
+.up{left:54px}.down{left:54px;bottom:0}
+.left{left:0;top:54px}.right{right:0;top:54px}
+.jump{left:54px;top:54px;background:#222;color:#fff}
+
+/* GAME MENU */
+#gameMenu,#shop,#gifts{
+ background:linear-gradient(#273f55,#101820);
+ padding:18px;overflow:auto
+}
+.gameBox,.shopBox,.giftBox{
+ max-width:470px;margin:auto
+}
+.gameBox h1,.shopBox h1,.giftBox h1{text-align:center}
+.gameCard{
+ background:#fff;color:#111;border-radius:22px;
+ padding:18px;margin:14px 0;text-align:center
+}
+.gameCard button{
+ border:0;background:#222;color:#fff;
+ border-radius:22px;padding:11px 22px
 }
 
-.up{left:56px;top:0}
-.down{left:56px;bottom:0}
-.left{left:0;top:56px}
-.right{right:0;top:56px}
-.jump{
- left:56px;
- top:56px;
- background:#222;
- color:white;
+/* STAR GAME */
+#starGame{
+ position:fixed;inset:0;z-index:6000;
+ display:none;background:#70c9f4
+}
+.starSky{
+ position:absolute;inset:0;
+ background:linear-gradient(#58b9ed,#bdeeff 65%,#65bd55 65%)
+}
+.starHud{
+ position:absolute;top:10px;left:10px;right:10px;
+ z-index:20;display:flex;justify-content:space-between
+}
+.starInfo{
+ background:#111c;padding:9px 13px;border-radius:20px
+}
+.starArea{
+ position:absolute;inset:60px 0 0
+}
+.star{
+ position:absolute;width:34px;height:34px;
+ background:#ffe05b;
+ clip-path:polygon(50% 0,61% 35%,100% 38%,70% 60%,78% 100%,50% 76%,22% 100%,30% 60%,0 38%,39% 35%);
+ filter:drop-shadow(0 3px 3px #555);
+}
+.starControls{
+ position:absolute;bottom:15px;left:0;right:0;
+ text-align:center;z-index:30
+}
+.starControls button{
+ border:0;background:#222;color:#fff;
+ padding:12px 25px;border-radius:25px
 }
 
-/* ================= WORK ================= */
-
-#work{
- position:fixed;
- inset:0;
- z-index:5000;
- display:none;
- align-items:center;
- justify-content:center;
- background:#000c;
- padding:15px;
+/* OBSTACLE GAME */
+#obstacleGame{
+ position:fixed;inset:0;z-index:6000;
+ display:none;background:#74c9f4
+}
+.obSky{
+ position:absolute;inset:0 0 35%;
+ background:linear-gradient(#53b7ea,#c7efff)
+}
+.obGround{
+ position:absolute;bottom:0;width:100%;height:35%;
+ background:#6bbd55;border-top:8px solid #555
+}
+.obPlayer{
+ position:absolute;width:42px;height:65px;
+ left:16%;bottom:35%;z-index:20
+}
+.obHead{
+ width:30px;height:32px;background:#efbd91;
+ border:2px solid #222;border-radius:50%;margin:auto
+}
+.obBody{
+ width:38px;height:35px;background:#fff;
+ border:2px solid #222;border-radius:8px;margin:auto
+}
+.obstacle{
+ position:absolute;width:40px;height:55px;
+ bottom:35%;right:-50px;
+ background:#884b32;border:3px solid #222;
+ border-radius:8px
+}
+.obHud{
+ position:absolute;top:10px;left:10px;right:10px;
+ display:flex;justify-content:space-between;z-index:30
+}
+.obHud div{
+ background:#111c;padding:9px 13px;border-radius:20px
+}
+.obJump{
+ position:absolute;bottom:15px;right:20px;z-index:40;
+ width:70px;height:70px;border:0;border-radius:50%;
+ background:#222;color:#fff;font-weight:bold
 }
 
-.workBox{
- width:min(95%,430px);
- background:white;
- color:#111;
- border-radius:25px;
- padding:20px;
- text-align:center;
- max-height:92vh;
- overflow:auto;
-}
-
-.workBox h2{
- margin-top:0;
-}
-
-.orderBox{
- background:#eee;
- border-radius:15px;
- padding:10px;
- margin-bottom:12px;
-}
-
-.recipeSteps{
- display:flex;
- gap:5px;
- justify-content:center;
- flex-wrap:wrap;
- margin-bottom:12px;
-}
-
-.step{
- padding:6px 9px;
- border-radius:15px;
- background:#ddd;
- font-size:11px;
-}
-
-.step.active{
- background:#222;
- color:white;
-}
-
-.kitchenTable{
- height:300px;
- border-radius:20px;
- background:
- linear-gradient(#e6d1a5 0 65%,#9b643d 65%);
- position:relative;
- overflow:hidden;
- border:4px solid #333;
-}
-
-.kitchenItem{
- position:absolute;
- border:2px solid #222;
- background:white;
- border-radius:15px;
- padding:13px;
- min-width:65px;
- cursor:pointer;
- box-shadow:0 4px 8px #0004;
-}
-
-.flour{left:8%;top:15%}
-.milk{left:35%;top:15%}
-.egg{right:8%;top:15%}
-.bowl{left:35%;top:55%;background:#aaa}
-.oven{right:7%;bottom:10%;background:#333;color:white}
-.mix{left:8%;bottom:10%}
-
-.cakeResult{
- position:absolute;
- left:50%;
- top:50%;
- transform:translate(-50%,-50%) scale(0);
- transition:.5s;
-}
-
-.realCake{
- width:120px;
- height:80px;
- background:#c78b54;
- border:4px solid #552f1b;
- border-radius:10px;
- position:relative;
-}
-
-.realCake:before{
- content:"";
- position:absolute;
- left:0;
- right:0;
- top:-15px;
- height:22px;
- background:#fff;
- border:3px solid #552f1b;
- border-radius:50%;
-}
-
-.realCake:after{
- content:"";
- position:absolute;
- width:8px;
- height:25px;
- background:#222;
- left:55px;
- top:-38px;
-}
-
-.workBtn{
- margin-top:12px;
- padding:12px 22px;
- border:0;
- border-radius:25px;
- background:#222;
- color:white;
-}
-
-.workBtn:disabled{
- opacity:.35;
-}
-
-/* ================= SHOP ================= */
-
-#shop{
- background:linear-gradient(#252d3b,#111);
- overflow:auto;
- padding:18px;
-}
-
-.shopHeader{
- max-width:470px;
- margin:auto;
- display:flex;
- justify-content:space-between;
- align-items:center;
-}
-
+/* SHOP */
 .shopGrid{
- max-width:470px;
- margin:20px auto 100px;
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:12px;
+ display:grid;grid-template-columns:1fr 1fr;gap:12px;
+ margin:20px auto 90px
+}
+.item{
+ background:#fff;color:#111;border-radius:20px;
+ padding:15px;text-align:center
+}
+.itemVisual{
+ width:70px;height:60px;margin:auto;
+ background:#ddd;border-radius:15px;
+ display:flex;align-items:center;justify-content:center;
+ font-size:11px;font-weight:bold
+}
+.item button{
+ border:0;background:#222;color:#fff;
+ border-radius:20px;padding:9px 18px
 }
 
-.shopItem{
- background:white;
- color:#111;
- border-radius:20px;
- padding:15px;
- text-align:center;
- border:3px solid #555;
-}
-
-.shopIcon{
- width:75px;
- height:65px;
- margin:auto;
- border-radius:15px;
- background:#ddd;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:11px;
- font-weight:bold;
-}
-
-.shopPrice{
- color:#555;
- font-size:13px;
-}
-
-.shopItem button{
- border:0;
- background:#222;
- color:white;
- border-radius:20px;
- padding:9px 18px;
-}
-
-/* ================= GIFTS ================= */
-
-#gifts{
- background:linear-gradient(#273442,#111);
- padding:20px;
- overflow:auto;
-}
-
-.giftsBox{
- max-width:480px;
- margin:auto;
-}
-
+/* GIFTS */
 .userGift{
- background:white;
- color:#111;
- border-radius:20px;
- padding:15px;
- margin:12px 0;
- display:flex;
- gap:15px;
- align-items:center;
+ background:#fff;color:#111;border-radius:20px;
+ padding:15px;margin:12px 0;display:flex;gap:14px
 }
-
 .giftAvatar{
- width:65px;
- height:75px;
- border-radius:15px;
- background:#aaa;
- position:relative;
- flex-shrink:0;
+ width:60px;height:70px;background:#ddd;
+ border-radius:14px;flex-shrink:0;position:relative
 }
-
 .giftAvatar:before{
- content:"";
- position:absolute;
- width:32px;
- height:32px;
- border-radius:50%;
- background:#efbd91;
- top:10px;
- left:16px;
- border:2px solid #222;
+ content:"";position:absolute;width:30px;height:32px;
+ border-radius:50%;background:#efbd91;
+ top:8px;left:15px;border:2px solid #222
 }
-
 .giftAvatar:after{
- content:"";
- position:absolute;
- width:42px;
- height:25px;
- background:#222;
- bottom:8px;
- left:11px;
- border-radius:12px 12px 5px 5px;
+ content:"";position:absolute;width:38px;height:24px;
+ background:#222;left:11px;bottom:7px;border-radius:10px
 }
-
-.empty{
- text-align:center;
- margin-top:80px;
- color:#bbb;
-}
+.empty{text-align:center;color:#aaa;margin-top:70px}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-
 <div id="intro">
- <div class="introTitle">یک اتفاق مهم در راه است..!!!</div>
- <div class="introSub">آماده‌ای وارد ماجرا بشی؟</div>
+ <h1>یک اتفاق مهم در راه است..!!!</h1>
+ <p>Birthday Adventure</p>
  <button id="enter">ورود به ماجرا</button>
 </div>
 
 
-<!-- HOME -->
-
 <section id="home" class="screen">
-
- <div class="cloud1 homeCloud"></div>
- <div class="cloud2 homeCloud"></div>
 
  <div class="homeTop">
 
@@ -1135,90 +450,63 @@ button{
   <h1>تا تولد یوتا...</h1>
 
   <div class="count">
-   <div class="time">
-    <b id="days">0</b>
-    <small>روز</small>
-   </div>
-
-   <div class="time">
-    <b id="hours">0</b>
-    <small>ساعت</small>
-   </div>
-
-   <div class="time">
-    <b id="minutes">0</b>
-    <small>دقیقه</small>
-   </div>
-
-   <div class="time">
-    <b id="seconds">0</b>
-    <small>ثانیه</small>
-   </div>
+   <div class="time"><b id="days">0</b><small>روز</small></div>
+   <div class="time"><b id="hours">0</b><small>ساعت</small></div>
+   <div class="time"><b id="minutes">0</b><small>دقیقه</small></div>
+   <div class="time"><b id="seconds">0</b><small>ثانیه</small></div>
   </div>
 
  </div>
 
 
- <div class="bigCake">
+ <div class="cake">
 
-  <div class="cakePlate"></div>
+  <div class="plate"></div>
+  <div class="cakePart c1"></div>
+  <div class="cakePart c2"></div>
+  <div class="cakePart c3"></div>
+  <div class="cream cr1"></div>
+  <div class="cream cr2"></div>
 
-  <div class="cakeLayer cakeBottom"></div>
-  <div class="cakeLayer cakeMiddle"></div>
-  <div class="cakeLayer cakeTop"></div>
-
-  <div class="cakeCream creamA"></div>
-  <div class="cakeCream creamB"></div>
-
-  <div class="candle candle1"></div>
-  <div class="candle candle2"></div>
-  <div class="candle candle3"></div>
+  <div class="candle ca1"><div class="flame"></div></div>
+  <div class="candle ca2"><div class="flame"></div></div>
+  <div class="candle ca3"><div class="flame"></div></div>
 
  </div>
 
 
- <div class="gift gift1" onclick="showModal('کادو','تولدم رو یادت نره!!!')"></div>
- <div class="gift gift2" onclick="showModal('کادو','یک چیز کاملاً غیرمنتظره اینجاست.')"></div>
- <div class="gift gift3" onclick="showModal('کادو','۲۵ دی رو فراموش نکنی.')"></div>
- <div class="gift gift4" onclick="showModal('کادو','برو بازی رو شروع کن.')"></div>
-
-
  <div class="homeButtons">
   <button onclick="openCreator()">ساخت شخصیت</button>
+  <button onclick="openGameMenu()">بازی‌ها</button>
+  <button onclick="openShop()">فروشگاه</button>
   <button onclick="openGifts()">هدیه‌ها</button>
-  <button onclick="openCity()">ورود به شهر</button>
+  <button onclick="openCity()">شهر</button>
  </div>
 
 </section>
 
 
-<!-- CREATOR -->
-
 <section id="creator" class="screen">
 
  <div class="creatorBox">
 
-  <h1>شخصیت خودت رو بساز</h1>
+  <h1>شخصیت خودت را بساز</h1>
 
-  <div class="avatarPreview">
+  <div class="preview">
 
    <div class="avatar">
 
-    <div class="hairShape" id="previewHair"></div>
+    <div class="hair" id="previewHair"></div>
 
-    <div class="avatarHead">
-     <div class="eye eye1"></div>
-     <div class="eye eye2"></div>
+    <div class="head">
+     <div class="eye e1"></div>
+     <div class="eye e2"></div>
      <div class="mouth"></div>
     </div>
 
-    <div class="arm arm1"></div>
-    <div class="arm arm2"></div>
-
-    <div class="bodyShape" id="previewBody"></div>
-
-    <div class="legShape leg1"></div>
-    <div class="legShape leg2"></div>
+    <div class="body" id="previewBody"></div>
+    <div class="leg l1"></div>
+    <div class="leg l2"></div>
 
    </div>
 
@@ -1228,91 +516,38 @@ button{
   <div class="choiceTitle">مدل مو</div>
 
   <div class="choices">
-
-   <button class="choice selected"
-    onclick="chooseHair('short',this)">
-    کوتاه
-   </button>
-
-   <button class="choice"
-    onclick="chooseHair('long',this)">
-    بلند
-   </button>
-
-   <button class="choice"
-    onclick="chooseHair('straight',this)">
-    صاف
-   </button>
-
+   <button class="choice selected" onclick="setHair('short',this)">کوتاه</button>
+   <button class="choice" onclick="setHair('long',this)">بلند</button>
+   <button class="choice" onclick="setHair('straight',this)">صاف</button>
   </div>
 
 
   <div class="choiceTitle">رنگ مو</div>
 
   <div class="choices">
-
-   <button class="choice selected"
-    onclick="chooseHairColor('#222',this)">
-    مشکی
-   </button>
-
-   <button class="choice"
-    onclick="chooseHairColor('#6b4329',this)">
-    قهوه‌ای
-   </button>
-
-   <button class="choice"
-    onclick="chooseHairColor('#777',this)">
-    خاکستری
-   </button>
-
-   <button class="choice"
-    onclick="chooseHairColor('#eee',this)">
-    سفید
-   </button>
-
+   <button class="choice selected" onclick="setHairColor('#222',this)">مشکی</button>
+   <button class="choice" onclick="setHairColor('#70452b',this)">قهوه‌ای</button>
+   <button class="choice" onclick="setHairColor('#777',this)">خاکستری</button>
+   <button class="choice" onclick="setHairColor('#eee',this)">سفید</button>
   </div>
 
 
   <div class="choiceTitle">لباس</div>
 
   <div class="choices">
-
-   <button class="choice selected"
-    onclick="chooseClothes('#fff',this)">
-    سفید
-   </button>
-
-   <button class="choice"
-    onclick="chooseClothes('#222',this)">
-    مشکی
-   </button>
-
-   <button class="choice"
-    onclick="chooseClothes('#587da8',this)">
-    آبی
-   </button>
-
-   <button class="choice"
-    onclick="chooseClothes('#bd6276',this)">
-    صورتی
-   </button>
-
-   <button class="choice"
-    onclick="chooseClothes('#65935b',this)">
-    سبز
-   </button>
-
+   <button class="choice selected" onclick="setClothes('#fff',this)">سفید</button>
+   <button class="choice" onclick="setClothes('#222',this)">مشکی</button>
+   <button class="choice" onclick="setClothes('#4e86bd',this)">آبی</button>
+   <button class="choice" onclick="setClothes('#bd6680',this)">صورتی</button>
+   <button class="choice" onclick="setClothes('#58905a',this)">سبز</button>
   </div>
 
 
-  <button id="createCharacter" onclick="saveCharacter()">
-   ساخت شخصیت
+  <button class="mainBtn" onclick="saveCharacter()">
+   ذخیره شخصیت
   </button>
 
-  <button class="workBtn"
-   style="width:100%"
-   onclick="showHome()">
+  <button class="backBtn" onclick="showHome()">
    برگشت
   </button>
 
@@ -1320,8 +555,6 @@ button{
 
 </section>
 
-
-<!-- CITY -->
 
 <section id="city" class="screen">
 
@@ -1329,293 +562,105 @@ button{
  <div class="sun"></div>
  <div class="grass"></div>
 
- <div class="sidewalk"></div>
+ <div class="tree t1"><div class="leaves"></div><div class="trunk"></div></div>
+ <div class="tree t2"><div class="leaves"></div><div class="trunk"></div></div>
+ <div class="tree t3"><div class="leaves"></div><div class="trunk"></div></div>
+ <div class="tree t4"><div class="leaves"></div><div class="trunk"></div></div>
 
- <div class="road">
-  <div class="roadCenter"></div>
- </div>
 
-
- <!-- trees -->
-
- <div class="tree tree1">
-  <div class="leaves"></div>
-  <div class="trunk"></div>
- </div>
-
- <div class="tree tree2">
-  <div class="leaves"></div>
-  <div class="trunk"></div>
- </div>
-
- <div class="tree tree3">
-  <div class="leaves"></div>
-  <div class="trunk"></div>
- </div>
-
- <div class="tree tree4">
-  <div class="leaves"></div>
-  <div class="trunk"></div>
- </div>
+ <div class="road"></div>
 
 
  <div class="cityHud">
 
-  <div class="hudBox">
+  <div class="hud">
    سکه:
-   <b id="coins">500</b>
+   <b id="cityCoins">500</b>
   </div>
 
-  <button class="backBtn" onclick="showHome()">
+  <button onclick="showHome()">
    خانه
   </button>
 
  </div>
 
 
- <!-- kitchen -->
-
- <div class="house houseKitchen"
-      onclick="startKitchen()">
-
-  <div class="houseDoor"></div>
-
-  <div class="houseWindow hw1"></div>
-  <div class="houseWindow hw2"></div>
-
-  <div class="houseSign">
-   آشپزخانه
-  </div>
-
+ <div class="house kitchenHouse" onclick="openGameMenu()">
+  <div class="door"></div>
+  <div class="window wl"></div>
+  <div class="window wr"></div>
+  <div class="label">مرکز بازی</div>
  </div>
 
 
- <!-- garden -->
-
- <div class="house houseGarden"
-      onclick="startGarden()">
-
-  <div class="houseDoor"></div>
-
-  <div class="houseWindow hw1"></div>
-  <div class="houseWindow hw2"></div>
-
-  <div class="houseSign">
-   باغ
-  </div>
-
+ <div class="house gameHouse" onclick="startStarGame()">
+  <div class="door"></div>
+  <div class="window wl"></div>
+  <div class="window wr"></div>
+  <div class="label">ستاره‌ها</div>
  </div>
 
 
- <!-- shop -->
-
- <div class="house houseShop"
-      onclick="openShop()">
-
-  <div class="houseDoor"></div>
-
-  <div class="houseWindow hw1"></div>
-  <div class="houseWindow hw2"></div>
-
-  <div class="houseSign">
-   فروشگاه
-  </div>
-
+ <div class="house shopHouse" onclick="openShop()">
+  <div class="door"></div>
+  <div class="window wl"></div>
+  <div class="window wr"></div>
+  <div class="label">فروشگاه</div>
  </div>
 
-
- <!-- player -->
 
  <div class="player" id="player">
 
-  <div class="playerHair" id="playerHair"></div>
+  <div class="pHair" id="playerHair"></div>
 
-  <div class="playerHead">
-
-   <div class="playerEye pe1"></div>
-   <div class="playerEye pe2"></div>
-
-   <div class="playerMouth"></div>
-
+  <div class="pHead">
+   <div class="pEye pE1"></div>
+   <div class="pEye pE2"></div>
+   <div class="pMouth"></div>
   </div>
 
-  <div class="playerBody" id="playerBody"></div>
+  <div class="pBody" id="playerBody"></div>
 
-  <div class="playerLeg pl1"></div>
-  <div class="playerLeg pl2"></div>
+  <div class="pLeg pL1"></div>
+  <div class="pLeg pL2"></div>
 
  </div>
 
-
- <!-- controls -->
 
  <div class="controls">
 
-  <button class="ctrl up"
-   onclick="movePlayer(0,1)">
-   ▲
-  </button>
-
-  <button class="ctrl down"
-   onclick="movePlayer(0,-1)">
-   ▼
-  </button>
-
-  <button class="ctrl left"
-   onclick="movePlayer(-1,0)">
-   ◀
-  </button>
-
-  <button class="ctrl right"
-   onclick="movePlayer(1,0)">
-   ▶
-  </button>
-
-  <button class="ctrl jump"
-   onclick="jumpPlayer()">
-   ●
-  </button>
+  <button class="ctrl up" onclick="move(0,1)">▲</button>
+  <button class="ctrl down" onclick="move(0,-1)">▼</button>
+  <button class="ctrl left" onclick="move(-1,0)">◀</button>
+  <button class="ctrl right" onclick="move(1,0)">▶</button>
+  <button class="ctrl jump" onclick="jump()">●</button>
 
  </div>
 
 </section>
 
 
-<!-- WORK -->
+<section id="gameMenu" class="screen">
 
-<div id="work">
+ <div class="gameBox">
 
- <div class="workBox">
+  <h1>مرکز بازی</h1>
 
-  <h2 id="workTitle">آشپزخانه</h2>
-
-  <div class="orderBox">
-   سفارش امروز:
-   <b id="orderText">
-    کیک تولد
-   </b>
+  <div class="gameCard">
+   <h2>جمع کردن ستاره</h2>
+   <p>۳۰ ثانیه وقت داری تا ستاره‌های بیشتری جمع کنی.</p>
+   <button onclick="startStarGame()">شروع</button>
   </div>
 
 
-  <div class="recipeSteps">
-
-   <div class="step active" id="step1">
-    مواد
-   </div>
-
-   <div class="step" id="step2">
-    مخلوط
-   </div>
-
-   <div class="step" id="step3">
-    پخت
-   </div>
-
-   <div class="step" id="step4">
-    تزئین
-   </div>
-
-   <div class="step" id="step5">
-    فروش
-   </div>
-
+  <div class="gameCard">
+   <h2>فرار از موانع</h2>
+   <p>با پرش از موانع رد شو و رکورد بزن.</p>
+   <button onclick="startObstacleGame()">شروع</button>
   </div>
 
 
-  <div class="kitchenTable" id="kitchenTable">
-
-   <button class="kitchenItem flour"
-    onclick="kitchenAction('flour')">
-    آرد
-   </button>
-
-   <button class="kitchenItem milk"
-    onclick="kitchenAction('milk')">
-    شیر
-   </button>
-
-   <button class="kitchenItem egg"
-    onclick="kitchenAction('egg')">
-    تخم‌مرغ
-   </button>
-
-   <button class="kitchenItem bowl"
-    onclick="kitchenAction('bowl')">
-    کاسه
-   </button>
-
-   <button class="kitchenItem mix"
-    onclick="kitchenAction('mix')">
-    هم‌زدن
-   </button>
-
-   <button class="kitchenItem oven"
-    onclick="kitchenAction('oven')">
-    فر
-   </button>
-
-   <div class="cakeResult" id="cakeResult">
-    <div class="realCake"></div>
-   </div>
-
-  </div>
-
-
-  <button class="workBtn"
-   onclick="closeWork()">
-   خروج
-  </button>
-
- </div>
-
-</div>
-
-
-<!-- SHOP -->
-
-<section id="shop" class="screen">
-
- <div class="shopHeader">
-
-  <h2>
-   فروشگاه هدیه
-  </h2>
-
-  <div>
-   سکه:
-   <b id="shopCoins">500</b>
-  </div>
-
- </div>
-
-
- <div class="shopGrid" id="shopGrid"></div>
-
-
- <button class="workBtn"
-  style="display:block;margin:20px auto"
-  onclick="openCity()">
-  برگشت به شهر
- </button>
-
-</section>
-
-
-<!-- GIFTS -->
-
-<section id="gifts" class="screen">
-
- <div class="giftsBox">
-
-  <h2 style="text-align:center">
-   هدیه‌های تولد یوتا
-  </h2>
-
-  <div id="giftList"></div>
-
-  <button class="workBtn"
-   style="width:100%"
-   onclick="showHome()">
+  <button class="backBtn" onclick="showHome()">
    برگشت
   </button>
 
@@ -1624,14 +669,95 @@ button{
 </section>
 
 
-<!-- MODAL -->
+<div id="starGame">
+
+ <div class="starSky"></div>
+
+ <div class="starHud">
+  <div class="starInfo">
+   امتیاز: <b id="starScore">0</b>
+  </div>
+
+  <div class="starInfo">
+   زمان: <b id="starTime">30</b>
+  </div>
+ </div>
+
+ <div class="starArea" id="starArea"></div>
+
+ <div class="starControls">
+  <button onclick="endStarGame()">پایان بازی</button>
+ </div>
+
+</div>
+
+
+<div id="obstacleGame">
+
+ <div class="obSky"></div>
+ <div class="obGround"></div>
+
+ <div class="obHud">
+  <div>امتیاز: <b id="obScore">0</b></div>
+  <div>رکورد: <b id="obBest">0</b></div>
+ </div>
+
+ <div class="obPlayer" id="obPlayer">
+  <div class="obHead"></div>
+  <div class="obBody"></div>
+ </div>
+
+ <button class="obJump" onclick="obJump()">
+  پرش
+ </button>
+
+</div>
+
+
+<section id="shop" class="screen">
+
+ <div class="shopBox">
+
+  <h1>فروشگاه</h1>
+
+  <p style="text-align:center">
+   سکه:
+   <b id="shopCoins">500</b>
+  </p>
+
+  <div class="shopGrid" id="shopGrid"></div>
+
+  <button class="backBtn" onclick="showHome()">
+   برگشت
+  </button>
+
+ </div>
+
+</section>
+
+
+<section id="gifts" class="screen">
+
+ <div class="giftBox">
+
+  <h1>هدیه‌های تولد یوتا</h1>
+
+  <div id="giftList"></div>
+
+  <button class="backBtn" onclick="showHome()">
+   برگشت
+  </button>
+
+ </div>
+
+</section>
+
 
 <div id="modal">
 
  <div class="modalBox">
 
   <h2 id="modalTitle"></h2>
-
   <p id="modalText"></p>
 
   <button onclick="closeModal()">
@@ -1645,7 +771,7 @@ button{
 
 <script>
 
-/* ================= DATA ================= */
+/* DATA */
 
 let coins=500;
 
@@ -1653,239 +779,162 @@ let hairStyle="short";
 let hairColor="#222";
 let clothes="#fff";
 
-let playerX=47;
-let playerY=13;
+let px=47;
+let py=13;
 
-let boughtGifts=[];
-
-let kitchenStep=0;
+let gifts=[];
 
 
-/* ================= INTRO ================= */
+/* INTRO */
 
 document.getElementById("enter").onclick=function(){
 
- document.getElementById("intro").style.opacity="0";
-
- setTimeout(function(){
-
-  document.getElementById("intro").style.display="none";
-
-  showHome();
-
- },800);
+ document.getElementById("intro").style.display="none";
+ showHome();
 
 };
 
 
-/* ================= SCREENS ================= */
+/* SCREENS */
 
 function hideScreens(){
-
  document.querySelectorAll(".screen")
- .forEach(function(s){
-  s.classList.remove("active");
- });
-
+ .forEach(x=>x.classList.remove("active"));
 }
 
 function showHome(){
-
- closeModal();
- closeWork();
-
  hideScreens();
-
- document.getElementById("home")
- .classList.add("active");
-
+ document.getElementById("home").classList.add("active");
+ closeModal();
 }
 
 function openCreator(){
-
  hideScreens();
-
- document.getElementById("creator")
- .classList.add("active");
-
+ document.getElementById("creator").classList.add("active");
 }
 
 function openCity(){
-
- closeModal();
-
  hideScreens();
-
- document.getElementById("city")
- .classList.add("active");
-
+ document.getElementById("city").classList.add("active");
  updateCoins();
+}
 
+function openGameMenu(){
+ hideScreens();
+ document.getElementById("gameMenu").classList.add("active");
 }
 
 function openShop(){
-
  hideScreens();
-
- document.getElementById("shop")
- .classList.add("active");
-
+ document.getElementById("shop").classList.add("active");
  renderShop();
-
  updateCoins();
-
 }
 
 function openGifts(){
-
  hideScreens();
-
- document.getElementById("gifts")
- .classList.add("active");
-
+ document.getElementById("gifts").classList.add("active");
  renderGifts();
-
 }
 
 
-/* ================= SPECIAL MESSAGE ================= */
-
-function specialMessage(){
-
- showModal(
-  "یک پیام مخصوص",
-  "برای بیبی گرلم، ایهان💗"
- );
-
-}
-
-
-/* ================= COUNTDOWN ================= */
-
-function updateCountdown(){
-
- let target=
- new Date(2027,0,15,0,0,0);
-
- let now=new Date();
-
- let diff=target-now;
-
- if(diff<0) diff=0;
-
- let days=
- Math.floor(diff/86400000);
-
- let hours=
- Math.floor((diff%86400000)/3600000);
-
- let minutes=
- Math.floor((diff%3600000)/60000);
-
- let seconds=
- Math.floor((diff%60000)/1000);
-
- document.getElementById("days")
- .textContent=days;
-
- document.getElementById("hours")
- .textContent=hours;
-
- document.getElementById("minutes")
- .textContent=minutes;
-
- document.getElementById("seconds")
- .textContent=seconds;
-
-}
-
-updateCountdown();
-
-setInterval(updateCountdown,1000);
-
-
-/* ================= MODAL ================= */
+/* MODAL */
 
 function showModal(title,text){
 
- document.getElementById("modalTitle")
- .textContent=title;
-
- document.getElementById("modalText")
- .textContent=text;
-
- document.getElementById("modal")
- .style.display="flex";
+ document.getElementById("modalTitle").textContent=title;
+ document.getElementById("modalText").textContent=text;
+ document.getElementById("modal").style.display="flex";
 
 }
 
 function closeModal(){
+ document.getElementById("modal").style.display="none";
+}
 
- document.getElementById("modal")
- .style.display="none";
-
+function specialMessage(){
+ showModal("یک پیام مخصوص","برای بیبی گرلم، ایهان💗");
 }
 
 
-/* ================= CHARACTER ================= */
+/* COUNTDOWN */
 
-function chooseHair(style,button){
+function countdown(){
+
+ let target=new Date(2027,0,15,0,0,0);
+ let d=target-new Date();
+
+ if(d<0)d=0;
+
+ document.getElementById("days").textContent=
+ Math.floor(d/86400000);
+
+ document.getElementById("hours").textContent=
+ Math.floor(d%86400000/3600000);
+
+ document.getElementById("minutes").textContent=
+ Math.floor(d%3600000/60000);
+
+ document.getElementById("seconds").textContent=
+ Math.floor(d%60000/1000);
+
+}
+
+countdown();
+setInterval(countdown,1000);
+
+
+/* CHARACTER */
+
+function selectChoice(btn){
+
+ btn.parentElement
+ .querySelectorAll(".choice")
+ .forEach(x=>x.classList.remove("selected"));
+
+ btn.classList.add("selected");
+
+}
+
+function setHair(style,btn){
 
  hairStyle=style;
 
- let hair=
- document.getElementById("previewHair");
+ let h=document.getElementById("previewHair");
 
- hair.className="hairShape";
+ h.className="hair";
 
- if(style==="long")
-  hair.classList.add("hairLong");
+ if(style==="long")h.style.height="110px";
+ else if(style==="straight")h.style.height="78px";
+ else h.style.height="60px";
 
- if(style==="straight")
-  hair.classList.add("hairStraight");
+ h.style.background=hairColor;
 
- hair.style.background=hairColor;
-
- selectButton(button);
+ selectChoice(btn);
 
 }
 
-function chooseHairColor(color,button){
+function setHairColor(color,btn){
 
  hairColor=color;
 
- let hair=
- document.getElementById("previewHair");
+ document.getElementById("previewHair")
+ .style.background=color;
 
- hair.style.background=color;
-
- selectButton(button);
+ selectChoice(btn);
 
 }
 
-function chooseClothes(color,button){
+function setClothes(color,btn){
 
  clothes=color;
 
  document.getElementById("previewBody")
  .style.background=color;
 
- selectButton(button);
+ selectChoice(btn);
 
 }
-
-function selectButton(button){
-
- button.parentElement
- .querySelectorAll(".choice")
- .forEach(function(x){
-  x.classList.remove("selected");
- });
-
- button.classList.add("selected");
-
-}
-
 
 function saveCharacter(){
 
@@ -1895,414 +944,335 @@ function saveCharacter(){
  document.getElementById("playerHair")
  .style.background=hairColor;
 
- if(hairStyle==="long"){
-
-  document.getElementById("playerHair")
-  .style.height="65px";
-
- }else if(hairStyle==="straight"){
-
-  document.getElementById("playerHair")
-  .style.height="48px";
-
- }else{
-
-  document.getElementById("playerHair")
-  .style.height="38px";
-
- }
+ if(hairStyle==="long")
+  document.getElementById("playerHair").style.height="65px";
+ else if(hairStyle==="straight")
+  document.getElementById("playerHair").style.height="48px";
+ else
+  document.getElementById("playerHair").style.height="38px";
 
  showModal(
-  "شخصیت آماده شد!",
-  "حالا وارد شهر شو و برای تولد پول جمع کن."
+  "شخصیت ذخیره شد!",
+  "حالا برو بازی کن و برای هدیه سکه جمع کن."
  );
 
- setTimeout(function(){
+}
 
-  closeModal();
-  openCity();
+
+/* PLAYER */
+
+function move(dx,dy){
+
+ px+=dx*4;
+ py+=dy*4;
+
+ px=Math.max(2,Math.min(92,px));
+ py=Math.max(10,Math.min(67,py));
+
+ let p=document.getElementById("player");
+
+ p.style.left=px+"%";
+ p.style.bottom=py+"%";
+
+}
+
+function jump(){
+
+ let p=document.getElementById("player");
+
+ p.style.transform="translateY(-45px)";
+
+ setTimeout(()=>{
+  p.style.transform="translateY(0)";
+ },300);
+
+}
+
+
+/* COINS */
+
+function updateCoins(){
+
+ document.getElementById("cityCoins").textContent=coins;
+ document.getElementById("shopCoins").textContent=coins;
+
+}
+
+
+/* STAR GAME */
+
+let starTimer;
+let starScore=0;
+let starTime=30;
+
+function startStarGame(){
+
+ document.getElementById("starGame")
+ .style.display="block";
+
+ starScore=0;
+ starTime=30;
+
+ document.getElementById("starScore").textContent=0;
+ document.getElementById("starTime").textContent=30;
+
+ spawnStar();
+
+ clearInterval(starTimer);
+
+ starTimer=setInterval(()=>{
+
+  starTime--;
+
+  document.getElementById("starTime")
+  .textContent=starTime;
+
+  if(starTime<=0)
+   endStarGame();
 
  },1000);
 
 }
 
+function spawnStar(){
 
-/* ================= PLAYER ================= */
+ let area=document.getElementById("starArea");
 
-function movePlayer(dx,dy){
+ area.innerHTML="";
 
- playerX+=dx*3;
- playerY+=dy*3;
+ let s=document.createElement("div");
 
- playerX=
- Math.max(2,Math.min(92,playerX));
+ s.className="star";
 
- playerY=
- Math.max(10,Math.min(65,playerY));
+ s.style.left=(5+Math.random()*88)+"%";
+ s.style.top=(5+Math.random()*78)+"%";
 
- let player=
- document.getElementById("player");
+ s.onclick=function(){
 
- player.style.left=playerX+"%";
- player.style.bottom=playerY+"%";
+  starScore++;
 
-}
+  document.getElementById("starScore")
+  .textContent=starScore;
 
-function jumpPlayer(){
+  spawnStar();
 
- let player=
- document.getElementById("player");
+ };
 
- player.style.transform=
- "translateY(-45px)";
-
- setTimeout(function(){
-
-  player.style.transform=
-  "translateY(0)";
-
- },350);
+ area.appendChild(s);
 
 }
 
+function endStarGame(){
 
-/* ================= KITCHEN ================= */
+ clearInterval(starTimer);
 
-function startKitchen(){
-
- kitchenStep=0;
-
- resetKitchen();
-
- document.getElementById("work")
- .style.display="flex";
-
- document.getElementById("workTitle")
- .textContent="آشپزخانه کیک‌پزی";
-
- document.getElementById("orderText")
- .textContent="کیک تولد ویژه";
-
-}
-
-function resetKitchen(){
-
- document.querySelectorAll(".kitchenItem")
- .forEach(function(x){
-  x.style.opacity="1";
- });
-
- document.getElementById("cakeResult")
- .style.transform=
- "translate(-50%,-50%) scale(0)";
-
- updateKitchenSteps();
-
-}
-
-
-function kitchenAction(type){
-
- if(type==="flour" && kitchenStep===0){
-
-  kitchenStep=1;
-
-  showTinyMessage("آرد اضافه شد");
-
- }
-
- else if(type==="milk" && kitchenStep===1){
-
-  kitchenStep=2;
-
-  showTinyMessage("شیر اضافه شد");
-
- }
-
- else if(type==="egg" && kitchenStep===2){
-
-  kitchenStep=3;
-
-  showTinyMessage("تخم‌مرغ اضافه شد");
-
- }
-
- else if(type==="bowl" && kitchenStep===3){
-
-  kitchenStep=4;
-
-  showTinyMessage("مواد داخل کاسه ریخته شد");
-
- }
-
- else if(type==="mix" && kitchenStep===4){
-
-  kitchenStep=5;
-
-  showTinyMessage("مواد خوب مخلوط شدند");
-
- }
-
- else if(type==="oven" && kitchenStep===5){
-
-  kitchenStep=6;
-
-  showTinyMessage("کیک داخل فر رفت...");
-
-  setTimeout(function(){
-
-   document.getElementById("cakeResult")
-   .style.transform=
-   "translate(-50%,-50%) scale(1)";
-
-   kitchenStep=7;
-
-   updateKitchenSteps();
-
-  },1200);
-
- }
-
- else if(kitchenStep===7){
-
-  kitchenStep=8;
-
-  showModal(
-   "کیک آماده شد!",
-   "کیک رو به مشتری فروختی و 650 سکه گرفتی."
-  );
-
-  coins+=650;
-
-  updateCoins();
-
- }
-
- else{
-
-  showTinyMessage(
-   "این مرحله هنوز نرسیده."
-  );
-
- }
-
- updateKitchenSteps();
-
-}
-
-
-function updateKitchenSteps(){
-
- let steps=[
-  "step1",
-  "step2",
-  "step3",
-  "step4",
-  "step5"
- ];
-
- steps.forEach(function(id){
-  document.getElementById(id)
-  .classList.remove("active");
- });
-
- if(kitchenStep<=1)
-  document.getElementById("step1").classList.add("active");
-
- else if(kitchenStep<=4)
-  document.getElementById("step2").classList.add("active");
-
- else if(kitchenStep<=6)
-  document.getElementById("step3").classList.add("active");
-
- else if(kitchenStep===7)
-  document.getElementById("step4").classList.add("active");
-
- else
-  document.getElementById("step5").classList.add("active");
-
-}
-
-
-function showTinyMessage(text){
-
- document.getElementById("orderText")
- .textContent=text;
-
-}
-
-
-/* ================= GARDEN ================= */
-
-function startGarden(){
-
- document.getElementById("workTitle")
- .textContent="باغبانی";
-
- document.getElementById("orderText")
- .textContent="برگ‌های باغ را جمع کن";
-
- document.getElementById("kitchenTable")
- .innerHTML="";
-
- let area=
- document.getElementById("kitchenTable");
-
- area.style.background=
- "linear-gradient(#75bd59,#519b43)";
-
- for(let i=0;i<14;i++){
-
-  let leaf=
-  document.createElement("button");
-
-  leaf.textContent="برگ";
-
-  leaf.style.position="absolute";
-  leaf.style.left=(5+Math.random()*85)+"%";
-  leaf.style.top=(5+Math.random()*85)+"%";
-  leaf.style.padding="10px";
-  leaf.style.border="2px solid #222";
-  leaf.style.borderRadius="50%";
-  leaf.style.background="#d59b3d";
-
-  leaf.onclick=function(){
-
-   leaf.remove();
-
-  };
-
-  area.appendChild(leaf);
-
- }
-
- let work=
- document.getElementById("work");
-
- work.style.display="flex";
-
-}
-
-
-/* ================= WORK CLOSE ================= */
-
-function closeWork(){
-
- document.getElementById("work")
+ document.getElementById("starGame")
  .style.display="none";
 
+ let reward=starScore*80;
+
+ coins+=reward;
+
+ updateCoins();
+
+ showModal(
+  "بازی تمام شد!",
+  "امتیاز: "+starScore+
+  " — جایزه: "+reward+" سکه"
+ );
+
 }
 
 
-/* ================= COINS ================= */
+/* OBSTACLE GAME */
 
-function updateCoins(){
+let obstacleRunning=false;
+let obstacleScore=0;
+let obstacleLoop;
+let obstacleTimer;
+let jumping=false;
 
- document.getElementById("coins")
- .textContent=coins;
+function startObstacleGame(){
 
- document.getElementById("shopCoins")
- .textContent=coins;
+ document.getElementById("obstacleGame")
+ .style.display="block";
+
+ obstacleRunning=true;
+ obstacleScore=0;
+
+ document.getElementById("obScore").textContent=0;
+
+ obstacleLoop=setInterval(createObstacle,1600);
+
+ obstacleTimer=setInterval(()=>{
+
+  if(!obstacleRunning)return;
+
+  obstacleScore++;
+
+  document.getElementById("obScore")
+  .textContent=obstacleScore;
+
+ },1000);
 
 }
 
+function createObstacle(){
 
-/* ================= SHOP ================= */
+ if(!obstacleRunning)return;
+
+ let o=document.createElement("div");
+
+ o.className="obstacle";
+
+ document.getElementById("obstacleGame")
+ .appendChild(o);
+
+ let x=window.innerWidth+50;
+
+ o.style.left=x+"px";
+ o.style.right="auto";
+
+ let move=setInterval(()=>{
+
+  if(!obstacleRunning){
+
+   clearInterval(move);
+   o.remove();
+   return;
+
+  }
+
+  x-=6;
+
+  o.style.left=x+"px";
+
+  let player=
+   document.getElementById("obPlayer")
+   .getBoundingClientRect();
+
+  let box=o.getBoundingClientRect();
+
+  if(
+   box.left<player.right &&
+   box.right>player.left &&
+   box.top<player.bottom &&
+   box.bottom>player.top
+  ){
+
+   if(!jumping)
+    gameOverObstacle();
+
+  }
+
+  if(x<-70){
+
+   clearInterval(move);
+   o.remove();
+
+  }
+
+ },30);
+
+}
+
+function obJump(){
+
+ if(jumping)return;
+
+ jumping=true;
+
+ let p=document.getElementById("obPlayer");
+
+ p.style.transform="translateY(-100px)";
+
+ setTimeout(()=>{
+
+  p.style.transform="translateY(0)";
+
+  setTimeout(()=>{
+   jumping=false;
+  },180);
+
+ },450);
+
+}
+
+function gameOverObstacle(){
+
+ if(!obstacleRunning)return;
+
+ obstacleRunning=false;
+
+ clearInterval(obstacleLoop);
+ clearInterval(obstacleTimer);
+
+ let reward=obstacleScore*100;
+
+ coins+=reward;
+
+ updateCoins();
+
+ document.getElementById("obstacleGame")
+ .style.display="none";
+
+ showModal(
+  "باختی!",
+  "رکورد این دور: "+obstacleScore+
+  " — جایزه: "+reward+" سکه"
+ );
+
+}
+
+document.getElementById("obstacleGame")
+.addEventListener("click",function(e){
+
+ if(e.target===this)
+  gameOverObstacle();
+
+});
+
+
+/* SHOP */
 
 const shopItems=[
 
- {
-  name:"لباس ویژه",
-  price:2200
- },
-
- {
-  name:"کفش ویژه",
-  price:1800
- },
-
- {
-  name:"کیف",
-  price:2500
- },
-
- {
-  name:"قاب گوشی",
-  price:2000
- },
-
- {
-  name:"گل بزرگ",
-  price:1400
- },
-
- {
-  name:"عروسک",
-  price:3000
- },
-
- {
-  name:"جعبه شکلات",
-  price:1700
- },
-
- {
-  name:"هدیه خاص",
-  price:4200
- },
-
- {
-  name:"دایناسور",
-  price:3500
- },
-
- {
-  name:"مارمولک",
-  price:2700
- },
-
- {
-  name:"کیک مخصوص",
-  price:5000
- },
-
- {
-  name:"هدیه افسانه‌ای",
-  price:8000
- }
+ ["لباس خاص",2500],
+ ["کفش خاص",2200],
+ ["کیف",3000],
+ ["قاب گوشی",2400],
+ ["عروسک",4000],
+ ["جعبه هدیه",3500],
+ ["دایناسور",5000],
+ ["هدیه ویژه",6500],
+ ["کیک مخصوص",8000],
+ ["هدیه افسانه‌ای",12000]
 
 ];
 
-
 function renderShop(){
 
- let grid=
- document.getElementById("shopGrid");
+ let grid=document.getElementById("shopGrid");
 
  grid.innerHTML="";
 
- shopItems.forEach(function(item,index){
+ shopItems.forEach((item,i)=>{
 
-  let div=
-  document.createElement("div");
+  let div=document.createElement("div");
 
-  div.className="shopItem";
+  div.className="item";
 
   div.innerHTML=`
 
-   <div class="shopIcon">
-    ${item.name}
+   <div class="itemVisual">
+    ${item[0]}
    </div>
 
-   <h3>${item.name}</h3>
+   <h3>${item[0]}</h3>
 
-   <div class="shopPrice">
-    ${item.price} سکه
-   </div>
+   <p>${item[1]} سکه</p>
 
-   <br>
-
-   <button onclick="buyGift(${index})">
+   <button onclick="buy(${i})">
     خرید
    </button>
 
@@ -2314,66 +1284,52 @@ function renderShop(){
 
 }
 
+function buy(i){
 
-function buyGift(index){
+ let item=shopItems[i];
 
- let item=
- shopItems[index];
-
- if(coins<item.price){
+ if(coins<item[1]){
 
   showModal(
    "سکه کافی نیست",
-   "باید چند بار کار کنی و پول بیشتری جمع کنی."
+   "چند دور دیگر بازی کن تا پولش جمع شود."
   );
 
   return;
 
  }
 
- coins-=item.price;
+ coins-=item[1];
 
- boughtGifts.push({
-
-  number:boughtGifts.length+1,
-
-  name:item.name,
-
-  hair:hairStyle,
-
-  hairColor:hairColor,
-
-  clothes:clothes
-
+ gifts.push({
+  user:gifts.length+1,
+  item:item[0]
  });
 
  updateCoins();
 
  showModal(
-  "هدیه خریداری شد",
-  "کاربر "+boughtGifts.length+
-  " برای یوتا «"+item.name+"» خرید."
+  "هدیه خریداری شد!",
+  "کاربر "+gifts.length+
+  " برای یوتا «"+item[0]+"» خرید."
  );
 
 }
 
 
-/* ================= GIFTS ================= */
+/* GIFTS */
 
 function renderGifts(){
 
- let box=
- document.getElementById("giftList");
+ let box=document.getElementById("giftList");
 
  box.innerHTML="";
 
- if(boughtGifts.length===0){
+ if(gifts.length===0){
 
   box.innerHTML=`
    <div class="empty">
-    هنوز کسی برای یوتا هدیه نخریده.
-    <br><br>
-    برو کار کن و برایش هدیه بخر.
+    هنوز هدیه‌ای خریداری نشده.
    </div>
   `;
 
@@ -2381,11 +1337,9 @@ function renderGifts(){
 
  }
 
+ gifts.forEach(g=>{
 
- boughtGifts.forEach(function(g){
-
-  let div=
-  document.createElement("div");
+  let div=document.createElement("div");
 
   div.className="userGift";
 
@@ -2394,24 +1348,10 @@ function renderGifts(){
    <div class="giftAvatar"></div>
 
    <div>
-
-    <b>
-     کاربر ${g.number}
-    </b>
-
+    <b>کاربر ${g.user}</b>
     <br>
-
     برای یوتا:
-    <b>
-     ${g.name}
-    </b>
-
-    <br>
-
-    <small>
-     شخصیت ساخته‌شده توسط کاربر ${g.number}
-    </small>
-
+    <b>${g.item}</b>
    </div>
 
   `;
@@ -2425,5 +1365,4 @@ function renderGifts(){
 </script>
 
 </body>
-</html>
-
+ </html>
